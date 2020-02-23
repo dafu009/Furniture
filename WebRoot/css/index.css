@@ -92,6 +92,7 @@
 	font-size: 14px;
 	padding: 0px 15px;
 	background-color:transparent;
+	outline：none;
 }
 .top_div .logo_box .searchbox .searchbtn {
     width: 46px;
