@@ -22,7 +22,7 @@ public interface GoodsService {
 	//根据家具类别获取家具
 	List<goods> GoodsType(goods Goods, Integer id);
 
-	//根据家具编号获取家具
+	//根据家具编号获取家具信息
 	Map<String, Object> GetGoods(Integer id);
 	
 	//模糊搜索
@@ -30,17 +30,17 @@ public interface GoodsService {
 	
 	List<Map<String, Object>> SearchgoodsAll(String content);
 	
-	//根据某爱家驹编号获取家具信息
+	//根据某家具驹编号获取家具信息
 	Map<String, Object> GetGoodsInfo(Integer goodsID);
 	
 	//获取某家具的库存
 	Map<String, Object> GetQuantity(Integer goodsID);
 	
 
-	//修改某家具库存
+	//修改某家具库存（库存减少）
 	void ChangeQuantity(Integer goodsID, Integer quantity);
 	
-	//返回某家具库存
-	void ChangeQuantityReturn(Integer goodsID, Integer quantity);
+	//库存增加
+	void AddChangeQuantity(Integer goodsID, Integer quantity);
 	
 }
