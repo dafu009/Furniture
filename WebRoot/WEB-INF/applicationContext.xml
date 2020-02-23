@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" 
+    xmlns:mybatis="http://mybatis.org/schema/mybatis-spring"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:p="http://www.springframework.org/schema/p"
+    xmlns:context="http://www.springframework.org/schema/context"
+    xmlns:mvc="http://www.springframework.org/schema/mvc"
+    xmlns:tx="http://www.springframework.org/schema/tx"
+    xmlns:util="http://www.springframework.org/schema/util" 
+    xsi:schemaLocation="http://www.springframework.org/schema/beans 
+                        http://www.springframework.org/schema/beans/spring-beans.xsd
+                        http://www.springframework.org/schema/context
+                        http://www.springframework.org/schema/context/spring-context.xsd
+                        http://www.springframework.org/schema/mvc
+                        http://www.springframework.org/schema/mvc/spring-mvc.xsd
+                        http://www.springframework.org/schema/tx
+                        http://www.springframework.org/schema/tx/spring-tx.xsd
+                        http://mybatis.org/schema/mybatis-spring 
+                        http://mybatis.org/schema/mybatis-spring.xsd 
+                        http://www.springframework.org/schema/util 
+						http://www.springframework.org/schema/util/spring-util.xsd ">
+                        
+    <!-- 配置映射接口，spring会自动查找下面的接口 -->
+    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+    	<property name="basePackage" value="comBook.mapper"/>
+    </bean>       
+                  
+    <!-- mybatis:scan会将comBook.mapper包里的所有接口当作mapper配置，之后可以自动引入mapper类-->  
+    <!-- <mybatis:scan base-package="comBook.mapper"/> --> 
+       
+    <!-- 扫描codeRose包下面的java文件，有Spring的相关注解的类，则把这些类注册为Spring的bean -->
+    <context:component-scan base-package="comBook"/>
+    
+    <!-- 使用PropertyOverrideConfigurer后处理器加载数据源参数 -->
+    <context:property-override location="classpath:db.properties"/>
+
+    <!-- 配置c3p0数据源 -->
+    <bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource"/>
+    
+    <!-- 配置 Spirng 的 JdbcTemplate -->
+	<bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
+		<property name="dataSource" ref="dataSource"></property>
+	</bean>
+    
+    <!-- 配置SqlSessionFactory，org.mybatis.spring.SqlSessionFactoryBean是Mybatis社区开发用于整合Spring的bean -->
+    <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean" p:dataSource-ref="dataSource"/>
+       
+    <!-- JDBC事务管理器 -->
+    <bean id="transactionManager" 
+    class="org.springframework.jdbc.datasource.DataSourceTransactionManager" p:dataSource-ref="dataSource"/>
+    
+    <!-- 启用支持annotation注解方式事务管理 -->
+    <tx:annotation-driven transaction-manager="transactionManager"/>
+        
+    
+    <mvc:annotation-driven />   
+    <bean class="org.springframework.web.servlet.mvc.annotation.DefaultAnnotationHandlerMapping" />
+    	<!-- 启动Spring MVC的注解功能，完成请求和注解POJO的映射    -->
+		<bean class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter">
+		    <property name="messageConverters">
+		        <list>
+		            <!-- json转换器  -->
+		            <ref bean="mappingJacksonHttpMessageConverter" />
+		        </list>
+		    </property>
+		</bean>
+	<bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter">  
+	    <property name="messageConverters">  
+	        <list>  
+	               <ref bean="mappingJacksonHttpMessageConverter" />  
+	        </list>  
+	    </property>  
+	</bean>  
+	
+
+	<bean id="mappingJacksonHttpMessageConverter" class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">  
+	    <property name = "supportedMediaTypes">  
+	    	<list> 
+	    		<bean class="org.springframework.http.MediaType">  
+	             	<constructor-arg index="0" value="application"/>  
+	             	<constructor-arg index="1" value="json"/>  
+	             	<constructor-arg index="2" value="UTF-8"/>  
+	            </bean>  
+				<bean class="org.springframework.http.MediaType">  
+	            	<constructor-arg index="0" value="text"/>  
+	             	<constructor-arg index="1" value="plain"/>  
+	             	<constructor-arg index="2" value="UTF-8"/>  
+	            </bean>  
+	            <bean class="org.springframework.http.MediaType">  
+	             	<constructor-arg index="0" value="*"/>  
+	             	<constructor-arg index="1" value="*"/>  
+	             	<constructor-arg index="2" value="UTF-8"/>  
+	            </bean>  
+	            <bean class="org.springframework.http.MediaType">  
+	             	<constructor-arg index="0" value="text"/>  
+	             	<constructor-arg index="1" value="*"/>  
+	             	<constructor-arg index="2" value="UTF-8"/>  
+	            </bean>  
+			</list>  
+		</property>  
+	</bean>       
+</beans>
+

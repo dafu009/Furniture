@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>图书详情</title>
+		<link rel="stylesheet" type="text/css" href="css/font-awesome.min.css" />
+		<link rel="stylesheet" type="text/css" href="css/swiper.min.css" />
+		<link rel="stylesheet" type="text/css" href="css/common.css" />
+		<link rel="stylesheet" type="text/css" href="css/goodsDetail.css" />
+		<script src="js/jquery-1.9.1.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/common.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/commonAjax.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/sweetalert.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/ajaxurl.js" type="text/javascript" charset="utf-8"></script>
+        <script src="js/goodsDetail.js" type="text/javascript" charset="utf-8"></script>
+        <script type="text/javascript" src="js/vue/vue.min.js"></script>
+	</head>
+
+	<body>
+		<div class="main">
+			<div class="loginregise">
+				<a href="register.html">注册</a>
+				<a href="login.html">登录</a>
+			</div>
+			<div class="top">
+				<div class="logo">
+					<span></span>
+					<img src="img/logo.png" />
+				</div>
+				<div class="search">
+					<div class="bar1">
+						<input type="text" id="search_input" placeholder="请输入您要搜索的内容(书名、作者、出版社)" autocomplete="off">
+						<button type="button" id="search_btn"></button>
+					</div>
+				</div>
+				<div class="right">
+					<div class="indexlike">
+
+						<button type="button" title="收藏"></button>
+					</div>
+					<div class="car">
+
+						<button type="button" title="购物车"></button>
+					</div>
+					<div class="order">
+						<button type="button" title="我的订单"></button>
+					</div>
+				</div>
+			</div>
+			<!--导航栏-->
+			<div class="daohang">
+				<ul id="nav">
+					<li class="daohangbig" ref="0">图书分类</li>
+					
+				</ul>
+			</div>
+
+			<div class="goodsdetail_main">
+				<div class="curren_type">
+					<span class="current_goods_type">
+						当前产品分类
+					</span>
+					<span class="current_goods_type2" id="categoryName">{{ item.categoryName }}</span>
+				</div>
+				<div class="goodsinfo_main">
+					<div class="goodsinfo_left">
+						<div class="goodsinfo_left_img">
+							<img id="{{ item.id }}" src="{{ item.picInfo }}" />
+						</div>
+					</div>
+
+					<div class="goodsinfo_right">
+						<div class="goodsname">
+							<span id="{{ item.id }}">{{ item.goodsName }}</span>
+						</div>
+						<div class="goodsinfo">
+							<span class="goodsinfo_color" id="color"></span> <br>
+							<span class="goodsinfo_price" id="price"></span><br>
+							<span class="goodsinfo_kucun" id="quantity"></span>
+							<span class="goodsinfo_detail" id="detail"></span><br>
+							<span class="goodsinfo_size_title">
+								尺寸:
+							</span>
+							<span class="goodsinfo_size_content"  id="size"></span>
+						</div>
+
+
+						<div class="goodsinfo_button">
+							<div class="like goodsdetail_btn">
+								<button class="addLikeOrCar" mark="0" id="addlike" title="收藏">收藏</button>
+							</div>
+							<div class="addcar goodsdetail_btn">
+								<button class="addLikeOrCar" mark="1" id="addcar" type="button" title="加入购物车">加入购物车</button>
+							</div>
+							<div class="buyright goodsdetail_btn">
+								<button type="button" title="立即购买" id="buyright">立即购买</button>
+							</div>
+
+						</div>
+
+					</div>
+
+				</div>
+			</div>
+
+			<div class="havelook_main">
+				<div class="goodsmain_title">
+					<span class="">
+							浏览过此产品的用户同时浏览
+						</span>
+				</div>
+
+				<div class="havelookgoods_detail">
+					
+				</div>
+
+			</div>
+			<div style="clear: both;"></div>
+			<!--页脚-->
+			<div class="footer">
+				<span>
+					design by liu&wu
+				</span>
+			</div>
+
+		</div>
+
+	</body>
+
+</html>
