@@ -30,13 +30,7 @@
 			onclick() { },
 			check() { },
 			fetchdata() {
-				axios({
-					methods: 'get',
-					url: '',
-				})
-					.then((data) => {
-						this.bookList = data.result.bookList.length
-					})
+				
 			}
 		},
 		created() {
