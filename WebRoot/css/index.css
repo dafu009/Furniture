@@ -1,4 +1,8 @@
 @charset "UTF-8";
+* {
+  margin: 0;
+  padding: 0;
+}
 input {
   outline: none;
 }
@@ -33,18 +37,27 @@ button {
 .top_div .logo_box .flex {
   display: flex;
 }
-.top_div .logo_box .left .left_a1 {
-  width: 23px;
-  height: 23px;
-  display: block;
+.top_div .logo_box .left .self {
+  width: 25px;
+  height: 25px;
   background: url(../images/self.png) no-repeat center center;
+  background-size: 100% 100%;
   margin-right: 20px;
+  cursor: pointer;
 }
-.top_div .logo_box .left .left_a2 {
-  width: 23px;
-  height: 23px;
-  display: block;
-  background: url(../images/zhuce.png) no-repeat center center;
+.top_div .logo_box .left .register {
+  width: 25px;
+  height: 25px;
+  background: url(../images/resg.png) no-repeat center center;
+  background-size: 100% 100%;
+  cursor: pointer;
+}
+.top_div .logo_box .left .quit {
+  width: 25px;
+  height: 25px;
+  background: url(../images/quit.png) no-repeat center center;
+  background-size: 100% 100%;
+  cursor: pointer;
 }
 .top_div .logo_box .right {
   float: right;
@@ -111,6 +124,13 @@ button {
   width: 100%;
   position: relative;
   border-top: 1px solid #f0f0f0;
+}
+.top_div .is_fixed {
+  position: fixed;
+  z-index: 999;
+  top: 0;
+  background-color: #fff;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
 }
 .top_div .nav_box {
   width: 1200px;
@@ -199,21 +219,21 @@ a {
 .sn p {
   cursor: pointer;
 }
-.sn sn_a1 {
+.sn .sn_a1 {
   width: 547px;
   height: 340px;
   margin-top: 423px;
   margin-left: 4px;
   position: absolute;
 }
-.sn sn_a2 {
+.sn .sn_a2 {
   width: 535px;
   height: 630px;
   margin-top: 430px;
   margin-left: 604px;
   position: absolute;
 }
-.sn sn_a3 {
+.sn .sn_a3 {
   width: 545px;
   height: 411px;
   margin-top: 893px;
@@ -301,7 +321,7 @@ a {
   width: 100%;
   height: 90px;
 }
-.qj_hot p{
+.qj_hot p {
   width: 180px;
   height: 190px;
   padding: 10px;
