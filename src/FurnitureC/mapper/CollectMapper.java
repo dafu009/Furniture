@@ -19,7 +19,7 @@ public interface CollectMapper {
 	Map<String, Object> findCollect(@Param("userID")Integer userID, @Param("goodsID")Integer goodsID);
 	
 	//根据用户查找收藏
-	@Select("select id,goodsID from collect where userID = #{userID} order by collectDate desc")
+	@Select("select id,goodsID as goodsid from collect where userID = #{userID} order by collectDate desc")
 	List<Map<String, Object>> collectList(Collect collect, @Param("userID")Integer id);
 	
 	//根据收藏编号返回收藏记录

@@ -10,7 +10,7 @@ import FurnitureC.bean.goods;
 import FurnitureC.bean.Collect;
 import FurnitureC.mapper.GoodsMapper;
 
-@Service("BookService")
+@Service("GoodsService")
 public class GoodsServiceImpl implements GoodsService {
 
 	@Autowired
@@ -62,7 +62,7 @@ public class GoodsServiceImpl implements GoodsService {
 			Integer pageSize, String content) {
 		// TODO Auto-generated method stub
 		page=(page-1)*pageSize;
-		content="%"+content+"%";
+		content="%"+content+"%"; //Ä£ºý²éÑ¯
 		return goodsMapper.getsearchgoods(page, pageSize, content);
 	}
 

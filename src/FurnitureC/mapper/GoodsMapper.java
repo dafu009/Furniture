@@ -25,7 +25,7 @@ public interface GoodsMapper {
 	@Select("select * from goods where categoryID = #{id} ")
 	List<goods> GetGoodsType(goods Goods,@Param("id")Integer id);
 	
-	@Select("select * from goods where id=#{id}")
+	@Select("select goodsName,picInfo,inPrice,color from goods where id=#{id}")
 	Map<String,Object> getgoods(@Param("id")Integer id);
 	
 	@Select("select * from goods where goodsName like #{content} or color like #{content} limit #{page},#{pageSize}")
@@ -34,7 +34,7 @@ public interface GoodsMapper {
 	@Select("select * from goods where goodsName like #{content} or color like #{content}")
 	List<Map<String,Object>> getsearchgoodsAll (@Param("content")String content);
 	
-	@Select("select * from goods where id = #{goodsID}")
+	@Select("select goodsName,picInfo,color from goods where id = #{goodsID}")
 	Map<String,Object> getgoodsInfo(@Param("goodsID")Integer goodsID);
 	
 	@Select("select quantity from goods where id = #{goodsID}")

@@ -14,7 +14,7 @@ public interface CollectService {
 	//根据用户编号返回收藏列表
 	List<Map<String,Object>> CollectList(Collect collect,Integer userID); 
 	
-	//根据收藏编号返回收藏列表
+	//根据收藏编号返回收藏
 	Map<String,Object> SearchCollect(Integer likeid);
 	
 	//删除某条收藏记录
