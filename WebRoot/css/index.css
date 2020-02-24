@@ -90,6 +90,7 @@ button {
 }
 .top_div .logo_box .searchbox input {
 <<<<<<< HEAD
+<<<<<<< HEAD
     height: 100%;
     line-height: 40px;
     border: 0px;
@@ -100,6 +101,8 @@ button {
 	background-color:transparent;
 	outline：none;
 =======
+=======
+>>>>>>> 龟分支
   height: 100%;
   line-height: 40px;
   border: 0px;
@@ -108,6 +111,9 @@ button {
   font-size: 14px;
   padding: 0px 15px;
   background-color: transparent;
+<<<<<<< HEAD
+>>>>>>> 龟分支
+=======
 >>>>>>> 龟分支
 }
 .top_div .logo_box .searchbox .searchbtn {
