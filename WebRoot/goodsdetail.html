@@ -4,19 +4,14 @@
 	<head>
 		<meta charset="UTF-8">
 		<title>产品详情</title>
-		<link rel="stylesheet" type="text/css" href="css/font-awesome.min.css" />
 		<link rel="stylesheet" type="text/css" href="css/swiper.min.css" />
-		<link rel="stylesheet" type="text/css" href="css/common.css" />
 		<link rel="stylesheet" type="text/css" href="css/goodsdetail.css" />
 		<link rel="stylesheet" href="css/index.css" type="text/css"></link>
 		<script src="js/jquery-1.9.1.min.js" type="text/javascript" charset="utf-8"></script>
 		<script src="js/common.js" type="text/javascript" charset="utf-8"></script>
-		<script src="js/commonAjax.js" type="text/javascript" charset="utf-8"></script>
 		<script src="js/sweetalert.min.js" type="text/javascript" charset="utf-8"></script>
 		<script src="js/ajaxurl.js" type="text/javascript" charset="utf-8"></script>
-        <script src="js/goodsDetail.js" type="text/javascript" charset="utf-8"></script>
-        <script type="text/javascript" src="js/vue/vue.min.js"></script>
-	</head>
+		<script type="text/javascript" src="assets/js/vue/vue.min.js"></script></head>
 
 	<body>
 		<div class="main">
@@ -64,7 +59,7 @@
 			<div class="goodsdetail_main">
 				<div class="curren_type">
 					<span class="current_goods_type">
-						当前产品分类
+						当前产品分类&nbsp;➤
 					</span>
 					<span class="current_goods_type2" id="categoryName">{{ item.categoryName }}</span>
 				</div>
@@ -90,12 +85,12 @@
 						<div style="clear:both;"></div>
 						<div class="goodsinfo_button">
 							<div class="likeandcar">
-								<button class="addLikeOrCar" mark="0" id="addlike" title="收藏">收藏</button>
-								<button class="addLikeOrCar" mark="1" id="addcar" type="button" title="加入购物车">加入购物车</button>
+								<button class="addLike" mark="0" id="addlike" title="收藏"><span>收藏</span></button>
+								<button class="addCar" mark="1" id="addcar" type="button" title="加入购物车"><span>加入购物车</span></button>
 							</div>
 							
 							<div class="buyright">
-								<button type="button" title="立即购买" id="buyright">立即购买</button>
+								<button type="button" title="立即购买" id="buyright"><span>立即购买</span></button>
 							</div>
 					
 					</div>

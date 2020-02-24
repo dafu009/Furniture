@@ -74,6 +74,59 @@
     margin-bottom: .025em;
     float: left;
 }
+.goodsinfo_button button {
+  display: inline-block;
+  border-radius: 12px;
+  background-color: #83af9b;
+  border: none;
+  color: #FFFFFF;
+  text-align: center;
+  font-size: 20px;
+  transition: all 0.5s;
+  cursor: pointer;
+  vertical-align:middle;
+}
+
+.goodsinfo_button button span {
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  transition: 0.5s;
+}
+
+.addLike span:after {
+  content: '✩';
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  right: -20px;
+  transition: 0.5s;
+}
+.addCar span:after {
+  content: '🛒';
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  right: -20px;
+  transition: 0.5s;
+}
+.buyright span:after {
+  content: '☑';
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  right: -20px;
+  transition: 0.5s;
+}
+
+.goodsinfo_button button:hover span {
+  padding-right: 35px;
+}
+
+.goodsinfo_button button:hover span:after {
+  opacity: 1;
+  right: 0;
+}
 .goodsinfo_button{
 	width: 420px;
     height: 190px;
