@@ -6,11 +6,12 @@
     <link rel="stylesheet" href="css/index.css" type="text/css" />
     <link rel="stylesheet" href="css/swiper.min.css" type="text/css" />
     <!-- <script type="text/javascript" src="js/jquery-1.9.1.min.js"></script> -->
+    <script type="text/javascript" src="assets/js/axios/axios.min.js"></script>
     <script type="text/javascript" src="js/swiper.min.js"></script>
     <script type="text/javascript" src="assets/js/vue/vue.min.js"></script>
     <script type="text/javascript" src="js/sweetalert.min.js"></script>
     <script type="text/javascript" src="js/index.js"></script>
-    <!-- <script type="text/javascript" src="js/common.js"></script> -->
+    <script type="text/javascript" src="js/common.js"></script>
     <script type="text/javascript" src="js/ajaxurl.js"></script>
   </head>
   <body>
@@ -20,8 +21,9 @@
           <a class="logo" href="/"></a>
           <div class="left">
             <div class="flex">
-              <a class="left_a1" href="#"></a>
-              <a class="left_a2" href="#"></a>
+              <p class="self" title="个人中心" @click="toSelfPage"></p>
+              <p class="quit" title="退出" v-if="isLogin" @click="quit"></p>
+              <p class="register" title="注册" v-else @click="toRegister"></p>
             </div>
           </div>
           <div class="right">
@@ -44,10 +46,14 @@
               v-model="searchText"
               @keyup.enter="searchData"
             />
-            <button class="searchbtn" @click="searchData" id="search_btn"></button>
+            <button
+              class="searchbtn"
+              @click="searchData"
+              id="search_btn"
+            ></button>
           </div>
         </div>
-        <div id="nav" class="nav_box_all">
+        <div id="nav" class="nav_box_all" :class="{'is_fixed' : isFixed}">
           <div class="nav_box">
             <div
               class="box"
@@ -55,65 +61,77 @@
               :class="{'on': currentIndex === index}"
               @click="current(index)"
             >
-              {{ item }}
+              {{ item.title }}
             </div>
           </div>
         </div>
       </div>
-      <div class="homemain_middle_top bgco">
-        <div class="swiper-container" id="swiper-container-id1">
-          <div class="swiper-wrapper">
-            <div class="swiper-slide bigwrapper"><img src="img/gd1.png" /></div>
-            <div class="swiper-slide bigwrapper"><img src="img/gd2.jpg" /></div>
-            <div class="swiper-slide bigwrapper"><img src="img/gd3.jpg" /></div>
+      <div class="total" v-if="currentIndex === 0">
+        <div class="homemain_middle_top bgco">
+          <div class="swiper-container" id="swiper-container-id1">
+            <div class="swiper-wrapper">
+              <div class="swiper-slide bigwrapper">
+                <img src="img/gd1.png" />
+              </div>
+              <div class="swiper-slide bigwrapper">
+                <img src="img/gd2.jpg" />
+              </div>
+              <div class="swiper-slide bigwrapper">
+                <img src="img/gd3.jpg" />
+              </div>
+            </div>
+            <div class="swiper-pagination"></div>
           </div>
-          <div class="swiper-pagination"></div>
+        </div>
+        <div class="clear1"></div>
+        <div class="under-swiper">
+          <div><img src="img/anxin.png" alt="" /></div>
+          <div class="clearing"><img src="images/sy-qj.jpg" /></div>
+
+          <div class="qj_cp">
+            <p
+              class="good"
+              v-for="(item, index) in clearGoods"
+              @click="goGoodDetail(item.id)"
+            ></p>
+          </div>
+
+          <div class="sn">
+            <p
+              v-for="(item, index) in admissionGoods"
+              @click="goGoodDetail(item.id)"
+              :class="`sn_a${index+1}`"
+            ></p>
+          </div>
+
+          <div class="xx">
+            <p
+              v-for="(item, index) in leisureGoods"
+              @click="goGoodDetail(item.id)"
+              :class="`xx_a${index+1}`"
+            ></p>
+          </div>
+
+          <div class="gz">
+            <p
+              v-for="(item, index) in workGoods"
+              @click="goGoodDetail(item.id)"
+              :class="`gz_a${index+1}`"
+            ></p>
+          </div>
+
+          <div class="qj_hot">
+            <span class="title"></span>
+            <p
+              class="category"
+              v-for="(item, index) in hotCategorys"
+              @click="goCategoryDetail(item.id)"
+            ></p>
+          </div>
         </div>
       </div>
-      <div class="clear1"></div>
-      <div class="under-swiper">
-        <div><img src="img/anxin.png" alt="" /></div>
-        <div class="clearing"><img src="images/sy-qj.jpg" /></div>
-
-        <div class="qj_cp">
-          <p
-            class="good"
-            v-for="(item, index) in clearGoods"
-            @click="goGoodDetail(item.id)"
-          ></p>
-        </div>
-
-        <div class="sn">
-          <p
-            v-for="(item, index) in admissionGoods"
-            @click="goGoodDetail(item.id)"
-            :class="`sn_a${index+1}`"
-          ></p>
-        </div>
-
-        <div class="xx">
-          <p
-            v-for="(item, index) in leisureGoods"
-            @click="goGoodDetail(item.id)"
-            :class="`xx_a${index+1}`"
-          ></p>
-        </div>
-
-        <div class="gz">
-          <p
-            v-for="(item, index) in workGoods"
-            @click="goGoodDetail(item.id)"
-            :class="`gz_a${index+1}`"
-          ></p>
-        </div>
-
-        <div class="qj_hot">
-          <span class="title"></span>
-          <p class="category"
-            v-for="(item, index) in hotCategorys"
-            @click="goCategoryDetail(item.id)">
-          </p>
-        </div>
+      <div class="subCategory" v-if="currentIndex !== 0">
+        
       </div>
       <div class="bottom">
         <div class="footer">
