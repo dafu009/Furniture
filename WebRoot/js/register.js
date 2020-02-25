@@ -11,6 +11,9 @@ window.onload = () => {
       }
     },
     methods: {
+      goHomePage () {
+        window.location.href = "index.html"
+      },
       resister () {
         if (!this.username) {
           sweetAlert('Oops..', '请输入用户名', 'error')
