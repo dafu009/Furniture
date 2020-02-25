@@ -326,6 +326,11 @@ a {
   padding: 10px;
   cursor: pointer;
 }
+.subCategory {
+  width: 80%;
+  margin: 20px auto;
+  text-align: center;
+}
 .bottom {
   height: 197px;
   background: #424242;

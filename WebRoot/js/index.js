@@ -6,7 +6,7 @@ window.onload = () => {
         searchText: '',
         offsetTop: 0,
         isFixed: false,
-        currentCategoryList: [],　// 当前类别的物品列表
+        currentCategory: {},　// 当前类别的物品
         currentIndex: 0,  // 当前nav索引
         nav: [
           {
@@ -126,6 +126,7 @@ window.onload = () => {
     methods: {
       current (index) {
         this.currentIndex = index
+        this.currentCategory.title = this.nav[index].title
         axios({ // ajax 请求
           method: 'GET',　// 具体看请求后端的方式
           url: '', // 后端查询接口
@@ -134,9 +135,12 @@ window.onload = () => {
             lastName: 'Flintstone'
           }
         })
-          .then((data) => {
-            // data为后端返回的数据 对物品列表进行赋值
-            this.currentCategoryList = data
+          .then(({ code, result }) => {
+            if (code === 200) {
+              // data为后端返回的数据 对物品列表进行赋值
+              this.currentCategory.title = this.nav[index].title
+              this.currentCategory.list = result
+            }
           })
           .catch((err) => {
             console.log(err)
@@ -144,11 +148,11 @@ window.onload = () => {
       },
       goGoodDetail (id) {
         // 点击，跳转到相应的产品详情页
-        location.href = "/goodsdetail.html?goodsid=" 
+        location.href = `/goodsdetail.html?goodId=${id}`
       },
       goCategoryDetail (id) {
         // 点击，跳转到相应的产品分类页面
-        location.href = "/goodsType.html?categoryID=" 
+        location.href = `/goodsType.html?categoryID=${id}`
       },
       searchData () {
         setCookie("SearchTxt", this.searchData)
@@ -160,9 +164,11 @@ window.onload = () => {
       },
       toRegister () {
         // 去注册
+        window.location.href = 'register.html'
       },
       toSelfPage () {
         // 去个人中心
+        window.location.href = 'setting.html'
       },
       quit () {
         // 退出登录
