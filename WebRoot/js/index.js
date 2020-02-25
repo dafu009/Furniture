@@ -127,7 +127,7 @@ window.onload = () => {
       current (index) {
         this.currentIndex = index
         axios({ // ajax 请求
-          methods: 'GET',　// 具体看请求后端的方式
+          method: 'GET',　// 具体看请求后端的方式
           url: '', // 后端查询接口
           data: {
             firstName: 'Fred',

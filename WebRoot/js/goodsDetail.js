@@ -16,7 +16,7 @@ window.onload = () => {
     methods: {
       queryGoodDetail (id) {
         axios({
-          methods: 'post',
+          method: 'post',
           data: {
             goodId: id
           },
