@@ -50,12 +50,111 @@ public class OrderController {
 	@RequestMapping("/addOrder")
 	@ResponseBody
 	public Map<String,Object> addOrder(GetList paras,HttpServletRequest req){
-		return null;
+//		System.out.println(paras.getId() + "/" + paras.getIdlist());
+		List<Map<String,Object>> idlist = paras.getIdlist();
+		Integer id = paras.getId();
+		Map<String, Object> result = new HashMap<String, Object>();
+		Map<String, Object> map = new HashMap<String, Object>();
+		int code, flag;
+		String state, message;
+		try{
+			if(id != 0 & !idlist.isEmpty()){
+				GetRandomId randomId = new GetRandomId();
+				String orderCode = randomId.getRandomFileName();
+				Integer userID = id;
+				Integer num1,num2 = null;
+				Integer totalNum = null;
+				double inPrice;
+				double totalMoney = 0;
+				double money1,money2 = 0;
+				String strmoney1,strmoney2;
+				//固定数字转化格式
+				java.text.DecimalFormat format = new java.text.DecimalFormat("#0.00");
+		
+				if(idlist.size() == 1){
+					num1 = Integer.parseInt(idlist.get(0).get("num").toString());
+					inPrice = Double.parseDouble(idlist.get(0).get("inPrice").toString());
+	//				strmoney1 = idlist.get(0).get("inPrice").toString();
+	//				inPrice = Double.parseDouble(strmoney1);//转换成double类型
+					money1 = Double.parseDouble(format.format(inPrice));
+					totalNum = num1;
+					totalMoney = money1*num1;
+				}else{
+					for(int i = 0; i <idlist.size(); i++){
+						num1 = Integer.parseInt(idlist.get(i).get("num").toString());
+						inPrice = Double.parseDouble(idlist.get(i).get("inPrice").toString());
+						money1 = Double.parseDouble(format.format(inPrice));
+						for(int j = 0;j<idlist.size();j++){
+							num2 = Integer.parseInt(idlist.get(j).get("num").toString());
+							inPrice = Double.parseDouble(idlist.get(j).get("inPrice").toString());
+							money2 = Double.parseDouble(format.format(inPrice));
+							totalNum = num1+num2;
+							totalMoney = money1 * num1 + money2 * num2;
+	//						System.out.println(totalMoney);
+							break;
+						}
+					}
+				}
+				Date date = new Date();
+				SimpleDateFormat formatDate = new SimpleDateFormat("yyyy-MM-dd");
+				String orderDate = formatDate.format(date);
+				Integer ID = orderService.AddOrderForm(orderCode, userID, totalNum, totalMoney, orderDate);
+				String orderFormID = ID.toString();
+				
+				
+				for(int k =0; k<idlist.size();k++){
+					String goodsID = idlist.get(k).get("goodsid").toString();
+					String num = idlist.get(k).get("num").toString();
+					String price = idlist.get(k).get("inPrice").toString();
+					orderService.AddOrderItem(orderFormID, goodsID, num, price);
+					//从购物车中移除
+					shoppingCartService.DeleteShoppingCart(userID, goodsID);
+				}
+				flag = 1;
+				message = "成功";
+				result.put("flag", flag);
+				result.put("message", message);
+				code = 200;
+				state = "success";
+				map.put("code", code);
+				map.put("state", state);
+				map.put("message", message);
+				map.put("result", result);
+	//			System.out.println(map);
+				return map;	 
+			}else{
+				flag = 0;
+				message = "失败";
+				result.put("flag", flag);
+				result.put("message", message);
+				code = 0;
+				state = "fail";
+				map.put("code", code);
+				map.put("state", state);
+				map.put("message", message);
+				map.put("result", result);
+	//			System.out.println(map);
+				return map;
+			}
+			
+		}catch(Exception e){
+			System.out.println(e);
+			flag = 0;
+			message = "失败";
+			result.put("flag", flag);
+			result.put("message", message);
+			code = 0;
+			state = "fail";
+			map.put("code", code);
+			map.put("state", state);
+			map.put("message", message);
+			map.put("result", result);
+	//		System.out.println(map);
+			return map;
+		}
 		
 	}
-	
-	
-	
+		
 	
 	
 	/**
