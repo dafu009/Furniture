@@ -3,8 +3,8 @@
 .top{
 	height:70px;
 	width:100%;
-	
-	border-bottom:2px solid #A9A9A9;
+	background-color: #fff2df;
+	border-bottom:3px solid #A9A9A9;
 }
 .logoimg{
 	width:140px;
@@ -48,7 +48,7 @@
 .settingmain{
 	width:400px;
 	margin:auto;
-	margin-top:50px;
+	padding-top: 50px;
 	
 }
 .tabletitle{
@@ -91,6 +91,7 @@
     line-height: 40px;
     border-top: 1px solid #525252;
     margin-top:150px;
+
 }
 .footerbg p {
     text-align: center;

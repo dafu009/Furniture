@@ -28,6 +28,10 @@
 	top:29px;
 	margin-left:45px;
 }
+.kk{
+	border:1px solid #f0f0f0 ;
+	
+}
 .goods_top img{
 	width:1060px;
 	height:500px;
@@ -59,7 +63,69 @@
 	line-height:20px;
 	font-weight: bold;
 }
+.btn{
+	padding:15px;
+	margin-bottom: 5px;
+}
+.btn button {
+  display: inline-block;
+  border-radius: 6px;
+  background-color: #83af9b;
+  border: none;
+  color: #FFFFFF;
+  text-align: center;
+  
+  transition: all 0.5s;
+  cursor: pointer;
+  vertical-align:middle;
+  height: 30px;
+}
 
+.btn button span {
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  transition: 0.5s;
+  font-size: 16px;
+}
 
+.cancelLike span:after {
+  content: '✩';
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  right: -20px;
+  transition: 0.5s;
+}
+.addCar span:after {
+  content: '🛒';
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  right: -20px;
+  transition: 0.5s;
+}
+.btn button:hover span {
+  padding-right: 35px;
+}
 
+.btn button:hover span:after {
+  opacity: 1;
+  right: 0;
+}
+.btn{
+    position: relative;
+    margin: auto;
+	width: 90%;
+}
+
+.likecontentmain{
+	margin: 5%;
+	width: 85%;
+}
+.like_big{
+	background:floralwhite;
+	margin-top: -17px;
+	height: 1000px;
+}
 

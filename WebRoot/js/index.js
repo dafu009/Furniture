@@ -164,11 +164,11 @@ window.onload = () => {
       },
       toRegister () {
         // 去注册
-        window.location.href = 'register.html'
+    	 location.href = "/Furniture/register.html"
       },
       toSelfPage () {
         // 去个人中心
-        window.location.href = 'setting.html'
+    	 location.href = "/setting.html"
       },
       quit () {
         // 退出登录
