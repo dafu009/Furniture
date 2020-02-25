@@ -3,28 +3,44 @@
   <head>
   	<meta charset="UTF-8">
     <title>用户登录</title>
-	<link rel="stylesheet" href="css/user.css" type="text/css"></link>
+  <link rel="stylesheet" href="css/user.css" type="text/css"></link>
+	<script type="text/javascript" src="assets/js/axios/axios.min.js"></script>
+  <script type="text/javascript" src="assets/js/vue/vue.min.js"></script>
+  <script src="js/sweetalert.min.js"></script>
+  <script type="text/javascript" src="js/ajaxurl.js"></script>
 	<script type="text/javascript" src="js/login.js"></script>
-	<script type="text/javascript" src="js/ajaxurl.js"></script>
 </head>
   
   <body>
-    <div class="logo">
+    <div id="app">
+      <div class="logo" @click="ToHomePage">
         <img src="img/logo.png">
-    </div>
-    <div class="user_left">
-        <img src="img/bg_home1.png"></img>
-    </div>
-    <div class="Outuser_right">
-        <div class="user_right">
-            <label>登&nbsp;录</label>
-            <form>
-                <input id="username" type="text" placeholder="用户名" autocomplete="off"/>
-                <input id="pwd" type="password" placeholder="密码"/>
-                <a class="to_register" href="register.html">立即注册</a>
-                <input id="login_btn" type="button" value="登&nbsp;&nbsp;录"/>
-            </form>
-        </div>
+      </div>
+      <div class="user_left" @click="ToHomePage">
+        <img src="img/bg_home1.png">
+      </div>
+      <div class="Outuser_right">
+          <div class="user_right">
+              <label>登&nbsp;录</label>
+              <form>
+                  <input
+                    id="username"
+                    type="text"
+                    placeholder="用户名"
+                    autocomplete="off"
+                    v-model="params.username"
+                    ref="username"/>
+                  <input
+                    id="pwd" 
+                    type="password"
+                    placeholder="密码"
+                    v-model="params.password"
+                    ref="password"/>
+                  <a class="to_register" href="register.html">立即注册</a>
+                  <div id="login_btn" @click="submit">登&nbsp;&nbsp;录</div>
+              </form>
+          </div>
+      </div>
     </div>
   </body>
 </html>
