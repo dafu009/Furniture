@@ -1,123 +1,125 @@
 <!DOCTYPE html>
 <html>
 
-	<head>
-		<meta charset="UTF-8">
-		<title>产品详情</title>
-		<link rel="stylesheet" type="text/css" href="css/swiper.min.css" />
-		<link rel="stylesheet" type="text/css" href="css/goodsdetail.css" />
-		<link rel="stylesheet" href="css/index.css" type="text/css"></link>
-		<script src="js/jquery-1.9.1.min.js" type="text/javascript" charset="utf-8"></script>
-		<script src="js/common.js" type="text/javascript" charset="utf-8"></script>
-		<script src="js/sweetalert.min.js" type="text/javascript" charset="utf-8"></script>
-		<script src="js/ajaxurl.js" type="text/javascript" charset="utf-8"></script>
-		<script type="text/javascript" src="assets/js/vue/vue.min.js"></script></head>
+<head>
+  <meta charset="UTF-8">
+  <title>产品详情</title>
+  <link rel="stylesheet" type="text/css" href="css/swiper.min.css" />
+  <link rel="stylesheet" type="text/css" href="css/goodsdetail.css" />
+  <link rel="stylesheet" href="css/index.css" type="text/css">
+  </link>
+  <script type="text/javascript" src="assets/js/axios/axios.min.js"></script>
+  <script type="text/javascript" src="assets/js/vue/vue.min.js"></script>
+  <script src="js/goodsDetail.js"></script>
+  <script src="js/jquery-1.9.1.min.js" type="text/javascript" charset="utf-8"></script>
+  <script src="js/common.js" type="text/javascript" charset="utf-8"></script>
+  <script src="js/sweetalert.min.js" type="text/javascript" charset="utf-8"></script>
+  <script src="js/ajaxurl.js" type="text/javascript" charset="utf-8"></script>
+</head>
 
-	<body>
-		<div class="main">
-			<div class="top_div" id="top_html">
-    <div class="logo_box">
+<body>
+  <div id="app" class="main">
+    <div class="top_div" id="top_html">
+      <div class="logo_box">
         <a class="logo" href="/"></a>
         <div class="left">
-        	<div class="flex">
-        		<a class="left_a1" href="#"></a>
-        		<a class="left_a2" href="#"></a>
-        	</div>
+          <div class="flex">
+            <a class="left_a1" href="#"></a>
+            <a class="left_a2" href="#"></a>
+          </div>
         </div>
-        
+
         <div class="right">
-					<div class="indexlike">
-						<button type="button" title="收藏夹"></button>
-					</div>
-					<div class="car">
-						<button type="button" title="购物车"></button>
-					</div>
-					<div class="order">
-						<button type="button" title="我的订单"></button>
-					</div>
-				</div>
-        
-        <div class="searchbox">
-        	<input type="text" id="txtNavSearch" placeholder="搜你想搜的" autocomplete="off">
-        	<button class="searchbtn" id="search_btn"></button>
-    	</div>
-    </div>
-    <div class="nav_box_all">
-        <div class="nav_box">
-            <a class="box b1  on" navid="1" href="#">所有产品</a>
-            <a class="box b2" navid="2" href="#">储物收纳</a>
-            <a class="box b3" navid="3" href="#">厨房用具</a>
-            <a class="box b4" navid="4" href="#">餐具</a>
-            <a class="box b5" navid="5" href="#">装饰品</a>
-            <a class="box b6" navid="6" href="#">萌宠爱物</a>
-            <a class="box b7" navid="7" href="#">灯具</a>
-            <a class="box b8" navid="8" href="#">玩耍和玩具</a>
+          <div class="indexlike">
+            <button type="button" title="收藏夹"></button>
+          </div>
+          <div class="car">
+            <button type="button" title="购物车"></button>
+          </div>
+          <div class="order">
+            <button type="button" title="我的订单"></button>
+          </div>
         </div>
+
+        <div class="searchbox">
+          <input type="text" id="txtNavSearch" placeholder="搜你想搜的" autocomplete="off">
+          <button class="searchbtn" id="search_btn"></button>
+        </div>
+      </div>
+      <div class="nav_box_all">
+        <div class="nav_box">
+          <a class="box b1  on" navid="1" href="#">所有产品</a>
+          <a class="box b2" navid="2" href="#">储物收纳</a>
+          <a class="box b3" navid="3" href="#">厨房用具</a>
+          <a class="box b4" navid="4" href="#">餐具</a>
+          <a class="box b5" navid="5" href="#">装饰品</a>
+          <a class="box b6" navid="6" href="#">萌宠爱物</a>
+          <a class="box b7" navid="7" href="#">灯具</a>
+          <a class="box b8" navid="8" href="#">玩耍和玩具</a>
+        </div>
+      </div>
     </div>
-</div>
 
-			<div class="goodsdetail_main">
-				<div class="curren_type">
-					<span class="current_goods_type">
-						当前产品分类&nbsp;➤
-					</span>
-					<span class="current_goods_type2" id="categoryName">{{ item.categoryName }}</span>
-				</div>
-				<div class="goodsinfo_main">
-					<div class="goodsinfo_left">
-						<div class="goodsinfo_left_img">
-							<img id="bigimg" src="{{ item.picInfo }}" />
-						</div>
-					</div>
+    <div class="goodsdetail_main">
+      <div class="curren_type">
+        <span class="current_goods_type">
+          当前产品分类&nbsp;➤
+        </span>
+        <span class="current_goods_type2" id="categoryName">{{ goodDetail.categoryName }}</span>
+      </div>
+      <div class="goodsinfo_main">
+        <div class="goodsinfo_left">
+          <div class="goodsinfo_left_img">
+            <img id="bigimg" :src="goodDetail.picInfo" />
+          </div>
+        </div>
 
-					<div class="goodsinfo_right">
-					<div class="goodsinfo">
-						<h1>
-							<span class="goodsname">{{ item.goodsName }}</span>
-							<span class="goodscolor" id="color">{{ item.color }}</span> 
-						</h1>	
-							<span class="goodsprice" id="price">{{ item.inPrice }}</span>
-							<span class="goodsdetail" id="detail">{{ item.detail }}</span>
-							<span class="goodssize">尺寸:{{ item.size }}</span><br>
-							<span class="goodskucun" id="quantity">库存：{{ item.quantity }}</span>
-						</div>
+        <div class="goodsinfo_right">
+          <div class="goodsinfo">
+            <h1>
+              <span class="goodsname">{{ goodDetail.goodsName }}</span>
+              <span class="goodscolor" id="color">{{ goodDetail.color }}</span>
+            </h1>
+            <span class="goodsprice" id="price">{{ goodDetail.inPrice }}</span>
+            <span class="goodsdetail" id="detail">{{ goodDetail.detail }}</span>
+            <span class="goodssize">尺寸:{{ goodDetail.size }}</span><br>
+            <span class="goodskucun" id="quantity">库存：{{ goodDetail.quantity }}</span>
+          </div>
 
-						<div style="clear:both;"></div>
-						<div class="goodsinfo_button">
-							<div class="likeandcar">
-								<button class="addLike" mark="0" id="addlike" title="收藏"><span>收藏</span></button>
-								<button class="addCar" mark="1" id="addcar" type="button" title="加入购物车"><span>加入购物车</span></button>
-							</div>
-							
-							<div class="buyright">
-								<button type="button" title="立即购买" id="buyright"><span>立即购买</span></button>
-							</div>
-					
-					</div>
+          <div style="clear:both;"></div>
+          <div class="goodsinfo_button">
+            <div class="likeandcar">
+              <button @click="addFavorite" class="addLike" mark="0" id="addlike" title="收藏">
+                <span>收藏</span>
+              </button>
+              <button @click="addShoppingCart" class="addCar" mark="1" id="addcar" type="button" title="加入购物车">
+                <span>加入购物车</span>
+              </button>
+            </div>
+            <div class="buyright" @click="buyNow">
+              <button type="button" title="立即购买" id="buyright"><span>立即购买</span></button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div style="clear:both;"></div>
+      <div class="havelook_main">
+        <div class="goodsmain_title">
+          <h3 style="color: darkslategrey;">
+            <span class="span1"></span>
+            购买此商品的顾客还购买过
+            <span class="span2"></span>
+          </h3>
+        </div>
+        <div class="havelookgoods_detail">
+        </div>
+      </div>
 
-				</div>
-			</div>
-			<div style="clear:both;"></div>
-			<div class="havelook_main">
-				<div class="goodsmain_title">
-					<h3 style="color: darkslategrey;">
-						<span class="span1"></span> 
-					          	 购买此商品的顾客还购买过
-						<span class="span2"></span>
-					</h3>
-				</div>
-
-				<div class="havelookgoods_detail">
-					
-				</div>
-
-			</div>
-			
-			<div style="clear: both;"></div>
-			<!--页脚-->
-			<div class="footerbg">
-				<P>© DESIGNED BY Yannes & Ann</P>
-			</div>
-	</body>
+      <div style="clear: both;"></div>
+      <!--页脚-->
+      <div class="footerbg">
+        <P>© DESIGNED BY Yannes & Ann</P>
+      </div>
+</body>
 
 </html>

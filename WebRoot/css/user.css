@@ -1,86 +1,98 @@
-body{
-	background: #fceabb;  /* fallback for old browsers */
-	background: -webkit-linear-gradient(to bottom, #d9a7c7, #fffcdc);  /* Chrome 10-25, Safari 5.1-6 */
-	/*background: linear-gradient(to right,#FFAFBD,#ffc3a0);*/ /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-	
+body {
+  background: #fceabb; /* fallback for old browsers */
+  background: -webkit-linear-gradient(
+    to bottom,
+    #d9a7c7,
+    #fffcdc
+  ); /* Chrome 10-25, Safari 5.1-6 */
+  /*background: linear-gradient(to right,#FFAFBD,#ffc3a0);*/ /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 }
-.logo{
-    padding:40px 0px 0px 80px;
+.logo {
+  padding: 40px 0px 0px 80px;
 }
-.logo img{
-    width:145px;
-    height:80px;
+.logo img {
+  width: 145px;
+  height: 80px;
 }
-.logo img:hover{
-    cursor:pointer;
+.logo img:hover {
+  cursor: pointer;
 }
-.user_left{
-    /*border:1px solid black;*/
-    float:left;
-    width:500px;
-    height:600px;
+.user_left {
+  /*border:1px solid black;*/
+  float: left;
+  width: 500px;
+  height: 600px;
+  cursor: pointer;
 }
-.user_left img{
-    width:450px;
-    height:auto;
-    margin-left:200px;
+.user_left img {
+  width: 450px;
+  height: auto;
+  margin-left: 200px;
 }
-.user_right{
-    /*margin-top:40px;*/
-    float:right;
-    /*margin-right:160px;*/
-    margin-right:100px;
-    padding:40px;
-    border-radius:50px;
-    padding-top:35px;
-    background-color:#fffcdc
+.user_right {
+  /*margin-top:40px;*/
+  float: right;
+  /*margin-right:160px;*/
+  margin-right: 100px;
+  padding: 40px;
+  border-radius: 50px;
+  padding-top: 35px;
+  background-color: #fffcdc;
 }
-.user_right label{
-    font-size:50px;
-    margin-left:5px;
-    color:burlywood;
+.user_right label {
+  font-size: 50px;
+  margin-left: 5px;
+  color: burlywood;
 }
-.user_right form{
-    margin-top:20px;
+.user_right form {
+  margin-top: 20px;
 }
-.user_right form input{
-    float:left;
-    width:380px;
-    height:45px;
-    margin:20px auto;
-    border-radius:10px;
-    border:2px solid wheat;
-    font-size:18px;
-    padding:0 10px;
-    outline:none;
-    color:dimgray;
+.user_right form input {
+  float: left;
+  width: 380px;
+  height: 45px;
+  margin: 20px auto;
+  border-radius: 10px;
+  border: 2px solid wheat;
+  font-size: 18px;
+  padding: 0 10px;
+  outline: none;
+  color: dimgray;
 }
-.user_right #pwd{
-    clear:left;
+.user_right form input:focus {
+  box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.2);
 }
-.user_right #login_btn{
-    clear:left;
-    margin-bottom:15px;
-    width:400px;
-    height:55px;
-    padding:0;
-    background-color:#ffc3a0;
-    border:none;
-    cursor:pointer;
-    font-size:22px;
-    color:mintcream;
+.user_right #pwd {
+  clear: left;
 }
-.user_right #login_btn:hover{
-    background-color:silver;
+.user_right #login_btn {
+  display: block;
+  clear: left;
+  margin-bottom: 15px;
+  width: 400px;
+  height: 55px;
+  line-height: 50px;
+  text-align: center;
+  padding: 0;
+  background-color: #ffc3a0;
+  border: none;
+  cursor: pointer;
+  font-size: 22px;
+  color: mintcream;
+  border-radius: 10px;
+  outline: none;
 }
-.user_right form a{
-    float:left;
-    text-decoration:none;
-    color:dimgray;
+.user_right #login_btn:hover {
+  background-color: silver;
 }
-.to_register{
-    margin:95px 0 10px -80px;
+.user_right form a {
+  float: left;
+  text-decoration: none;
+  color: dimgray;
 }
-.user_right form a:hover{
-    color:cadetblue;
+.to_register {
+  margin: 95px 0 10px -80px;
+}
+.user_right form a:hover {
+  color: cadetblue;
 }

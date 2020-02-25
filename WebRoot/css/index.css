@@ -181,8 +181,7 @@ a {
 }
 .under-swiper {
   width: 1150px;
-  margin-left: 90.5px;
-  margin-bottom: 150px;
+  margin: 0 auto 150px;
 }
 
 .under-swiper div {
@@ -325,6 +324,7 @@ a {
   width: 180px;
   height: 190px;
   padding: 10px;
+  cursor: pointer;
 }
 .bottom {
   height: 197px;
