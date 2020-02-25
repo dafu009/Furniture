@@ -142,21 +142,24 @@
 #addcar{
 	width:205px;
 	height: 46px;
-	margin-left:5px;
+  margin-left:5px;
+  line-height: 46px;
 }
 #addlike{
 	width:205px;
 	height: 46px;
-
+  line-height: 46px;
 }
 .buyright button{
 	width:420px;
-	height: 46px;
+  height: 46px;
+  line-height: 46px;
 }
 .havelook_main{
 	border-top: 1px solid #f0f0f0;
 	width: 1100px;
-	height: 600px;
+  height: 600px;
+  padding-top: 30px;
 }
 .goodsmain_title .span1{
 	display:inline-block;
