@@ -25,7 +25,7 @@ window.onload = () => {
           return
         }
         axios({
-          methods: 'post',
+          method: 'post',
           datatype: 'json',
           url: loginfunc_url,
           data: this.params
