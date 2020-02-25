@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>用户注册</title>
+    <link rel="stylesheet" type="text/css" href="css/register.css" />
+	<script src="js/jquery-1.9.1.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/sweetalert.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/commonAjax.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/ajaxurl.js" type="text/javascript" charset="utf-8"></script>
+   
+</head>
+<body>
+
+	<div class="main">
+	
+  <div class="logo">
+        <img src="img/logo.png">
+    </div>
+
+    <div class="title-line">
+    	<span class="tit" style="font-size: 38px;">注册</span>
+    	</div>
+    <div class="register_main" id="app1">
+    	
+        <div class="register_info">
+            <form>
+            <div class="input_short">
+                <input v-model="username" type="text" placeholder="用户名"/>
+                <input v-model="telephone" type="text" placeholder="手机号码"/>
+            </div>
+            <div class="input_long">
+                <input v-model="address" type="text" placeholder="收货地址"/>
+                <input v-model="pwd1" type="password" placeholder="密码"/>
+                <input v-model="pwd2" type="password" placeholder="确认密码"/>
+            </div>
+                <input v-model="register_btn" v-on:click="submit" type="submit" value="注&nbsp;&nbsp;册"/>
+            </form>
+            
+            <p>Have an account with us?<a class="to_login" href="login.html">立即登录</a></p>
+        </div>
+    </div>
+ </div>
+ <div style="clear: both;"></div>
+			<!--页脚-->
+			<div class="footerbg">
+				<P>© DESIGNED BY Yannes & Ann</P>
+			</div>
+ <script>
+    new Vue({
+        el: '#app1',
+        data: {
+          username: '',
+          telephone: '',
+          address: '',
+          pwd1: '',
+          pwd2: ''
+        },
+        methods: {
+            //瞎写的方法
+        //   submit() {
+        //       if (this.pwd1 === this.pwd2) {
+        //           let con = confirm("用户名：" + this.username + ' 电话：' +
+        //               this.telephone + ' 地址：' + this.address );
+        //           if (con) alert("注册成功！");
+        //           else alert("请将信息填写完整！");
+        //       }else {
+        //           alert("两次密码输入不一致！")
+        //       }
+        //   }
+        }
+    })
+</script>
+</body>
+</html>

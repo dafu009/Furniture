@@ -62,9 +62,9 @@
     </div>
 </div>
 	<div class="goodsType_main" >
-				<div id="goodstypelist" v-if="bookList.length > 0">
-					<div class="bookstr" v-for="(item, index) in bookList" :key="index">
-					<div class="line"> 
+				<div id="goodstypelist" v-if="goodsList.length > 0">
+					<div class="goodsstr" v-for="(item, index) in goodsList" :key="index">
+					<div class="goods_top"> 
 						<h2>
 							<span class="span1"></span> 
 							人气产品 
@@ -92,6 +92,7 @@
 							</div>	
 						</div>
 					</div>
+					
 					</div>
 				</div>
 				

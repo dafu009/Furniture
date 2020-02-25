@@ -61,13 +61,50 @@ window.onload = () => {
           }
         ],
         admissionGoods: [
-          { id: 5 }, { id: 6 }, { id: 7 }
+          {
+            name: 'kitchen',
+            id: 5
+          },
+          {
+            name: 'shouna',
+            id: 6
+          },
+          {
+            name: 'cloth',
+            id: 7
+          }
         ],
         leisureGoods: [
-          { id: 8 }, { id: 9 }, { id: 10 }, { id: 11 }, { id: 12 }, { id: 13 }
+          {
+            name: 'toe',
+            id: 8
+          },
+          {
+            name: 'bed',
+            id: 9
+          },
+          {
+            name: 'green',
+            id: 10
+          },
+          {
+            name: 'gym',
+            id: 11
+          },
+          {
+            name: 'sofa',
+            id: 12
+          }
         ],
         workGoods: [
-          { id: 14 }, { id: 15 }
+          {
+            name: 'big',
+            id: 13
+          },
+          {
+            name: 'small',
+            id: 14
+          }
         ],
         hotCategorys: [
           {
@@ -106,10 +143,12 @@ window.onload = () => {
           })
       },
       goGoodDetail (id) {
-        // do something
+        // 点击，跳转到相应的产品详情页
+        location.href = "/goodsdetail.html?goodsid=" 
       },
       goCategoryDetail (id) {
-        // do something
+        // 点击，跳转到相应的产品分类页面
+        location.href = "/goodsType.html?categoryID=" 
       },
       searchData () {
         setCookie("SearchTxt", this.searchData)

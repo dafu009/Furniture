@@ -1,0 +1,117 @@
+@CHARSET "UTF-8";
+body{
+	background: #FFFACD;  /* fallback for old browsers */
+	background: -webkit-linear-gradient(to bottom, #d9a7c7, #fffcdc);  /* Chrome 10-25, Safari 5.1-6 */
+	/*background: linear-gradient(to right,#FFAFBD,#ffc3a0);*/ /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+	
+}
+.main{
+	width:1000px;
+	margin:auto;
+	
+}
+
+.logo{
+	margin-top:40px;
+
+}
+.logo img{
+    width:175px;
+    height:100px;
+}
+.logo img:hover{
+    cursor:pointer;
+}
+.title-line {
+    width: 980px;
+    height: 28px;
+    margin: 0 auto;
+    margin-bottom: 0px;
+    border-bottom: 1px solid #ddd;
+	margin-bottom: 28px;
+	text-align: center;
+}
+.title-line .tit {
+    height: 56px;
+    line-height: 56px;
+    margin: 0 auto;
+    padding: 0 20px;
+    font-size: 40px;
+    background: #fff;
+    text-align: center;
+
+}
+.register_main{
+	width:512px;
+	margin:auto;
+	margin-top:70px;
+
+	background:rgba(0,0,0,0.5) 
+}
+.register_info{
+	width:93%;
+	background:#ffffff;
+	padding: 3% 3% 3% 3%;
+}
+.register_info form input{
+	margin-bottom: 1em;
+	padding: 1.5em 1.5em 1.5em 1.5em;
+	outline: none;
+	border: none;
+	background:#f0f0f0;
+	color:#999;
+	font-weight: 600;
+	font-size: .8em;
+	border-radius: 4px;
+	-webkit-border-radius: 4px;
+	-moz-border-radius: 4px;
+	-o-border-radius: 4px;
+}
+.input_short input{
+	width:41.3%;
+	
+}
+.input_long input{
+	width:91.5%;
+}
+.register_info form input[type="submit"] {
+    padding: 12px 33px;
+    background: #fea15d;
+	margin: 3% 0 0 29%;
+	color:#fff;
+    text-transform: uppercase;
+    outline: none;
+    border: none;
+    cursor: pointer;
+    margin-left: 180px;
+    font-size: 16px;
+}
+.register_info p {
+    text-align: center;
+    margin: 1.6em 0 1em;
+    color: #DBDBDB;
+}
+.register_info p a{
+	color:#a9dd7d;
+	margin-left: 7px;
+	text-decoration: none;
+}
+.footerbg {
+    background: #424242;
+	font-size: 12px;
+	color:#aaaaaa;
+    height: 40px;
+    line-height: 40px;
+    border-top: 1px solid #525252;
+    margin-top:150px;
+}
+.footerbg p {
+    text-align: center;
+    width: 1150px;
+    margin: 0 auto;
+    color: #aaa;
+}
+	
+	
+	
+	
