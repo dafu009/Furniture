@@ -12,7 +12,7 @@ import org.apache.ibatis.annotations.Update;
 import FurnitureC.bean.shoppingcart;
 
 public interface ShoppingCartMapper {
-	@Select("select id,goodsID,num from shoppingcart where userID = #{id} order by shoppingDate desc")
+	@Select("select id,goodsID as goodsid,num from shoppingcart where userID = #{id} order by shoppingDate desc")
 	List<Map<String,Object>> shoppingCartList(shoppingcart shoppingCart,@Param("id")int id); 
 	@Delete("Delete * from shoppingCart where userID = #{carid}")
 	void deleteShoppingCart(@Param("id")int carid);

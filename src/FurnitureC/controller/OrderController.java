@@ -108,7 +108,7 @@ public class OrderController {
 					String price = idlist.get(k).get("inPrice").toString();
 					orderService.AddOrderItem(orderFormID, goodsID, num, price);
 					//从购物车中移除
-					shoppingCartService.DeleteShoppingCart(userID, goodsID);
+					shoppingCartService.DeleteShoppingCartWithOrder(userID, goodsID);
 				}
 				flag = 1;
 				message = "成功";
