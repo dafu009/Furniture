@@ -1,26 +1,3 @@
-<<<<<<< Updated upstream
-@charset "UTF-8";
-body {
-  background: #fffacd; /* fallback for old browsers */
-  background: -webkit-linear-gradient(
-    to bottom,
-    #d9a7c7,
-    #fffcdc
-  ); /* Chrome 10-25, Safari 5.1-6 */
-  /*background: linear-gradient(to right,#FFAFBD,#ffc3a0);*/ /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-}
-.main {
-  width: 1000px;
-  margin: auto;
-}
-
-.logo {
-  margin-top: 40px;
-}
-.logo img {
-  width: 175px;
-  height: 100px;
-=======
 @CHARSET "UTF-8";
 body{
 	background: #fff2df;  /* fallback for old browsers */
@@ -41,7 +18,6 @@ body{
 .logo img{
     width:175px;
     height:85px;
->>>>>>> Stashed changes
 }
 .logo img:hover {
   cursor: pointer;
@@ -56,61 +32,6 @@ body{
   text-align: center;
 }
 .title-line .tit {
-<<<<<<< Updated upstream
-  height: 56px;
-  line-height: 56px;
-  margin: 0 auto;
-  padding: 0 20px;
-  font-size: 40px;
-  background: #fff;
-  text-align: center;
-}
-.register_main {
-  width: 512px;
-  margin: auto;
-  margin-top: 70px;
-
-  background: rgba(0, 0, 0, 0.5);
-}
-.register_info {
-  width: 93%;
-  background: #ffffff;
-  padding: 3% 3% 3% 3%;
-}
-.register_info form input {
-  margin-bottom: 1em;
-  padding: 1.5em 1.5em 1.5em 1.5em;
-  outline: none;
-  border: none;
-  background: #f0f0f0;
-  color: #999;
-  font-weight: 600;
-  font-size: 0.8em;
-  border-radius: 4px;
-  -webkit-border-radius: 4px;
-  -moz-border-radius: 4px;
-  -o-border-radius: 4px;
-}
-.input_short input {
-  width: 41.3%;
-}
-.input_long input {
-  width: 91.5%;
-}
-.register_info form .submit {
-  padding: 12px 33px;
-  background: #fea15d;
-  color: #fff;
-  text-transform: uppercase;
-  outline: none;
-  border: none;
-  cursor: pointer;
-  font-size: 16px;
-  margin: 0 auto;
-  width: 300px;
-  text-align: center;
-  border-radius: 4px;
-=======
     height: 56px;
     line-height: 56px;
     margin: 0 auto;
@@ -163,7 +84,6 @@ body{
     cursor: pointer;
     margin-left: 180px;
     font-size: 16px;
->>>>>>> Stashed changes
 }
 .register_info p {
   text-align: center;
