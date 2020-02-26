@@ -38,11 +38,11 @@
     height: 47px;
     line-height: 47px;
 }
-.bookdetail{
-	background-color: white;
+.goodsdetail{
+	background-color: floralwhite;
 	min-height: 500px;
 	width: 90%;
-	margin: 15px auto;
+	margin:auto;
 	padding: 0 20px;
 }
 /*购物车*/

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>orderbuy.html</title>
+    <title>订单明细</title>
 	
     <meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
     <meta http-equiv="description" content="this is my page">
@@ -42,13 +42,13 @@
 				
 					<div class='onemingxi'>
 					<div class='goodsnum'>
-						<span>1</span>
+						<span>{{ index.num }}</span>
 					</div>
-					<div class='newgoods_one' name='entergoodsdetail' goodsid="+goodsid+">
-						<div class='newgoodsone_left'><img goodsid="+goodsid+" src="+picInfo+"></div>
-						<div class='newgoodsone_right'><span goodsid="+goodsid+" class='goodsname'>goodsName</span>
-						<span goodsid="+goodsid+" class='goodsprice'>合计:¥"+inPrice+"</span>
-						<span goodsid="+goodsid+" >数量:1</span></div>
+					<div class='newgoods_one' name='entergoodsdetail' goodsid="{{ index.id }}">
+						<div class='newgoodsone_left'><img goodsid="{{ index.id }}" src="{{ index.picInfo }}"></div>
+						<div class='newgoodsone_right'><span goodsid="{{ index.id }}" class='goodsname'>{{ index.goodsName }}</span>
+						<span goodsid="{{ index.id }}" class='goodsprice'>合计:¥"{{ index.inPrice }}"</span>
+						<span goodsid="{{ index.id }}" >数量:{{ index.quantity }}</span></div>
 					</div>
 					</div>
 					

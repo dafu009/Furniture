@@ -18,7 +18,16 @@
 	font-weight: bold;
 	color: rgb(102, 204, 204);
 }
-
+.shopping_procedure {
+    float: right;
+    width: 803px;
+    height: 50px;
+    background:url(../img/pro_bg3.png) 0 0 no-repeat;
+    font: bold 16px/36px "Microsoft Yahei";
+    color: #646464;
+    margin: 50px 0 0;
+    
+}
 .shopping_procedure span.current {
     color: #fff;
 }
@@ -30,11 +39,11 @@
     line-height: 47px;
 }
 .goodsdetail{
-	background-color: floralwhite;
+	background-color: white;
 	min-height: 400px;
 	width: 90%;
-	margin:auto;
-	padding:10px 40px;
+	margin: 15px auto;
+	padding: 0 20px;
 }
 /*购物车*/
 .goodpic{
@@ -45,10 +54,24 @@
 }
 
 /*订单明细*/
+.bookdetail{
+	padding:10px 40px;
+}
+.mingxititle{
+	font-size: 18px;
+	padding-top: 20px;
+	font-weight: bold;
+}
+.mingxititle:before {
+    content: "\f0f3";
+    font-family: FontAwesome;
+    font-size: 24px;
+    color: #CC3300;
+}
 .mingxidetail{
 	min-height: 200px;
 }
-.goodsnum{
+.booknum{
 	width: 10%;
 	float: left;
 	position: absolute;
@@ -58,7 +81,7 @@
 	text-align: center;
 	
 }
-.goodsnum span{
+.booknum span{
 	width: 35px;
 	height: 35px;
 	font-size: 20px;
@@ -67,10 +90,10 @@
 	padding: 5px 10px;
 	border-radius: 5px;
 	color: white;
-	background-color: #83af9b;
+	background-color: rgb(102, 204, 204);
 }
 .onemingxi{
-	width: 43%;
+	width: 48%;
 	float: left;
 	position: relative;
 	height: 200px;
@@ -81,7 +104,7 @@
 	margin-bottom: 10px;
 	border-radius: 8px;
 }
-.newgoods_one{
+.newbook_one{
 	width: 80%;
 	margin: 0 auto;
 	height: 150px;
@@ -94,28 +117,28 @@
 	left: 12%;
 	
 }
-.newgoodsone_left{
+.newbookone_left{
 	width: 35%;
 	height: 100%;
 	float: left;
 }
-.newgoodsone_right{
+.newbookone_right{
 	width: 65%;
 	height: 100%;
 	float: right;
 }
-.newgoodsone_right span{
+.newbookone_right span{
 	display: block;
 	margin-top: 20px;
 }
-.goodsname{
+.bookname{
 	font-size: 18px;
 }
-.goodsauthor{
+.bookauthor{
 	color: #9E9C9C;
 	font-size: 16px;
 }
-.goodsprice{
+.bookprice{
 	color: #c30;
 	font-weight: bold;
 	font-family: "Arial";
@@ -137,7 +160,7 @@
 	font-size: 18px;
 }
 .mingxibottom_btn{
-	background-color: #83af9b;
+	background-color: rgba(102, 204, 204,0.7);
 	border-radius: 5px;
 	line-height: 50px;
 	text-align: center;
@@ -156,7 +179,7 @@
 	font-size: 20px;
 	font-family: "黑体";
 }
-/*.goodsmain_title {
+/*.bookmain_title {
     padding: 10px;
     font-size: 18px;
     font-weight: bold;
@@ -165,7 +188,7 @@
     text-align: center;
     color: #EEEEEE;
 }
-.havelookgoods_detail {
+.havelookbook_detail {
     width: 100%;
     min-height: 500px;
     background-color: white;
@@ -175,8 +198,9 @@
 	border-radius: 8px;
 	min-height: 300px;
 	padding: 10px;
+	margin-top: 50px;
 }
-.havelookgoodsone{
+.havelookbookone{
 	width: 14.15%;
 	height: 220px;
 	text-align: center;
@@ -184,6 +208,6 @@
 	padding-top: 20px;
 	margin-bottom: 35px;
 }
-.havelookgoodsone:hover{
+.havelookbookone:hover{
 	background-color: whitesmoke;
 }

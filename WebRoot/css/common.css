@@ -1,0 +1,29 @@
+/*产品排列布局（推荐）*/
+.guess_goods{
+	width: 230px;
+	padding-top: 25px;
+	padding-left: 20px;
+	float: left;
+	overflow: hidden;
+	position: relative;
+	line-height: 1.42857143;
+	color:#333;
+}
+.guessgoods_top img{
+	position: relative;
+	max-width: 80%;
+	margin-bottom: 20px;
+}
+.goodsname span{
+	font-size: 18px;
+}
+.goodsinfo .goodsinfo_color{
+	font-size: 16px;
+	color: #9E9C9C;
+}
+.goodsinfo_price span{
+	font-size: 14px;
+
+	font-weight: bold;
+	color:#c30;
+}

@@ -85,6 +85,20 @@ body{
     margin-left: 180px;
     font-size: 16px;
 }
+.submit{
+	padding: 12px 33px;
+    background: #83af9b;
+	margin: 3% 0 0 29%;
+	color:#fff;
+    text-transform: uppercase;
+    outline: none;
+    border: none;
+    cursor: pointer;
+    margin-left: 180px;
+    font-size: 16px;
+    width: 40px;
+    border-radius: 6px;
+}
 .register_info p {
   text-align: center;
   margin: 1.6em 0 1em;

@@ -18,7 +18,7 @@
 /*content*/
 .ShopCartTable{text-align: center;width:100%;margin-top:0px;}
 .ShopCartTable thead tr{background-color: #f3f3f3;border:1px solid #e9e9e9;height:32px;line-height: 32px;font-weight: 200;}
-.ShopCartTable th{text-align: center;border: 0px;color: #999999;font-weight: 200;}
+.ShopCartTable th{text-align: center;border: 0px;color: aliceblue;font-weight: 200;}
 .ShopCartTable td{border: 0px;border-bottom: 1px solid #EDEDED;padding:10px 0;}
 .goodImg{width: 100px;height: 100px;padding: 5px;border: 1px solid #DEDEDE;}
 .addBtn,.deleteBtn{color: #999999;font-size: 12px;margin-top:5px;!important;}
@@ -37,7 +37,7 @@
 .danPrice{color: #999999;}
 .totalPrice{font-size: 14px;font-weight: bold;color: #c30;
 	font-family: "Arial";}
-.SettlementBtn{height: 50px;width: 100px;color: white;background:#fec997;
+.SettlementBtn{height: 50px;width: 100px;color: white;background:#83af9b;
     display: inline-block;text-align: center;float: right;position: relative;font-size:18px;margin-top:-1px;}
 .totalclassPoin{color: #999999;position: absolute;right:295px;}
 .servicenum{position: absolute;right: 35%;color: #999999;}
