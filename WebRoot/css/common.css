@@ -1,0 +1,399 @@
+/*产品排列布局（推荐）*/
+.guess_goods{
+	width: 230px;
+	padding-top: 25px;
+	padding-left: 20px;
+	float: left;
+	overflow: hidden;
+	position: relative;
+	line-height: 1.42857143;
+	color:#333;
+}
+.guessgoods_top img{
+	position: relative;
+	max-width: 80%;
+	margin-bottom: 20px;
+}
+.goodsname span{
+	font-size: 18px;
+}
+.goodsinfo .goodsinfo_color{
+	font-size: 16px;
+	color: #9E9C9C;
+}
+.goodsinfo_price span{
+	font-size: 14px;
+
+	font-weight: bold;
+	color:#c30;
+}
+
+
+/*common*/
+body {
+	background-image: url(../img/crossword.png);
+}
+a{
+	cursor: pointer;
+}
+* {
+	border: none;
+	margin: 0;
+	padding: 0;
+}
+a:link {
+	text-decoration: none;
+}
+.loginregise a:link {
+	color: #9E9C9C;
+	text-decoration: none;
+}
+
+.loginregise a:active {
+	color: #9E9C9C;
+}
+
+.loginregise a:visited {
+	color: #9E9C9C;
+	text-decoration: none;
+}
+
+.loginregise a:hover {
+	color: #F9F0DA;
+	text-decoration: none;
+}
+
+.main {
+	width: 100%;
+}
+
+.loginregise {
+	height: 50px;
+	background-color: rgba(102, 204, 204, 0.7);
+}
+
+.loginregise a {
+	float: right;
+	font-size: 20px;
+	line-height: 50px;
+	margin-right: 40px;
+	color: #9E9C9C;
+}
+.loginregise select {
+	float: right;
+	font-size: 20px;
+	/*line-height: 50px;*/
+	margin-right: 40px;
+	color: #9E9C9C;
+	background-color: transparent;
+	margin-top: 13px;
+	cursor: pointer;
+	outline: none;
+}
+.loginregise select:hover{
+	
+}
+.top {
+	height: 110px;
+	width: 95%;
+	margin: 0 auto;
+}
+
+.logo {
+	width: 15%;
+	text-align: center;
+	vertical-align: middle;
+	float: left;
+	position: absolute;
+	top: 70px;
+}
+
+.logo img {
+	width: 110px;
+	vertical-align: middle;
+	margin: 0 auto;
+	cursor: pointer;
+}
+
+.logo span {
+	height: 100%;
+	vertical-align: middle;
+	display: inline-block
+}
+
+
+/*搜索框*/
+
+.search {
+	width: 60%;
+	height: 100%;
+	position: relative;
+	float: left;
+	margin-left: 15%;
+}
+
+.bar1 {
+	/*background: #A3D0C3;*/
+	width: 100%;
+	height: 60px;
+	text-align: center;
+	vertical-align: middle;
+	margin: auto;
+	position: absolute;
+	top: 0;
+	left: 0;
+	bottom: 0;
+	right: 0;
+	line-height: 60px;
+}
+
+.bar1 input {
+	/*border: 2px solid #7BA7AB;*/
+	border: 2px solid rgb(102, 204, 204);
+	width: 70%;
+	height: 55px;
+	padding-left: 13px;
+	border-radius: 5px;
+	background: #F9F0DA;
+	color: #9E9C9C;
+	font-size: 16px;
+}
+
+.bar1 button {
+	/*border: 2px solid #7BA7AB;*/
+	border: 2px solid rgb(102, 204, 204);
+	background: rgb(102, 204, 204);
+	border-radius: 0 5px 5px 0;
+	height: 59.5px;
+	width: 52px;
+	cursor: pointer;
+	margin-left: -10px;
+	margin-top: 1px;
+	position: absolute;
+}
+
+.bar1 button:before {
+	content: "\f002";
+	font-family: FontAwesome;
+	font-size: 20px;
+	color: #F9F0DA;
+}
+
+.right {
+	width: 23%;
+	float: right;
+	height: 100%;
+	position: relative;
+	vertical-align: middle;
+}
+.indexlike {
+	width: 26%;
+	height: 60px;
+	line-height: 60px;
+	float: right;
+	text-align: center;
+	margin: auto 0px;
+	position: absolute;
+	top: 0;
+	left: 0;
+	bottom: 0;
+	right: 0;
+	vertical-align: middle;
+}
+.car {
+	width: 26%;
+	height: 60px;
+	line-height: 60px;
+	float: left;
+	text-align: center;
+	margin: auto 0px;
+	position: absolute;
+	top: 0;
+	left: 26%;
+	bottom: 0;
+	right: 0;
+	vertical-align: middle;
+}
+
+.order {
+	width: 45%;
+	height: 60px;
+	line-height: 60px;
+	float: right;
+	text-align: center;
+	margin: auto 0px;
+	position: absolute;
+	top: 0;
+	left: 54%;
+	bottom: 0;
+	right: 0;
+	vertical-align: middle;
+}
+
+.car button {
+	border: 2px solid rgb(102, 204, 204);
+	background: rgb(102, 204, 204);
+	border-radius: 5px;
+	height: 56px;
+	width: 92px;
+	cursor: pointer;
+	margin-top: 2px;
+	float: right;
+}
+
+.car button:before {
+	content: "\f07a";
+	font-family: FontAwesome;
+	font-size: 25px;
+	color: #F9F0DA;
+}
+
+.car button:hover {
+	color: white;
+}
+
+.order button {
+	border: 2px solid rgb(102, 204, 204);
+	background: rgb(102, 204, 204);
+	border-radius: 5px;
+	height: 56px;
+	width: 92px;
+	cursor: pointer;
+	margin-top: 2px;
+	float: left;
+}
+
+.order button:before {
+	content: "\f0c9";
+	font-family: FontAwesome;
+	font-size: 25px;
+	color: #F9F0DA;
+}
+.indexlike button {
+	border: 2px solid rgb(102, 204, 204);
+	background: rgb(102, 204, 204);
+	border-radius: 5px;
+	height: 56px;
+	width: 92px;
+	cursor: pointer;
+	margin-top: 2px;
+	float: left;
+}
+
+.indexlike button:before {
+	content: "\f004";
+	font-family: FontAwesome;
+	font-size: 25px;
+	color: #F9F0DA;
+}
+.indexlike button:hover{
+	cursor: pointer;
+}
+.indexlike button:hover:before,.order button:hover:before,.car button:hover:before {
+	/*content: "\f004";
+	font-family: FontAwesome;
+	font-size: 20px;*/
+	color: white;
+	/*margin-right: 10px;*/
+}
+
+/*导航栏*/
+
+.daohang {
+	border-bottom: 10px solid  rgba(102, 204, 204, 0.7);
+	margin-top: 10px;
+	
+}
+.daohangbig{
+	font-size: 22px;
+	height: 60px;
+	color: white;
+	font-weight: bold;
+	background-color:  rgba(102, 204, 204, 0.7);
+	padding: 15px 35px 18px 35px;
+	border-radius: 15px 15px 0px 0px;
+	margin-right: 30px;
+}
+.daohangbig:after {
+	content: "\f02d";
+	font-family: FontAwesome;
+	font-size: 22px;
+	color: white;
+	margin-left: 10px;
+	
+}
+
+ul#nav {
+	width: 100%;
+	height: 60px;
+	margin: 0 auto;
+	text-align: center
+}
+
+ul#nav li {
+	display: inline;
+	height: 60px
+}
+
+ul#nav li {
+	display: inline-block;
+	padding: 0 20px;
+	height: 60px;
+	line-height: 60px;
+	color: black;
+	font-size: 18px;
+	font-weight: bold;
+	cursor: pointer;
+}
+
+ul#nav li:hover {
+	background: rgba(102, 204, 204, 0.7);
+	border-radius: 15px 15px 0px 0px;
+}
+.li-active{
+	background: rgba(102, 204, 204, 0.7);
+	border-radius: 15px 15px 0px 0px;
+}
+.daohangbig{
+	color: white !important;
+}
+/*页脚*/
+.footer{
+	width: 100%;
+	height: 50px;
+	margin-top: 20px;
+	margin-bottom: 10px;
+	text-align: center;
+	line-height: 50px;
+}
+
+/*每一本书的div*/
+
+div[name='entergoodsdetail']{
+	cursor: pointer;
+}
+.left_right_goods{
+	height: 955px;
+	background-color: white;
+	width: 95%;
+	margin: 0 auto;
+}
+.jiange{
+	width: 100%;
+	border: 2px dashed rgba(102, 204, 204,207);
+}
+.newgoodsone_left img{
+	width: 100%;
+	height: 100%;
+}
+.onehotgoods_top{
+	width: 150px;
+	height: 150px;
+	text-align: center;
+	margin: 0 auto;
+}
+.onehotgoods_top img{
+	width: 100%;
+	height: 100%;
+	
+}

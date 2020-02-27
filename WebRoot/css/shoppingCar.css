@@ -1,0 +1,57 @@
+.top {
+	min-height: 70px;
+	width: 85%;
+}
+
+.logo {
+	width: 15%;
+	text-align: center;
+	float: left;
+}
+
+.logo img {
+	width: 220px;
+	margin: 0 auto;
+}
+.logo span{
+	font-size: 30px;
+	font-weight: bold;
+	color: rgb(102, 204, 204);
+}
+.shopping_procedure {
+    float: right;
+    width: 803px;
+    height: 50px;
+    background:url(../img/procedure_bg.png) 0 0 no-repeat;
+    font: bold 16px/36px "Microsoft Yahei";
+    color: #646464;
+    margin: 50px 0 0;
+    
+}
+.shopping_procedure span.current {
+    color: #fff;
+}
+.shopping_procedure span {
+    width: 258px;
+    display: inline-block;
+    text-align: center;
+    height: 47px;
+    line-height: 47px;
+}
+.goodsdetail{
+	background-color: floralwhite;
+	min-height: 500px;
+	width: 90%;
+	margin:auto;
+	padding: 0 20px;
+}
+/*购物车*/
+.goodpic{
+	margin-left: 47px;
+}
+.goodName {
+	cursor: pointer;
+}
+.SettlementBtn{
+	cursor: pointer;
+}

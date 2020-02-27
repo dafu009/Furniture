@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>shoppingcart.html</title>
+	
+    <meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
+    <meta http-equiv="description" content="this is my page">
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <link rel="stylesheet" type="text/css" href="css/shoppingCar.css" />
+    <link rel="stylesheet" href="css/ShoppingCart.css" />
+    <link rel="stylesheet" href="css/userinfo.css" type="text/css"></link>
+    <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css"></link>
+    <link rel="stylesheet" type="text/css" href="css/swiper.min.css" />
+    <link rel="stylesheet" href="js/eleme-ui/index.css" type="text/css"></link>
+    <link rel="stylesheet" href="css/layui/css/layui.css" type="text/css"></link>
+    <!--<link rel="stylesheet" type="text/css" href="./styles.css">-->
+    <script type="text/javascript" src="js/jquery-1.9.1.min.js"></script>
+    <script type="text/javascript" src="js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="js/bootstrap-paginator.js"></script>
+    <script type="text/javascript" src="js/sweetalert.min.js"></script>
+    <script type="text/javascript" src="assets/js/vue/vue.min.js"></script>
+    <script type="text/javascript" src="js/eleme-ui/index.js"></script>
+
+  </head>
+  
+  <body>
+    <div class="main">
+    <div class="top" style="height: 90px;">
+			<img src="img/logo.png" class="logoimg"/>
+			<div class="right">
+            <div class="indexlike">
+              <button type="button" title="收藏夹"></button>
+            </div>
+            <div class="car">
+              <button type="button" title="购物车"></button>
+            </div>
+            <div class="order">
+              <button type="button" title="我的订单"></button>
+            </div>
+          </div>
+      </div>    
+          <div class="jiange">
+			</div>
+			<div class="goodsdetail">
+
+				<!--主要内容-->
+				<div class="title">
+					<img src="img/gouwuche.PNG" style="margin-left: 100px;"/>
+				</div>
+				<div class="row " id="myVue" v-cloak>
+					<div class="carmain">
+						<div class="layui-form">
+							<table class="ShopCartTable layui-table">
+								<thead>
+									<tr>
+										<th class="selectLeft">
+											<template>
+												<el-checkbox @change="checkedAllBtn(checkedAll)" v-model="checkedAll">全选</el-checkbox>
+											</template>
+											<span class="selectLeftGoods">商品信息</span>
+										</th>
+										<th>单价</th>
+										<th>数量</th>
+										<th>小计</th>
+										<th>操作</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr v-for="(tabledatas,index) in shopTableDatas">
+										<td class="selectLeft">
+											<template>
+												<el-checkbox @change="checkedRadioBtn(tabledatas)" v-model="tabledatas.checked"></el-checkbox>
+											</template>
+											<span class="goodName goodpic">
+								<img class="goodImg" :src="tabledatas.picInfo" />
+							</span>
+							<span name="lookgooddetail" style="display: none;"  v-text="tabledatas.goodsid"></span>
+											<span class="goodName goodsName">
+								<h2 class="goodname" v-text="tabledatas.goodsName"></h2>
+								<p class="goodGary">
+											<span v-text="tabledatas.color"></span>
+											</p>
+
+											</span>
+										</td>
+										<td class="danPrice">{{tabledatas.inPrice | moneyFiler}}</td>
+										<td>
+											<i @click="goodNum(tabledatas,-1)" class="fa  deleteBtn" aria-hidden="true">-</i>
+											<input v-model="tabledatas.num" type="text" class="numInput" aria-label="...">
+											<i @click="goodNum(tabledatas,1)" class="fa  addBtn" aria-hidden="true">+</i>
+										</td>
+										<td>
+											<p class="totalPrice">{{tabledatas.inPrice*tabledatas.num | moneyFiler}}</p>
+										</td>
+										<td class="gongneng">
+											<p class="deletegoods" @click="alertRadio(index)">删除</p>
+											<p @click="alertmovesSavegoods(index)">移到我的收藏</p>
+										</td>
+									</tr>
+								</tbody>
+							</table>
+							<div class="tablefooter">
+								<template>
+									<el-checkbox style="padding-left:16px" @change="checkedAllBtn(checkedAll)" v-model="checkedAll">全选</el-checkbox>
+								</template>
+								<span class="removeMuch" @click="alertMuch">删除选中的商品</span>
+								<span class="totalclassPoin">总价：<span class="totalMoneyClass">{{Math.round(totalMoney*100)/100 | moneyFiler}}</span></span>
+								<span @click="saveData" class="SettlementBtn">去结算</span>
+							</div>
+						</div>
+					</div>
+				</div>
+
+			</div>
+		
+	</div>	
+  </body>
+</html>

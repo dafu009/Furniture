@@ -64,13 +64,18 @@
 	<div class="goodsType_main" >
 				<div id="goodstypelist" v-if="goodsList.length > 0">
 					<div class="goodsstr" v-for="(item, index) in goodsList" :key="index">
-					<div class="goods_top"> 
-						<h2>
+					<div class="title-line">
+      					<span class="tit" style="font-size: 38px;">
+      					<img src="img/renqi.PNG"/></span>
+    				</div>
+					<!-- <div class="goods_top"> 
+						<p>
 							<span class="span1"></span> 
-							人气产品 
+							 <img src="img/renqi.PNG"/>
 							<span class="span2"></span>
-						</h2>
+						</p>
 					</div>
+					 -->
 
 					<div class="goods_one" name="entergoodsdetail" goodsid="{{ item.id }}">
 						<div class="goodsone_top">
