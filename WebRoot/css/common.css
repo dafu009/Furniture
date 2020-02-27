@@ -1,4 +1,177 @@
+/*主页导航条*/
+* {
+  margin: 0;
+  padding: 0;
+}
+input {
+  outline: none;
+}
+button {
+  outline: none;
+}
+.main {
+  width: auto;
+}
+.top_div .logo_box {
+  width: 1280px;
+  height: 132px;
+  margin: auto;
+  position: relative;
+}
+.top_div .logo_box .logo {
+  width: 260px;
+  height: 123px;
+  position: absolute;
+  left: 510px;
+  top: 0px;
+  background: url(../img/logo.png) no-repeat center center;
+  background-size: auto;
+  background-size: 100%;
+  display: block;
+}
+.top_div .logo_box .left {
+  float: left;
+  margin-top: 20px;
+  margin-left: 112px;
+}
+.top_div .logo_box .flex {
+  display: flex;
+}
+.top_div .logo_box .left .self {
+  width: 25px;
+  height: 25px;
+  background: url(../images/self.png) no-repeat center center;
+  background-size: 100% 100%;
+  margin-right: 20px;
+  cursor: pointer;
+}
+.top_div .logo_box .left .register {
+  width: 25px;
+  height: 25px;
+  background: url(../images/resg.png) no-repeat center center;
+  background-size: 100% 100%;
+  cursor: pointer;
+}
+.top_div .logo_box .left .quit {
+  width: 25px;
+  height: 25px;
+  background: url(../images/quit.png) no-repeat center center;
+  background-size: 100% 100%;
+  cursor: pointer;
+}
+.top_div .logo_box .right {
+  float: right;
+  margin-top: 20px;
+  display: flex;
+}
+
+.top_div .logo_box .right .indexlike button {
+  background: url('../images/like.png') no-repeat center center;
+  width: 27px;
+  height: 27px;
+  border: none;
+  margin-right: 30px;
+  cursor: pointer;
+}
+.top_div .logo_box .right .order button {
+  background: url('../images/order.png') no-repeat center center;
+  width: 27px;
+  height: 27px;
+  border: none;
+  margin-right: 30px;
+  cursor: pointer;
+}
+.top_div .logo_box .right .car button {
+  background: url('../images/car.png') no-repeat center center;
+  width: 27px;
+  height: 27px;
+  border: none;
+  margin-right: 30px;
+  cursor: pointer;
+}
+
+.top_div .logo_box .searchbox {
+  width: 216px;
+  height: 40px;
+  float: right;
+  background-color: #f6f6f6;
+  border-radius: 20px;
+  overflow: hidden;
+  position: relative;
+  margin-top: 70px;
+  margin-right: -50px;
+}
+.top_div .logo_box .searchbox input {
+  height: 100%;
+  line-height: 40px;
+  border: 0px;
+  width: 140px;
+  color: #666;
+  font-size: 14px;
+  padding: 0px 15px;
+  background-color: transparent;
+}
+.top_div .logo_box .searchbox .searchbtn {
+  width: 46px;
+  height: 40px;
+  background: url(../img/serach.png) no-repeat center center;
+  background-size: 30px;
+  position: absolute;
+  border: none;
+  cursor: pointer;
+}
+.top_div .nav_box_all {
+  width: 100%;
+  position: relative;
+  border-top: 1px solid #f0f0f0;
+}
+.top_div .is_fixed {
+  position: fixed;
+  z-index: 999;
+  top: 0;
+  background-color: #fff;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+}
+.top_div .nav_box {
+  width: 1200px;
+  height: 60px;
+  margin: auto;
+}
+
+.top_div .nav_box .box.on {
+  border-bottom: 2px solid #ff9678;
+  color: #f9b373;
+}
+.top_div .nav_box .box {
+  height: 55px;
+  border-bottom: 2px solid #fff;
+  padding: 0px 22px;
+  display: block;
+  color: #656565;
+  font-size: 15px;
+  float: left;
+  margin: 0px 24px;
+  line-height: 60px;
+  cursor: pointer;
+}
+a {
+  text-decoration: none;
+  cursor: pointer;
+  outline: none;
+}
 /*产品排列布局（推荐）*/
+.goodsdetail .guessyoulike{
+	width: 100%;
+}
+.guessyoulike{
+	width: 90%;
+	margin: auto;
+	border: 1px solid #CCCCCC;
+	border-radius: 8px;
+	min-height: 300px;
+	padding: 10px;
+	margin-top: 50px;
+}
 .guess_goods{
 	width: 230px;
 	padding-top: 25px;
@@ -17,6 +190,11 @@
 .goodsname span{
 	font-size: 18px;
 }
+.goodscolor{
+	float: left;
+	width: auto;
+	text-align: left;
+}
 .goodsinfo .goodsinfo_color{
 	font-size: 16px;
 	color: #9E9C9C;
@@ -29,7 +207,7 @@
 }
 
 
-/*common*/
+/***common
 body {
 	background-image: url(../img/crossword.png);
 }
@@ -82,7 +260,7 @@ a:link {
 .loginregise select {
 	float: right;
 	font-size: 20px;
-	/*line-height: 50px;*/
+	line-height: 50px;
 	margin-right: 40px;
 	color: #9E9C9C;
 	background-color: transparent;
@@ -120,10 +298,10 @@ a:link {
 	vertical-align: middle;
 	display: inline-block
 }
-
+***/
 
 /*搜索框*/
-
+/*
 .search {
 	width: 60%;
 	height: 100%;
@@ -133,7 +311,7 @@ a:link {
 }
 
 .bar1 {
-	/*background: #A3D0C3;*/
+	background: #A3D0C3;
 	width: 100%;
 	height: 60px;
 	text-align: center;
@@ -148,7 +326,7 @@ a:link {
 }
 
 .bar1 input {
-	/*border: 2px solid #7BA7AB;*/
+
 	border: 2px solid rgb(102, 204, 204);
 	width: 70%;
 	height: 55px;
@@ -160,7 +338,7 @@ a:link {
 }
 
 .bar1 button {
-	/*border: 2px solid #7BA7AB;*/
+
 	border: 2px solid rgb(102, 204, 204);
 	background: rgb(102, 204, 204);
 	border-radius: 0 5px 5px 0;
@@ -290,19 +468,16 @@ a:link {
 	cursor: pointer;
 }
 .indexlike button:hover:before,.order button:hover:before,.car button:hover:before {
-	/*content: "\f004";
-	font-family: FontAwesome;
-	font-size: 20px;*/
+
 	color: white;
-	/*margin-right: 10px;*/
-}
+
+}*/
 
 /*导航栏*/
 
 .daohang {
 	border-bottom: 10px solid  rgba(102, 204, 204, 0.7);
 	margin-top: 10px;
-	
 }
 .daohangbig{
 	font-size: 22px;
@@ -320,7 +495,6 @@ a:link {
 	font-size: 22px;
 	color: white;
 	margin-left: 10px;
-	
 }
 
 ul#nav {

@@ -43,6 +43,8 @@ window.onload = () => {
     },
     created () {
       this.goodId = Number(getUrlParam('goodId')) || 0
-    }
+    },
+    
+    
   })
 }
