@@ -2,4 +2,4 @@ out/
 Furniture.iml
 .idea/
 web/
-src/db.properties
+classes/
