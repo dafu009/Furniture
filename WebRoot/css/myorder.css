@@ -1,0 +1,73 @@
+.goodsdetail{
+	width: 80%;
+	margin: 20px auto;
+	background-color: white;
+	border-radius: 5px;
+}
+.ordertime{
+	background-color: linen;
+	font-size: 18px;
+	padding: 5px 20px;
+	
+}
+.goodsdetail table{
+	width: 100%;
+}
+.goodsdetail table tr{
+	border-bottom: 1px solid lightgoldenrodyellow;
+	
+}
+.tabletitle td{
+	font-size: 16px;
+	padding: 10px 0;
+}
+.newgoods_one{
+	width: 85%;
+	/*margin: 0 auto;*/
+	height: 150px;
+	padding: 5px 0;
+	margin-left: 20px;
+	
+}
+.goodsname{
+	font-size: 18px;
+}
+.newgoodsone_left{
+	width: 40%;
+	height: 100%;
+	float: left;
+}
+.newgoodsone_right{
+	width: 50%;
+	height: 100%;
+	float: right;
+	margin-left: 20px;
+}
+.newgoodsone_right span{
+	display: block;
+	margin-top: 15px;
+}
+.goodscolor{
+	color: #9E9C9C;
+	font-size: 14px;
+}
+.goodsprice{
+	color: #c30;
+	font-weight: bold;
+	font-family: "Arial";
+}
+.goodsmain_title {
+    padding: 10px;
+    font-size: 18px;
+    font-weight: bold;
+    background-color: linen;
+    border-radius: 8px 8px 0 0;
+    text-align: center;
+    color: #2B542C;
+}
+
+.newgoodsone_left img{
+	position: relative;
+	max-width: 90%;
+	margin-bottom: 20px;
+}
