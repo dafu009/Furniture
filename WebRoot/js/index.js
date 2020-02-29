@@ -6,40 +6,43 @@ window.onload = () => {
         searchText: '',
         offsetTop: 0,
         isFixed: false,
-        currentCategory: {},　// 当前类别的物品
+        currentCategory: {
+          list: [],
+          title: ''
+        },　// 当前类别的物品
         currentIndex: 0,  // 当前nav索引
         nav: [
           {
             title: '所有产品',
-            categoryId: 111,
+            categoryId: 0,
           },
           {
             title: '储物收纳',
-            categoryId: 222,
+            categoryId: 1,
           },
           {
             title: '厨房用具',
-            categoryId: 333,
+            categoryId: 3,
           },
           {
             title: '餐具',
-            categoryId: 444,
+            categoryId: 4,
           },
           {
             title: '装饰品',
-            categoryId: 555,
+            categoryId: 5,
           },
           {
             title: '萌宠爱物',
-            categoryId: 666,
+            categoryId: 6,
           },
           {
             title: '灯具',
-            categoryId: 777,
+            categoryId: 7,
           },
           {
             title: '玩耍和玩具',
-            categoryId: 333,
+            categoryId: 8,
           }
         ],
         clearGoods: [
@@ -124,16 +127,18 @@ window.onload = () => {
       }
     },
     methods: {
-      current (index) {
+      current (index, id) {
         this.currentIndex = index
         this.currentCategory.title = this.nav[index].title
+        let params = {
+          id,
+          page: 1,
+          pageSize: 10
+        }
         axios({ // ajax 请求
-          method: 'GET',　// 具体看请求后端的方式
-          url: '', // 后端查询接口
-          data: {
-            firstName: 'Fred',
-            lastName: 'Flintstone'
-          }
+          method: 'POST',　// 具体看请求后端的方式
+          url: '/goodsTypeDetail.do', // 后端查询接口
+          data: params
         })
           .then(({ code, result }) => {
             if (code === 200) {
@@ -164,7 +169,7 @@ window.onload = () => {
       },
       toRegister () {
         // 去注册
-    	 location.href = "/Furniture/register.html"
+    	 window.location.href = 'register.html'
       },
       toSelfPage () {
         // 去个人中心

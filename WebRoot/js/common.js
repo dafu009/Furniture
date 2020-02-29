@@ -165,7 +165,7 @@ window.onload = () => {
       },
       toRegister () {
         // 去注册
-    	 location.href = "/Furniture/register.html"
+    	 location.href = "../WEB-INF/content/register.html"
       },
       toSelfPage () {
           // 去个人中心
