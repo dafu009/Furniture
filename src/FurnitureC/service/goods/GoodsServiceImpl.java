@@ -28,7 +28,7 @@ public class GoodsServiceImpl implements GoodsService {
 		// TODO Auto-generated method stub
 		page=(page-1)*pageSize;
 		
-		return goodsMapper.GetTypeDetail(Goods, page, pageSize);
+		return goodsMapper.GetTypeDetail(Goods, id,page, pageSize);
 	}
 
 	@Override

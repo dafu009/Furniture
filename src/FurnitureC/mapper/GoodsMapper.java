@@ -14,7 +14,7 @@ public interface GoodsMapper {
 	Map<String,Object> GetGoodsDetail(goods Goods ,@Param("id") Integer id);
 	
 	@Select("select * from goods where categoryID=#{id} limit #{page},#{pageSize}")//limit子句可以被用于强制 SELECT 语句返回指定的记录数
-	List<Map<String,Object>> GetTypeDetail(goods Goods,@Param("page")Integer page,@Param ("pageSize")Integer pageSize);
+	List<Map<String,Object>> GetTypeDetail(goods Goods,@Param("id")Integer id,@Param("page")Integer page,@Param ("pageSize")Integer pageSize);
 	
 	@Select("select * from goods limit #{page},#{pageSize}")
 	List<Map<String,Object>> GetGoodsTypeAll(goods Goods,@Param("page")Integer page,@Param ("pageSize")Integer pageSize);
