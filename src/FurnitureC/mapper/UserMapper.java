@@ -19,16 +19,16 @@ public interface UserMapper {
 	@Select("select * from users where userName=#{username}")
 	Map<String,Object> usersearchName(@Param("username")String username);
 	
-	@Insert("insert into(userName,realName,pwd,addr,phone,creatDate) valus (#{username},#{realname},#{pwd},#{address},#{telephone},#{creatDate})")
-	void userRegister (@Param("username")String username, @Param("realname")String realname, @Param("pwd")String pwd, @Param("address")String address, @Param("telephone")String telephone, @Param("creatDate")String creatDate);
+	@Insert("insert into(userName,pwd,addr,phone) valus (#{username},#{pwd},#{address},#{telephone})")
+	void userRegister (@Param("username")String username, @Param("pwd")String pwd, @Param("address")String address, @Param("telephone")String telephone);
 	
 	//用户个人资料
 	@Select("select * from users where id=#{id}")
 	Map<String, Object> userSelf(@Param("id")Integer id);
 	
 	//用户个人资料修改
-	@Update("update users set realName=#{realname},addr=#{addr},phone=#{telephone} where id=#{id}")
-	void userReset(@Param("id")Integer id, @Param("realname")String realname, @Param("addr")String addr, @Param("telephone")String telephone);
+	@Update("update users set addr=#{addr},phone=#{telephone} where id=#{id}")
+	void userReset(@Param("id")Integer id,@Param("addr")String addr, @Param("telephone")String telephone);
 	
 	//用户个人密码修改
 	@Select("select pwd from users where id=#{id}")
