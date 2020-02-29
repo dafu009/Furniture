@@ -159,11 +159,9 @@ a {
   cursor: pointer;
   outline: none;
 }
-a {
-  text-decoration: none;
-  cursor: pointer;
-  outline: none;
-}
+
+
+
 .homemain_middle_top bgco {
   width: 1150px;
 }

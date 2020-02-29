@@ -148,7 +148,7 @@ window.onload = () => {
       },
       goGoodDetail (id) {
         // 点击，跳转到相应的产品详情页
-        location.href = `/goodsdetail.html?goodId=${id}`
+        location.href = `/goodsdetail.html?goodsId=${id}`
       },
       goCategoryDetail (id) {
         // 点击，跳转到相应的产品分类页面
@@ -168,15 +168,11 @@ window.onload = () => {
       },
       toSelfPage () {
         // 去个人中心
-<<<<<<< HEAD
-    	 location.href = "/setting.html"
-=======
         if (this.isLogin) {
           window.location.href = 'setting.html'
         } else {
           window.location.href = 'login.html'
         }
->>>>>>> 前端
       },
       quit () {
         // 退出登录
