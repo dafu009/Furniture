@@ -112,7 +112,7 @@ public class UserController {
 	
 	@PostMapping("/userRegister")
 	@ResponseBody 
-	public Map<String, Object> userRegister(String username, String pwd, String telephone, String address, String realname) {
+	public Map<String, Object> userRegister(String username, String pwd, String telephone, String address) {
 		Map<String, Object> searchUserName = new HashMap<String, Object>();
 		Map<String, Object> result = new HashMap<String, Object>();
 		Map<String, Object> map = new HashMap<String, Object>();
@@ -122,10 +122,8 @@ public class UserController {
 			if(username != null & pwd != null){
 				searchUserName = userService.SearchUserName(username); //判断用户名是否已存在
 				if(searchUserName == null){
-					Date date = new Date();
-					SimpleDateFormat formatDate = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-					String creatDate = formatDate.format(date);
-					userService.Register(username, realname, pwd, address, telephone, creatDate);
+				
+					userService.Register(username, pwd, address, telephone);
 					
 					flag=1;
 					message = "成功";

@@ -27,10 +27,10 @@ public class UserServiceImpl implements UserService{
 	}
 
 	@Override
-	public void Register(String username, String realname, String pwd,
-			String address, String telephone, String creatDate) {
+	public void Register(String username,  String pwd,
+			String address, String telephone) {
 		// TODO Auto-generated method stub
-		userMapper.userRegister(username, realname, pwd, address, telephone, creatDate);
+		userMapper.userRegister(username, pwd, address, telephone);
 	}
 	//用户个人资料
 	@Override
@@ -40,10 +40,10 @@ public class UserServiceImpl implements UserService{
 		}
 	//用户个人资料修改
 	@Override
-	public void UserReset(Integer id, String realname, String addr,
+	public void UserReset(Integer id, String addr,
 			String telephone) {
 		// TODO Auto-generated method stub
-		userMapper.userReset(id, realname, addr, telephone);
+		userMapper.userReset(id, addr, telephone);
 	}
 	
 	//用户个人密码修改
