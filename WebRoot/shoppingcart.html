@@ -1,19 +1,16 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>shoppingcart.html</title>
-	
-    <meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
-    <meta http-equiv="description" content="this is my page">
+    <title>购物车</title>
+
     <meta http-equiv="content-type" content="text/html; charset=UTF-8">
     <link rel="stylesheet" type="text/css" href="css/shoppingCar.css" />
     <link rel="stylesheet" href="css/ShoppingCart.css" />
-    <link rel="stylesheet" href="css/userinfo.css" type="text/css"></link>
+    <link rel="stylesheet" href="css/common.css" type="text/css"></link>
     <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css"></link>
     <link rel="stylesheet" type="text/css" href="css/swiper.min.css" />
     <link rel="stylesheet" href="js/eleme-ui/index.css" type="text/css"></link>
     <link rel="stylesheet" href="css/layui/css/layui.css" type="text/css"></link>
-    <!--<link rel="stylesheet" type="text/css" href="./styles.css">-->
     <script type="text/javascript" src="js/jquery-1.9.1.min.js"></script>
     <script type="text/javascript" src="js/bootstrap.min.js"></script>
     <script type="text/javascript" src="js/bootstrap-paginator.js"></script>
@@ -27,6 +24,13 @@
     <div class="main">
     <div class="top" style="height: 90px;">
 			<img src="img/logo.png" class="logoimg"/>
+			<div class="left">
+            <div class="flex">
+              <p class="self" title="个人中心" @click="toSelfPage"></p>
+              <p class="quit" title="退出" v-if="isLogin" @click="quit"></p>
+              <p class="register" title="注册" v-else @click="toRegister"></p>
+            </div>
+          </div>
 			<div class="right">
             <div class="indexlike">
               <button type="button" title="收藏夹"></button>
@@ -39,11 +43,8 @@
             </div>
           </div>
       </div>    
-          <div class="jiange">
-			</div>
+      <!--主要内容-->
 			<div class="goodsdetail">
-
-				<!--主要内容-->
 				<div class="title">
 					<img src="img/gouwuche.PNG" style="margin-left: 100px;"/>
 				</div>
@@ -113,6 +114,12 @@
 
 			</div>
 		
-	</div>	
+	</div>
+	
+	<div style="clear: both;"></div>
+      <!--页脚-->
+      <div class="footerbg">
+        <P>© DESIGNED BY Yannes & Ann</P>
+      </div>	
   </body>
 </html>

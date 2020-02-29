@@ -148,15 +148,15 @@ window.onload = () => {
       },
       goGoodDetail (id) {
         // 点击，跳转到相应的产品详情页
-        location.href = `/goodsdetail.html?goodsId=${id}`
+    	  window.location.href = `/goodsdetail.html?goodsId=${id}`
       },
       goCategoryDetail (id) {
         // 点击，跳转到相应的产品分类页面
-        location.href = `/goodsType.html?categoryID=${id}`
+    	  window.location.href = `/goodsType.html?categoryID=${id}`
       },
       searchData () {
         setCookie("SearchTxt", this.searchData)
-        location.href = "/searchList.html?keywords=" + this.searchData
+        window.location.href = "/searchList.html?keywords=" + this.searchData
       },
       handleScroll () {
         let scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop
@@ -164,7 +164,7 @@ window.onload = () => {
       },
       toRegister () {
         // 去注册
-    	 location.href = "/Furniture/register.html"
+    	  window.location.href = "/Furniture/register.html"
       },
       toSelfPage () {
         // 去个人中心

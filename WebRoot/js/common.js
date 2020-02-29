@@ -9,6 +9,8 @@ window.onload = () => {
         isFixed: false,
         currentCategory: {},　// 当前类别的物品
         currentIndex: 0,  // 当前nav索引
+        goodId: null,
+        goodDetail: {},
         nav: [
           {
             title: '所有产品',
@@ -181,6 +183,7 @@ window.onload = () => {
     },
     created () {
       this.isLogin = window.sessionStorage.getItem('userId') ? true : false
+    
     },
     mounted () {
       window.addEventListener('scroll', this.handleScroll)

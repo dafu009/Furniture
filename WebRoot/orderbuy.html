@@ -2,15 +2,13 @@
 <html>
   <head>
     <title>订单明细</title>
-	
-    <meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
-    <meta http-equiv="description" content="this is my page">
+
     <meta http-equiv="content-type" content="text/html; charset=UTF-8">
     <link rel="stylesheet" href="css/okbuy.css" type="text/css"></link>
     <link rel="stylesheet" href="css/swiper.min.css" type="text/css"></link>
     <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css"></link>
-    <link rel="stylesheet" href="css/userinfo.css" type="text/css"></link>
-    <!--<link rel="stylesheet" type="text/css" href="./styles.css">-->
+    <link rel="stylesheet" href="css/common.css" type="text/css"></link>
+
 
   </head>
   
@@ -19,6 +17,13 @@
 
 			<div class="top">
 			<img src="img/logo.png" class="logoimg"/>
+			<div class="left">
+            <div class="flex">
+              <p class="self" title="个人中心" @click="toSelfPage"></p>
+              <p class="quit" title="退出" v-if="isLogin" @click="quit"></p>
+              <p class="register" title="注册" v-else @click="toRegister"></p>
+            </div>
+          </div>
 			<div class="right">
             <div class="indexlike">
               <button type="button" title="收藏夹"></button>
