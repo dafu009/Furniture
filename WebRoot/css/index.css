@@ -340,6 +340,7 @@ a {
 }
 
 .goods_one{
+  cursor: pointer;
   width: 245px;
   padding: 25px 10px;
   overflow: hidden;
@@ -370,6 +371,7 @@ a {
   cursor: pointer;
   position: relative;
   font-size: 20px;
+  color: #757575;
 }
 .loadMore::before, .loadMore::after {
   content: '';

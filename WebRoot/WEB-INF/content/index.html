@@ -4,7 +4,6 @@
 <head>
   <title>宅家家居</title>
   <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-  <link rel="stylesheet" href="css/goodsType.css" type="text/css" />
   <link rel="stylesheet" href="css/index.css" type="text/css" />
   <link rel="stylesheet" href="css/swiper.min.css" type="text/css" />
   <script type="text/javascript" src="assets/js/axios/axios.min.js"></script>
@@ -98,16 +97,15 @@
     <div class="subCategory" v-if="currentIndex !== 0">
       <div class="goodsType_main">
         <div id="goodstypelist" v-if="currentCategory.list.length > 0">
-          <div class="goodsstr" v-for="(item, index) in currentCategory.list" :key="index">
-            <div class="title-line">
-              <span class="tit" style="font-size: 38px;">
-                <img src="img/renqi.PNG" /></span>
-            </div>
-
-            <div class="goods_one" name="entergoodsdetail">
+          <div class="title-line">
+            <span class="tit" style="font-size: 38px;">
+              <img src="img/renqi.PNG" /></span>
+          </div>
+          <div class="goodList">
+            <div class="goods_one"  v-for="(item, index) in totalList" :key="index">
               <div class="goodsone_top">
                 <span></span>
-                <img src="{{ item.picInfo }}" />
+                <img :src="item.picInfo" />
               </div>
 
               <div class="goodsone_bot">
@@ -125,10 +123,7 @@
               </div>
             </div>
           </div>
-        </div>
-        <div style="clear: both;"></div>
-        <div class="fenye">
-          <ul id="pageInfo" class="pagination pagination-lg"></ul>
+          <div class="loadMore" v-if="loadMoreShow" @click="loadMore">加载更多</div>
         </div>
       </div>
     </div>
