@@ -14,76 +14,109 @@ window.onload = () => {
         searchText: '',
         offsetTop: 0,
         isFixed: false,
-        currentCategory: {},　// 当前类别的物品
+        totalList: [],
+        loadMoreShow: true,
+        currentCategory: {
+          id: null,
+          list: [],
+          title: '',
+          total: 0,
+          page: {
+            num: 1,
+            size: 8
+          }
+        },　// 当前类别的物品
         currentIndex: 0,  // 当前nav索引
         goodId: null,
         goodDetail: {},
         nav: [
           {
-            title: '所有产品',
-            categoryId: 111,
+            title: '当前产品',
+            categoryId: 0,
           },
           {
             title: '储物收纳',
-            categoryId: 222,
+            categoryId: 1,
           },
           {
             title: '厨房用具',
-            categoryId: 333,
+            categoryId: 3,
           },
           {
             title: '餐具',
-            categoryId: 444,
+            categoryId: 4,
           },
           {
             title: '装饰品',
-            categoryId: 555,
+            categoryId: 5,
           },
           {
             title: '萌宠爱物',
-            categoryId: 666,
+            categoryId: 6,
           },
           {
             title: '灯具',
-            categoryId: 777,
+            categoryId: 7,
           },
           {
             title: '玩耍和玩具',
-            categoryId: 333,
+            categoryId: 8,
           }
         ], 
       }
     },
-    methods: {         
-      current (index) {
+    methods: {
+      current (index, id) {
         this.currentIndex = index
         this.currentCategory.title = this.nav[index].title
+        this.currentCategory.page.num = 1
+        this.currentCategory.id = id
+        this.totalList = []
+        this.loadMoreShow = true
+        let params = {
+          id,
+          page: this.currentCategory.page.num,
+          pageSize: this.currentCategory.page.size
+        }
+        if (index === 0) return
+        this.fetchData(params)
+      },
+      concatList () {
+        this.totalList = this.totalList.concat(this.currentCategory.list)
+      },
+      fetchData (params) {
         axios({ // ajax 请求
           method: 'GET',　// 具体看请求后端的方式
-          url: '', // 后端查询接口
-          data: {
-            firstName: 'Fred',
-            lastName: 'Flintstone'
-          }
+          url: '/Furniture/goodsTypeDetail', // 后端查询接口
+          params
         })
-          .then(({ code, result }) => {
+          .then(({ data }) => {
+            const { code, result, state } = data
             if (code === 200) {
-              // data为后端返回的数据 对物品列表进行赋值
-              this.currentCategory.title = this.nav[index].title
-              this.currentCategory.list = result
+              if (result.bookList.length === 0) {
+                this.loadMoreShow = false
+                return
+              }
+              this.currentCategory.list = result.bookList
+              this.currentCategory.total = result.nCount
+              this.concatList()
             }
           })
           .catch((err) => {
             console.log(err)
           })
       },
+      loadMore() {
+        let params = {
+          id: this.currentCategory.id,
+          page: ++ this.currentCategory.page.num,
+          pageSize: this.currentCategory.page.size
+        }
+        this.fetchData(params)
+      },
       goGoodDetail (id) {
         // 点击，跳转到相应的产品详情页
-        location.href = `/goodsdetail.html?goodsId=${id}`
-      },
-      goCategoryDetail (id) {
-        // 点击，跳转到相应的产品分类页面
-        location.href = `/goodsType.html?categoryID=${id}`
+        window.location.href = `goodsdetail.html?goodsId=${id}`
       },
       searchData () {
         setCookie("SearchTxt", this.searchData)
@@ -111,13 +144,14 @@ window.onload = () => {
       //产品详情信息
       queryGoodDetail (id) {
           axios({
-            method: 'post',
-            data: {
-              goodId: id
-            },
-            url: ''
+            method: 'GET',
+            url: '/Furniture/getgoodsDetail',
+            params: {
+              id
+            }
           })
-            .then(({ code, result }) => {
+            .then(({ data }) => {
+              const { code, result } = data
               if (code === 200) {
                 this.goodDetail = result
               }
@@ -138,7 +172,8 @@ window.onload = () => {
     },
     created () {
       this.isLogin = window.sessionStorage.getItem('userId') ? true : false
-      this.goodId = Number(getUrlParam('goodId')) || 0
+      this.goodId = Number(getUrlParam('goodsId')) || 0
+      this.queryGoodDetail(this.goodId)
     },
     mounted () {
       window.addEventListener('scroll', this.handleScroll)
@@ -151,56 +186,3 @@ window.onload = () => {
     }
   }).$mount('#app')
 }
-
-/***
- function getUrlParam (name) {
-  const reg = new RegExp('(^|&)' + name + '=([^&]*)(&|$)')
-  const rst = window.location.search.substr(1).match(reg)
-  if (rst) return decodeURI(rst[2])
-  return null
-}
-window.onload = () => {
-  const vm = new Vue({
-    el: '#app',
-    data () {
-      return {
-        goodId: null,
-        goodDetail: {}
-      }
-    },
-    methods: {
-      queryGoodDetail (id) {
-        axios({
-          method: 'post',
-          data: {
-            goodId: id
-          },
-          url: ''
-        })
-          .then(({ code, result }) => {
-            if (code === 200) {
-              this.goodDetail = result
-            }
-          })
-          .catch(err => {
-            console.log(err)
-          })
-      },
-      addFavorite () {
-        // 收藏 利用goodId
-      },
-      addShoppingCart () {
-        // 加入购物车 利用goodId
-      },
-      buyNow () {
-        // 立即购买 利用goodId
-      }
-    },
-    created () {
-      this.goodId = Number(getUrlParam('goodId')) || 0
-    },
-    
-    
-  })
-}
-***/

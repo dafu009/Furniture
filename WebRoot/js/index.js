@@ -1,4 +1,4 @@
-window.onload = () => {
+  window.onload = () => {
   const app = new Vue({
     data () {
       return {
@@ -6,40 +6,51 @@ window.onload = () => {
         searchText: '',
         offsetTop: 0,
         isFixed: false,
-        currentCategory: {},　// 当前类别的物品
+        totalList: [],
+        loadMoreShow: true,
+        currentCategory: {
+          id: null,
+          list: [],
+          title: '',
+          total: 0,
+          page: {
+            num: 1,
+            size: 8
+          }
+        },　// 当前类别的物品
         currentIndex: 0,  // 当前nav索引
         nav: [
           {
             title: '所有产品',
-            categoryId: 111,
+            categoryId: 0,
           },
           {
             title: '储物收纳',
-            categoryId: 222,
+            categoryId: 1,
           },
           {
             title: '厨房用具',
-            categoryId: 333,
+            categoryId: 3,
           },
           {
             title: '餐具',
-            categoryId: 444,
+            categoryId: 4,
           },
           {
             title: '装饰品',
-            categoryId: 555,
+            categoryId: 5,
           },
           {
             title: '萌宠爱物',
-            categoryId: 666,
+            categoryId: 6,
           },
           {
             title: '灯具',
-            categoryId: 777,
+            categoryId: 7,
           },
           {
             title: '玩耍和玩具',
-            categoryId: 333,
+            categoryId: 8,
           }
         ],
         clearGoods: [
@@ -124,39 +135,65 @@ window.onload = () => {
       }
     },
     methods: {
-      current (index) {
+      current (index, id) {
         this.currentIndex = index
         this.currentCategory.title = this.nav[index].title
+        this.currentCategory.page.num = 1
+        this.currentCategory.id = id
+        this.totalList = []
+        this.loadMoreShow = true
+        let params = {
+          id,
+          page: this.currentCategory.page.num,
+          pageSize: this.currentCategory.page.size
+        }
+        if (index === 0) return
+        this.fetchData(params)
+      },
+      loadMore() {
+        let params = {
+          id: this.currentCategory.id,
+          page: ++ this.currentCategory.page.num,
+          pageSize: this.currentCategory.page.size
+        }
+        this.fetchData(params)
+      },
+      concatList () {
+        this.totalList = this.totalList.concat(this.currentCategory.list)
+      },
+      fetchData (params) {
         axios({ // ajax 请求
           method: 'GET',　// 具体看请求后端的方式
-          url: '', // 后端查询接口
-          data: {
-            firstName: 'Fred',
-            lastName: 'Flintstone'
-          }
+          url: '/Furniture/goodsTypeDetail', // 后端查询接口
+          params
         })
-          .then(({ code, result }) => {
-            if (code === 200) {
-              // data为后端返回的数据 对物品列表进行赋值
-              this.currentCategory.title = this.nav[index].title
-              this.currentCategory.list = result
-            }
-          })
-          .catch((err) => {
-            console.log(err)
-          })
+            .then(({ data }) => {
+              const { code, result, state } = data
+              if (code === 200) {
+                if (result.bookList.length === 0) {
+                  this.loadMoreShow = false
+                  return
+                }
+                this.currentCategory.list = result.bookList
+                this.currentCategory.total = result.nCount
+                this.concatList()
+              }
+            })
+            .catch((err) => {
+              console.log(err)
+            })
       },
       goGoodDetail (id) {
         // 点击，跳转到相应的产品详情页
-    	  window.location.href = `/goodsdetail.html?goodsId=${id}`
+        window.location.href = `goodsdetail.html?goodsId=${id}`
       },
       goCategoryDetail (id) {
         // 点击，跳转到相应的产品分类页面
-    	  window.location.href = `/goodsType.html?categoryID=${id}`
+        window.location.href = `goodsType.html?categoryID=${id}`
       },
       searchData () {
         setCookie("SearchTxt", this.searchData)
-        window.location.href = "/searchList.html?keywords=" + this.searchData
+        window.location.href = "searchList.html?keywords=" + this.searchData
       },
       handleScroll () {
         let scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop
@@ -164,7 +201,7 @@ window.onload = () => {
       },
       toRegister () {
         // 去注册
-    	  window.location.href = "/Furniture/register.html"
+    	 window.location.href = 'register.html'
       },
       toSelfPage () {
         // 去个人中心
