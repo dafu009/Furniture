@@ -5,7 +5,7 @@ window.onload = () => {
       return {
         params: {
           username: '',
-          password: ''
+          pwd: ''
         }
       }
     },
@@ -19,18 +19,22 @@ window.onload = () => {
           this.$refs.username.focus()
           return
         }
-        if (!this.params.password) {
+        if (!this.params.pwd) {
           sweetAlert('Oops..', '请输入密码', 'error')
           this.$refs.password.focus()
           return
         }
         axios({
-          method: 'post',
-          datatype: 'json',
-          url: loginfunc_url,
-          data: this.params
+          method: 'POST',
+          url: '/Furniture/userLogin',
+          data: Qs.stringify(this.params),
+          // dataType: 'json',
+          // headers: {
+          //   'content-type': 'application/x-www-form-urlencoded'
+          // }
         })
-          .then(({ code, message, result }) => {
+          .then(({ data }) => {
+            const { code, flag, result } = data
             if (code === 200) {
               if (result.flag == 1) {
                 sessionStorage.setItem('userId', result.id);
@@ -39,9 +43,8 @@ window.onload = () => {
               } else {
                 sweetAlert('Sorry..', result.message, 'error');
               }
-            }
-            else {
-              sweetAlert('Oops..', message, 'error');
+            } else {
+              sweetAlert('Sorry..', '账号或密码有误，请重试', 'error');
             }
           })
           .catch((err) => {

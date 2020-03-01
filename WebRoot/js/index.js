@@ -214,6 +214,15 @@
       quit () {
         // 退出登录
       },
+      goLike () {
+        window.location.href = 'like.html'
+      },
+      goShopCart () {
+        window.location.href = 'shoppingcart.html'
+      },
+      goMyOrder () {
+        window.location.href = 'myorder.html'
+      }
     },
     created () {
       this.isLogin = window.sessionStorage.getItem('userId') ? true : false
