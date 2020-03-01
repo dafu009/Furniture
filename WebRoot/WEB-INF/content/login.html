@@ -9,8 +9,10 @@
   <script type="text/javascript" src="assets/js/vue/vue.min.js"></script>
   <script src="js/sweetalert.min.js"></script>
   <script type="text/javascript" src="js/ajaxurl.js"></script>
-	<script type="text/javascript" src="js/login.js"></script>
-</head>
+  <script type="text/javascript" src="js/login.js"></script>
+  <script src="https://cdn.bootcss.com/qs/6.9.1/qs.js"></script>
+
+  </head>
   
   <body>
     <div id="app">
@@ -32,10 +34,10 @@
                     v-model="params.username"
                     ref="username"/>
                   <input
-                    id="pwd" 
+                    id="pwd"
                     type="password"
                     placeholder="密码"
-                    v-model="params.password"
+                    v-model="params.pwd"
                     ref="password"/>
                   <a class="to_register" href="register.html">立即注册</a>
                   <div id="login_btn" @click="submit">登&nbsp;&nbsp;录</div>
