@@ -347,6 +347,9 @@ a {
   color:#000;
   position: relative;
 }
+.goods_one:hover {
+  box-shadow: 0 0 12px rgba(0, 0, 0, 0.2);
+}
 .goodsone_top img{
   position: relative;
   max-width: 100%;

@@ -116,11 +116,7 @@ window.onload = () => {
       },
       goGoodDetail (id) {
         // 点击，跳转到相应的产品详情页
-        location.href = `/goodsdetail.html?goodsId=${id}`
-      },
-      goCategoryDetail (id) {
-        // 点击，跳转到相应的产品分类页面
-        location.href = `/goodsType.html?categoryID=${id}`
+        window.location.href = `goodsdetail.html?goodsId=${id}`
       },
       searchData () {
         setCookie("SearchTxt", this.searchData)

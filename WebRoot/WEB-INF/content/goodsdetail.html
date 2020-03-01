@@ -20,7 +20,7 @@
 
     <div class="top_div" id="top_html">
       <div class="logo_box">
-        <a class="logo" href="/"></a>
+        <a class="logo" href="index.html"></a>
         <div class="left">
           <div class="flex">
             <p class="self" title="个人中心" @click="toSelfPage"></p>
@@ -107,7 +107,10 @@
               <img src="img/renqi.PNG" /></span>
           </div>
           <div class="goodList">
-            <div class="goods_one" v-for="(item, index) in totalList" :key="index">
+            <div class="goods_one"
+              v-for="(item, index) in totalList"
+              :key="index"
+              @click="goGoodDetail(item.id)">
               <div class="goodsone_top">
                 <span></span>
                 <img :src="item.picInfo" />

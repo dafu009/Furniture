@@ -102,7 +102,7 @@
               <img src="img/renqi.PNG" /></span>
           </div>
           <div class="goodList">
-            <div class="goods_one"  v-for="(item, index) in totalList" :key="index">
+            <div class="goods_one"  v-for="(item, index) in totalList" :key="index" @click="goGoodDetail(item.id)">
               <div class="goodsone_top">
                 <span></span>
                 <img :src="item.picInfo" />
