@@ -6,9 +6,17 @@ window.onload = () => {
         searchText: '',
         offsetTop: 0,
         isFixed: false,
+        totalList: [],
+        loadMoreShow: true,
         currentCategory: {
+          id: null,
           list: [],
-          title: ''
+          title: '',
+          total: 0,
+          page: {
+            num: 1,
+            size: 8
+          }
         },　// 当前类别的物品
         currentIndex: 0,  // 当前nav索引
         nav: [
@@ -130,26 +138,49 @@ window.onload = () => {
       current (index, id) {
         this.currentIndex = index
         this.currentCategory.title = this.nav[index].title
+        this.currentCategory.page.num = 1
+        this.currentCategory.id = id
+        this.totalList = []
+        this.loadMoreShow = true
         let params = {
           id,
-          page: 1,
-          pageSize: 10
+          page: this.currentCategory.page.num,
+          pageSize: this.currentCategory.page.size
         }
+        this.fetchData(params)
+      },
+      loadMore() {
+        let params = {
+          id: this.currentCategory.id,
+          page: ++ this.currentCategory.page.num,
+          pageSize: this.currentCategory.page.size
+        }
+        this.fetchData(params)
+      },
+      concatList () {
+        this.totalList = this.totalList.concat(this.currentCategory.list)
+      },
+      fetchData (params) {
         axios({ // ajax 请求
-          method: 'POST',　// 具体看请求后端的方式
-          url: '/goodsTypeDetail.do', // 后端查询接口
-          data: params
+          method: 'GET',　// 具体看请求后端的方式
+          url: '/Furniture/goodsTypeDetail', // 后端查询接口
+          params
         })
-          .then(({ code, result }) => {
-            if (code === 200) {
-              // data为后端返回的数据 对物品列表进行赋值
-              this.currentCategory.title = this.nav[index].title
-              this.currentCategory.list = result
-            }
-          })
-          .catch((err) => {
-            console.log(err)
-          })
+            .then(({ data }) => {
+              const { code, result, state } = data
+              if (code === 200) {
+                if (result.bookList.length === 0) {
+                  this.loadMoreShow = false
+                  return
+                }
+                this.currentCategory.list = result.bookList
+                this.currentCategory.total = result.nCount
+                this.concatList()
+              }
+            })
+            .catch((err) => {
+              console.log(err)
+            })
       },
       goGoodDetail (id) {
         // 点击，跳转到相应的产品详情页
