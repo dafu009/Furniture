@@ -1,6 +1,13 @@
+function getUrlParam (name) {
+  const reg = new RegExp('(^|&)' + name + '=([^&]*)(&|$)')
+  const rst = window.location.search.substr(1).match(reg)
+  if (rst) return decodeURI(rst[2])
+  return null
+}
 /* 顶部及导航条 */
 window.onload = () => {
   const app = new Vue({
+	el: '#app',
     data () {
       return {
         isLogin: null,
@@ -9,6 +16,8 @@ window.onload = () => {
         isFixed: false,
         currentCategory: {},　// 当前类别的物品
         currentIndex: 0,  // 当前nav索引
+        goodId: null,
+        goodDetail: {},
         nav: [
           {
             title: '所有产品',
@@ -42,86 +51,7 @@ window.onload = () => {
             title: '玩耍和玩具',
             categoryId: 333,
           }
-        ],
-        clearGoods: [
-          {
-            name: '拖把',
-            id: 1
-          },
-          {
-            name: '刷子',
-            id: 2
-          },
-          {
-            name: '皂液器',
-            id: 3
-          },
-          {
-            name: '洗衣篮',
-            id: 4
-          }
-        ],
-        admissionGoods: [
-          {
-            name: 'kitchen',
-            id: 5
-          },
-          {
-            name: 'shouna',
-            id: 6
-          },
-          {
-            name: 'cloth',
-            id: 7
-          }
-        ],
-        leisureGoods: [
-          {
-            name: 'toe',
-            id: 8
-          },
-          {
-            name: 'bed',
-            id: 9
-          },
-          {
-            name: 'green',
-            id: 10
-          },
-          {
-            name: 'gym',
-            id: 11
-          },
-          {
-            name: 'sofa',
-            id: 12
-          }
-        ],
-        workGoods: [
-          {
-            name: 'big',
-            id: 13
-          },
-          {
-            name: 'small',
-            id: 14
-          }
-        ],
-        hotCategorys: [
-          {
-            id: 1,
-            name: '储物'
-          },
-          { id: 2 },
-          { id: 3 },
-          { id: 4 },
-          { id: 5 },
-          { id: 6 },
-          { id: 7 },
-          { id: 8 },
-          { id: 9 },
-          { id: 10 }
-        ]
+        ], 
       }
     },
     methods: {         
@@ -178,9 +108,37 @@ window.onload = () => {
       quit () {
         // 退出登录
       },
+      //
+      queryGoodDetail (id) {
+          axios({
+            method: 'post',
+            data: {
+              goodId: id
+            },
+            url: ''
+          })
+            .then(({ code, result }) => {
+              if (code === 200) {
+                this.goodDetail = result
+              }
+            })
+            .catch(err => {
+              console.log(err)
+            })
+        },
+        addFavorite () {
+          // 收藏 利用goodId
+        },
+        addShoppingCart () {
+          // 加入购物车 利用goodId
+        },
+        buyNow () {
+          // 立即购买 利用goodId
+        }
     },
     created () {
       this.isLogin = window.sessionStorage.getItem('userId') ? true : false
+      this.goodId = Number(getUrlParam('goodId')) || 0
     },
     mounted () {
       window.addEventListener('scroll', this.handleScroll)

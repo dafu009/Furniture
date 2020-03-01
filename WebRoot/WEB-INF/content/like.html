@@ -4,9 +4,8 @@
   <meta http-equiv="content-type" content="text/html; charset=UTF-8">
     <title>收藏夹</title>
 	<link rel="stylesheet" type="text/css" href="css/swiper.min.css" />
- 	<link rel="stylesheet" href="css/userinfo.css" type="text/css"></link>
     <link rel="stylesheet" href="css/goodsType.css" type="text/css"></link>
-    <script src="js/jquery-1.9.1.min.js" type="text/javascript" charset="utf-8"></script>
+    <link rel="stylesheet" href="css/common.css" type="text/css"></link>
 	<script src="js/bootstrap.min.js" type="text/javascript" charset="utf-8"></script>
 	<script src="js/bootstrap-paginator.js" type="text/javascript" charset="utf-8"></script>
 	<script src="js/sweetalert.min.js" type="text/javascript" charset="utf-8"></script>				
@@ -19,6 +18,13 @@
   <div class="main">
     <div class="top">
 			<img src="img/logo.png" class="logoimg"/>
+			<div class="left">
+            <div class="flex">
+              <p class="self" title="个人中心" @click="toSelfPage"></p>
+              <p class="quit" title="退出" v-if="isLogin" @click="quit"></p>
+              <p class="register" title="注册" v-else @click="toRegister"></p>
+            </div>
+          </div>
 			<div class="right">
             <div class="indexlike">
               <button type="button" title="收藏夹"></button>

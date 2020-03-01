@@ -159,6 +159,83 @@ a {
   cursor: pointer;
   outline: none;
 }
+/*顶部设计*/
+.top{
+	height:70px;
+	width:100%;
+	background-color: #fff2df;
+	border-bottom:3px solid #A9A9A9;
+	padding-top: 10px;
+    padding-bottom: 10px;
+}
+.logoimg{
+	width:140px;
+	height:70px;
+	margin-left: 360px;
+}
+
+.top .right {
+  float: right;
+  margin-top: 20px;
+  display: flex;
+  margin-right: 80px;
+}
+
+.top .right .indexlike button {
+  background: url('../images/like.png') no-repeat center center;
+  width: 27px;
+  height: 27px;
+  border: none;
+  margin-right: 30px;
+  cursor: pointer;
+}
+.top .right .order button {
+  background: url('../images/order.png') no-repeat center center;
+  width: 27px;
+  height: 27px;
+  border: none;
+  margin-right: 30px;
+  cursor: pointer;
+}
+.top .right .car button {
+  background: url('../images/car.png') no-repeat center center;
+  width: 27px;
+  height: 27px;
+  border: none;
+  margin-right: 30px;
+  cursor: pointer;
+}
+.top .left {
+  float: left;
+  margin-top: 20px;
+  margin-left: 112px;
+}
+.top .flex {
+  display: flex;
+}
+.top .left .flex .self {
+  width: 25px;
+  height: 25px;
+  background: url(../images/self.png) no-repeat center center;
+  background-size: 100% 100%;
+  margin-right: 20px;
+  cursor: pointer;
+}
+.top .left .flex .register {
+  width: 25px;
+  height: 25px;
+  background: url(../images/resg.png) no-repeat center center;
+  background-size: 100% 100%;
+  cursor: pointer;
+}
+.top .left .flex .quit {
+  width: 25px;
+  height: 25px;
+  background: url(../images/quit.png) no-repeat center center;
+  background-size: 100% 100%;
+  cursor: pointer;
+}
+
 /*产品排列布局（推荐）*/
 .goodsdetail .guessyoulike{
 	width: 100%;
@@ -473,72 +550,20 @@ a:link {
 
 }*/
 
-/*导航栏*/
-
-.daohang {
-	border-bottom: 10px solid  rgba(102, 204, 204, 0.7);
-	margin-top: 10px;
-}
-.daohangbig{
-	font-size: 22px;
-	height: 60px;
-	color: white;
-	font-weight: bold;
-	background-color:  rgba(102, 204, 204, 0.7);
-	padding: 15px 35px 18px 35px;
-	border-radius: 15px 15px 0px 0px;
-	margin-right: 30px;
-}
-.daohangbig:after {
-	content: "\f02d";
-	font-family: FontAwesome;
-	font-size: 22px;
-	color: white;
-	margin-left: 10px;
-}
-
-ul#nav {
-	width: 100%;
-	height: 60px;
-	margin: 0 auto;
-	text-align: center
-}
-
-ul#nav li {
-	display: inline;
-	height: 60px
-}
-
-ul#nav li {
-	display: inline-block;
-	padding: 0 20px;
-	height: 60px;
-	line-height: 60px;
-	color: black;
-	font-size: 18px;
-	font-weight: bold;
-	cursor: pointer;
-}
-
-ul#nav li:hover {
-	background: rgba(102, 204, 204, 0.7);
-	border-radius: 15px 15px 0px 0px;
-}
-.li-active{
-	background: rgba(102, 204, 204, 0.7);
-	border-radius: 15px 15px 0px 0px;
-}
-.daohangbig{
-	color: white !important;
-}
 /*页脚*/
-.footer{
-	width: 100%;
-	height: 50px;
-	margin-top: 20px;
-	margin-bottom: 10px;
-	text-align: center;
-	line-height: 50px;
+.footerbg {
+    background: #424242;
+	font-size: 12px;
+	color:#aaaaaa;
+    height: 42px;
+    line-height: 40px;
+    border-top: 1px solid #525252;
+}
+.footerbg p {
+    text-align: center;
+    width: 1150px;
+    margin: 0 auto;
+    color: #aaa;
 }
 
 /*每一本书的div*/
@@ -551,10 +576,6 @@ div[name='entergoodsdetail']{
 	background-color: white;
 	width: 95%;
 	margin: 0 auto;
-}
-.jiange{
-	width: 100%;
-	border: 2px dashed rgba(102, 204, 204,207);
 }
 .newgoodsone_left img{
 	width: 100%;

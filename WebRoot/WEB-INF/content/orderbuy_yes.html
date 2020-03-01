@@ -21,6 +21,13 @@
 
 			<div class="top">
 			<img src="img/logo.png" class="logoimg"/>
+			<div class="left">
+            <div class="flex">
+              <p class="self" title="个人中心" @click="toSelfPage"></p>
+              <p class="quit" title="退出" v-if="isLogin" @click="quit"></p>
+              <p class="register" title="注册" v-else @click="toRegister"></p>
+            </div>
+          </div>
 			<div class="right">
             <div class="indexlike">
               <button type="button" title="收藏夹"></button>

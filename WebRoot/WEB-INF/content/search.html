@@ -1,21 +1,27 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>search.html</title>
-	
-    <meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
-    <meta http-equiv="description" content="this is my page">
+    <title>查询页面</title>
+
     <meta http-equiv="content-type" content="text/html; charset=UTF-8">
-    
-    <!--<link rel="stylesheet" type="text/css" href="./styles.css">-->
 	<link rel="stylesheet" href="css/common.css" type="text/css"></link>
-  </head>
+	<link rel="stylesheet" href="css/search.css" type="text/css"></link>
+	<link rel="stylesheet" href="css/font-awesome.min.css" type="text/css"></link>  
+	<script type="text/javascript" src="assets/js/vue/vue.min.js"></script>
+	</head>
   
   <body>
     <div class="main">
 
 			<div class="top">
 			<img src="img/logo.png" class="logoimg"/>
+			<div class="left">
+            <div class="flex">
+              <p class="self" title="个人中心" @click="toSelfPage"></p>
+              <p class="quit" title="退出" v-if="isLogin" @click="quit"></p>
+              <p class="register" title="注册" v-else @click="toRegister"></p>
+            </div>
+          </div>
 			<div class="right">
             <div class="indexlike">
               <button type="button" title="收藏夹"></button>
@@ -29,6 +35,76 @@
           </div>
 		</div>
 		<!-- 主要内容 -->
-		<img src="img/search.PNG"></img>
+	<div class="content_main">
+		<div class="search">
+			<img src="img/search.PNG"></img>
+		<div class="searchbox">
+            <input
+              type="text"
+              id="txtNavSearch"
+              placeholder="搜你想搜的"
+              autocomplete="off"
+              v-model="searchText"
+              @keyup.enter="searchData"
+            />
+            <button
+              class="searchbtn"
+              @click="searchData"
+              id="search_btn"
+            ></button>
+          </div>
+		</div>
+<div style="clear:both"></div>
+			<div class="search_result">
+				<div id="goodstypelist" v-if="goodsList.length > 0">
+				<div class="goodsstr" v-for="(item, index) in goodsList" :key="index">
+				<div class="goods_one" name="entergoodsdetail" goodsid="{{ item.id }}">
+					<div class="goodsone_left">
+						<span></span>
+						<img goodsid = "{{ item.id }}" src="{{ item.picInfo }}"/>
+					</div>
+						
+					<div class="goodsone_right" goodsid=" {{ item.id }} ">
+						<span class="goods_name">{{ item.goodsName }}</span><br/>
+						<span class="goods_color">{{ item.color }}</span>
+						<div>
+							<span  class="goods_price">{{ item.inPrice }}</span>
+							<span class="goods_kucun" id="quantity">库存：{{ item.quantity }}</span>
+						</div>	
+							<div class="jianjie">
+								<span class="goodsdetail" id="detail">{{ item.detail }}</span>
+							</div>
+							
+<div style="clear:both;"></div>
+
+          <div class="goodsinfo_button">
+          <div class="goodsbtn">
+              <button @click="addFavorite" class="addLike" mark="0" id="addlike" title="收藏">
+                <span>收藏</span>
+              </button>
+          </div>
+          <div class="goodsbtn">    
+              <button @click="addShoppingCart" class="addCar" mark="1" id="addcar" type="button" title="加入购物车">
+                <span>加入购物车</span>
+              </button>
+           </div> 
+           <div class="goodsbtn">
+              <button @click="buyNow" class="buyright" type="button" title="立即购买" id="buyright">
+              <span>立即购买</span>
+              </button>
+           </div>
+          </div>
+		</div>
+	</div>
+</div>
+</div>
+	</div>
+
+	</div>
+	
+	<!--页脚-->
+			<div class="footerbg">
+				<P>© DESIGNED BY Yannes & Ann</P>
+			</div>
   </body>
 </html>

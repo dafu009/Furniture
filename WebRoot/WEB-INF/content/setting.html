@@ -7,21 +7,27 @@
 		<link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
 		<!--<link rel="stylesheet" type="text/css" href="css/swiper.min.css" />-->
 		<link rel="stylesheet" href="css/userinfo.css" type="text/css"></link>
-
+		<link rel="stylesheet" href="css/common.css" type="text/css"></link>
+		
 		<script src="js/jquery-1.9.1.min.js" type="text/javascript" charset="utf-8"></script>
 		<script src="js/bootstrap.min.js" type="text/javascript" charset="utf-8"></script>
 		<script src="js/sweetalert.min.js" type="text/javascript" charset="utf-8"></script>
 		<script src="js/swiper.min.js" type="text/javascript" charset="utf-8"></script>
-		
-		<script src="js/ajaxurl.js" type="text/javascript" charset="utf-8"></script>
 		<script src="js/setting.js" type="text/javascript" charset="utf-8"></script>
 
 	</head>
 
 	<body>
 		<div class="main">
-		<div class="top">
+		<div class="top" style="height:90px;">
 			<img src="img/logo.png" class="logoimg"/>
+			<div class="left">
+            <div class="flex">
+              <p class="self" title="个人中心" @click="toSelfPage"></p>
+              <p class="quit" title="退出" v-if="isLogin" @click="quit"></p>
+              <p class="register" title="注册" v-else @click="toRegister"></p>
+            </div>
+          </div>
 			<div class="right">
             <div class="indexlike">
               <button type="button" title="收藏夹"></button>
@@ -34,6 +40,7 @@
             </div>
           </div>
 		</div>
+		<!-- 主要内容 -->
 		<div class="settingbig">
 			<div class="settingmain">
 				<h3 style="margin-left: 100px;">
@@ -102,7 +109,8 @@
 				<!-- /.modal -->
 			</div>
 </div>
-		</div>
+</div>
+
 	</body>
 
 </html>
