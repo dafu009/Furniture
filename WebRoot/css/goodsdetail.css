@@ -6,10 +6,13 @@
 .curren_type{
 	margin-top: 20px;
 }
+.goodsinfo_main {
+    display: flex;
+    justify-content: space-between;
+}
 .goodsinfo_left{
 	max-height: 680px;
 	width: 590px;
-	float:left;
 }
 .goodsinfo_left_img{
 	position: relative;
@@ -22,18 +25,21 @@
     margin: 0 auto;
     margin-bottom: 60px;
     height: auto;
+    width: 100%;
 }
 .goodsinfo_right{
-	float: left;
-    margin: 1.364em 0 0 2.9em;
+    max-height: 500px;
     width: 420px;
-    padding: .7em 0 0 1.56em;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
 }
 .goodsinfo{
-	float: left;
     width: auto;
     text-align: left;
     padding: 0 0 10px;
+    display: flex;
+    flex-direction: column;
 }
 .goodsinfo h1{
 	color:#000;
@@ -56,8 +62,6 @@
     color: #000;
     font-size: 30px;
     padding-bottom: 6px;
-    width: 400px;
-    display: block;
 }
 .goodsdetail{
 	line-height: 18px;
@@ -129,7 +133,6 @@
 }
 .goodsinfo_button{
 	width: 420px;
-    height: 190px;
     position: relative;
 }
 .likeandcar{
@@ -138,11 +141,12 @@
     margin-bottom: 5px;
     z-index: 0;
     display:block;
+    display: flex;
+    justify-content: space-between;
 }
 #addcar{
 	width:205px;
 	height: 46px;
-  margin-left:5px;
   line-height: 46px;
 }
 #addlike{
@@ -151,9 +155,10 @@
   line-height: 46px;
 }
 .buyright button{
-	width:420px;
+  width:420px;
   height: 46px;
   line-height: 46px;
+    margin-top: 5px;
 }
 .havelook_main{
 	border-top: 1px solid #f0f0f0;
@@ -177,7 +182,64 @@
 	top:29px;
 	margin-left:45px;
 }
+.goodsType_main {
+    width: 1060px;
+    margin: auto;
+}
+.goodList {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
 
+.goods_one{
+    cursor: pointer;
+    width: 245px;
+    padding: 25px 10px;
+    overflow: hidden;
+    color:#000;
+    position: relative;
+}
+.goodsone_top img{
+    position: relative;
+    max-width: 100%;
+    margin-bottom: 20px;
+}
+.goodsname span{
+    font-size: 13px;
+    font-weight: bold;
+}
+.goodsinfo .goodsinfo_color{
+    font-size: 12px;
+}
+.goodsinfo_price span{
+    font-size: 18px;
+    line-height:20px;
+    font-weight: bold;
+}
+.loadMore {
+    width: 100px;
+    height: 30px;
+    margin: 30px auto 0;
+    cursor: pointer;
+    position: relative;
+    font-size: 20px;
+    color: #757575;
+}
+.loadMore::before, .loadMore::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    background: #ccc;
+    width: 80%;
+    height: 1px;
+}
+.loadMore::before {
+    left: -85%
+}
+.loadMore::after {
+    right: -85%;
+}
 
 
 

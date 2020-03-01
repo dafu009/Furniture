@@ -147,6 +147,7 @@
           page: this.currentCategory.page.num,
           pageSize: this.currentCategory.page.size
         }
+        if (index === 0) return
         this.fetchData(params)
       },
       loadMore() {
@@ -188,11 +189,11 @@
       },
       goCategoryDetail (id) {
         // 点击，跳转到相应的产品分类页面
-        window.location.href = `/goodsType.html?categoryID=${id}`
+        window.location.href = `goodsType.html?categoryID=${id}`
       },
       searchData () {
         setCookie("SearchTxt", this.searchData)
-        window.location.href = "/searchList.html?keywords=" + this.searchData
+        window.location.href = "searchList.html?keywords=" + this.searchData
       },
       handleScroll () {
         let scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop
