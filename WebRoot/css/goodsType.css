@@ -46,6 +46,7 @@
 	overflow: hidden;
 	color:#000;
 	position: relative;
+	cursor: pointer;
 }
 .goodsone_top img{
 	position: relative;
@@ -75,11 +76,11 @@
   border: none;
   color: #FFFFFF;
   text-align: center;
-  
   transition: all 0.5s;
   cursor: pointer;
   vertical-align:middle;
   height: 30px;
+  min-width: 100px;
 }
 
 .btn button span {
