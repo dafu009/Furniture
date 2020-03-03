@@ -26,7 +26,7 @@
 <body>
   <div id="app" class="main">
     <div class="top" style="height: 90px;">
-      <img src="img/logo.png" class="logoimg" />
+      <img src="img/logo.png" class="logoimg" @click="toHomePage"/>
       <div class="left">
         <div class="flex">
           <p class="self" title="个人中心" @click="toSelfPage"></p>
@@ -35,13 +35,13 @@
         </div>
       </div>
       <div class="right">
-        <div class="indexlike">
+        <div class="indexlike" @click="goLike">
           <button type="button" title="收藏夹"></button>
         </div>
-        <div class="car">
+        <div class="car" @click="goShopCart">
           <button type="button" title="购物车"></button>
         </div>
-        <div class="order">
+        <div class="order" @click="goMyOrder">
           <button type="button" title="我的订单"></button>
         </div>
       </div>
@@ -86,18 +86,18 @@
                       </p>
                     </span>
                   </td>
-                  <td class="danPrice">{{item.inPrice | moneyFiler}}</td>
+                  <td class="danPrice">￥{{item.inPrice}}</td>
                   <td>
-                    <i @click="goodNum(item,-1)" class="fa  deleteBtn" aria-hidden="true">-</i>
+                    <i @click="sub(index)" class="fa  deleteBtn" aria-hidden="true">-</i>
                     <input v-model="item.num" type="text" class="numInput" aria-label="...">
-                    <i @click="goodNum(item,1)" class="fa  addBtn" aria-hidden="true">+</i>
+                    <i @click="add(index)" class="fa  addBtn" aria-hidden="true">+</i>
                   </td>
                   <td>
-                    <p class="totalPrice">{{item.inPrice*item.num | moneyFiler}}</p>
+                    <p class="totalPrice">￥{{item.inPrice*item.num | formatPrice}}</p>
                   </td>
                   <td class="gongneng">
                     <p class="deletegoods" @click="deleteGood(item.id)">删除</p>
-                    <p @click="alertmovesSavegoods(index)">移到我的收藏</p>
+                    <p class="likeGoods" @click="likeGood(item)">移到我的收藏</p>
                   </td>
                 </tr>
               </tbody>
@@ -107,10 +107,11 @@
                 <el-checkbox style="padding-left:16px" @change="checkAll(checkedAll)" v-model="checkedAll">全选
                 </el-checkbox>
               </template>
-              <span class="removeMuch" @click="alertMuch">删除选中的商品</span>
-              <span class="totalclassPoin">总价：<span
-                  class="totalMoneyClass"></span></span>
-              <span @click="saveData" class="SettlementBtn">去结算</span>
+              <span class="removeMuch" @click="deleteGood(checkedIdList)">删除选中的商品</span>
+              <span class="totalclassPoin">总价：
+                <span class="totalMoneyClass">￥{{ totalPrice | formatPrice}}</span>
+              </span>
+              <span @click="settlement" class="SettlementBtn">去结算</span>
             </div>
           </div>
         </div>

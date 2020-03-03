@@ -6,25 +6,72 @@ window.onload = () => {
         isLogin: window.sessionStorage.getItem('userId') ? true : false,
         userId: window.sessionStorage.getItem('userId'),
         checkedAll: false,
-        shopCartList: []
+        shopCartList: [],
+        totalPrice: 0,
+        checkedIdList: []
+      }
+    },
+    filters: {
+      formatPrice (num) {
+        return num.toFixed(2)
       }
     },
     methods: {
-      toSelfPage() {
+      toHomePage () {
+        window.location.href = 'index.html'
       },
-      quit() {
+      toRegister () {
+        // 去注册
+        window.location.href = 'register.html'
       },
-      toRegister() {
+      toSelfPage () {
+        // 去个人中心
+        if (this.isLogin) {
+          window.location.href = 'setting.html'
+        } else {
+          window.location.href = 'login.html'
+        }
       },
-      alertMuch() {
+      quit () {
+        // 退出登录
       },
-      saveData() {
+      goLike () {
+        window.location.href = 'like.html'
+      },
+      goShopCart () {
+        window.location.href = 'shoppingcart.html'
+      },
+      goMyOrder () {
+        window.location.href = 'myorder.html'
+      },
+      _removeId (id) {
+        const index = this.checkedIdList.indexOf(id)
+        if (index > -1) {
+          this.checkedIdList.splice(index, 1)
+        }
+      },
+      sub (index) {
+        if (this.shopCartList[index].num === 0) return
+        if (this.shopCartList[index].checked) {
+          this.totalPrice -= this.shopCartList[index].inPrice
+        }
+        this.shopCartList[index].num --
+      },
+      add (index) {
+        if (this.shopCartList[index].checked) {
+          this.totalPrice += Number(this.shopCartList[index].inPrice)
+        }
+        this.shopCartList[index].num ++
       },
       check(item) {
         if (!item.checked) {
           this.checkedAll = false
+          this.totalPrice -= item.inPrice * item.num
+          this._removeId(item.id)
           return
         }
+        this.checkedIdList.push(item.id)
+        this.totalPrice += item.inPrice * item.num
         let isCheckAll = this.shopCartList.every((item) => {
           return item.checked === true
         })
@@ -33,9 +80,13 @@ window.onload = () => {
         }
       },
       checkAll() {
+        this.totalPrice = 0
+        this.checkedIdList = []
         if (this.checkedAll) {
           this.shopCartList.forEach((item) => {
             item.checked = true
+            this.totalPrice += item.num * item.inPrice
+            this.checkedIdList.push(item.id)
           })
         } else {
           this.shopCartList.forEach((item) => {
@@ -52,7 +103,8 @@ window.onload = () => {
           .then(({data}) => {
             const {result, code} = data
             if (code === 200) {
-              // console.log(result)
+              this.totalPrice = 0
+              this.checkedAll = false
               this.shopCartList = result.goodsList.map((item => {
                 item.checked = false
                 return item
@@ -61,14 +113,72 @@ window.onload = () => {
           })
       },
       deleteGood(carid) {
+          swal({
+            title: "确认删除？",
+            text: "此操作将永久删除商品",
+            icon: "warning",
+            buttons: ["取消", "确认"],
+            dangerMode: true,
+          }).then((willDelete) => {
+            if(willDelete) {
+              const isArray = Array.isArray(carid)
+              let idlist = null
+              if (isArray) {
+                idlist = this.checkedIdList.map(item => {
+                  return { carid: item }
+                })
+              } else {
+                idlist = [{ carid }]
+              }
+              axios({
+                method: 'POST',
+                url: '/Furniture/DeleteShoppingCart',
+                data: Qs.stringify({ id: this.userId, idlist })
+              })
+                .then(({ data }) => {
+                  const { result, code } = data
+                  if (code === 200) {
+                    sweetAlert("Yes", "删除成功！", "success");
+                    this.fetchData(this.userId)
+                  } else {
+                    sweetAlert("Oops..", "删除失败", "error");
+                  }
+                })
+            } else {
+              swal("Oops..", "已取消删除", "error");
+            }
+          });
+      },
+      likeGood (item) {
         axios({
           method: 'POST',
-          url: '/Furniture/DeleteShoppingCart',
-          data: Qs.stringify({id: this.userId, idlist: [{carid}]})
+          url: '/Furniture/movetoCollect',
+          data: Qs.stringify({ id: this.userId, carid: item.id, goodsid:item.goodsid })
         })
-          .then(data => {
-            console.log(data)
+          .then(({ data }) => {
+            const {code, result} = data
+            if (code === 200) {
+              sweetAlert("Yes", "成功添加至收藏夹！", "success");
+            } else {
+              sweetAlert("Oops..", "无法添加至收藏夹，请重试！", "error");
+            }
           })
+          .catch((err) => {
+            console.log(err)
+          })
+      },
+      settlement () {
+        if (this.totalPrice === 0) {
+          sweetAlert("Oops..", "请选择商品进行结算", "error");
+          return
+        }
+        const buyList = this.shopCartList.map((item) => {
+          if (item.checked) {
+            return item
+          }
+        })
+        window.localStorage.setItem('buy-list', JSON.stringify(buyList))
+        window.location.href = "orderbuy.html"
       }
     },
     created() {

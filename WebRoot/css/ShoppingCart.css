@@ -42,8 +42,11 @@
 .totalclassPoin{color: #999999;position: absolute;right:295px;}
 .servicenum{position: absolute;right: 35%;color: #999999;}
 .removeMuch{position: absolute;left: 169px;cursor: pointer;color: #999999;}
+.removeMuch:hover{color: #000}
 .removeSaves{position: absolute;left: 319px;cursor: pointer;color: #999999;}
 .deletegoods{color: #999999;cursor: pointer;}
+.deletegoods:hover {color: #000}
+.likeGoods:hover{color: #f40}
 .ShopCartTable .selectLeft{text-align: left;padding-left: 20px;}
 .el-checkbox__input{margin-right: 20px;}
 .el-checkbox__label{margin-left:-20px;color: #999999;font-weight: normal;}
