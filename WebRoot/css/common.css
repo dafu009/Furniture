@@ -285,7 +285,7 @@ a {
 .no-data {
     height: 250px;
     width: 250px;
-    margin: 0 auto;
+    margin: 80px auto;
     padding-bottom: 30px;
 }
 .no-data img {

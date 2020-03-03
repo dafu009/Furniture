@@ -1,73 +1,86 @@
-.goodsdetail{
+.orderList{
 	width: 80%;
 	margin: 20px auto;
-	background-color: white;
+	background-color: #fff;
 	border-radius: 5px;
 }
-.ordertime{
-	background-color: linen;
+.orderList .orderItem {
+	list-style: none;
+	background-color: #fff8ed;
+	padding: 20px;
+	margin: 10px;
+}
+.orderList .orderItem .title {
+	display: flex;
+	padding: 0 0 10px;
+	border-bottom: 1px solid #e6e6e6;
+}
+.orderItem .title .orderDate {
+	text-align: right;
+	flex: 1;
+}
+.orderItem .title .orderCode {
+	text-align: left;
+	flex: 1;
+}
+.orderItem .total {
+	text-align: right;
 	font-size: 18px;
-	padding: 5px 20px;
-	
+	color: #8a6d3b;
 }
-.goodsdetail table{
-	width: 100%;
+.header {
+	display: flex;
+	padding: 10px 20px 0;
 }
-.goodsdetail table tr{
-	border-bottom: 1px solid lightgoldenrodyellow;
-	
+.header .desc {
+	flex: 2;
 }
-.tabletitle td{
-	font-size: 16px;
-	padding: 10px 0;
+.header .price {
+	flex: 1;
 }
-.newgoods_one{
-	width: 85%;
-	/*margin: 0 auto;*/
-	height: 150px;
+.header .num {
+	flex: 1;
+}
+.orderContent {
+	padding: 10px;
+}
+.orderDetail {
+	display: flex;
+	align-items: center;
+	padding: 10px;
+	margin-bottom: 10px;
+	border-bottom: 1px solid #ccc;
+}
+.orderDetail .desc img {
+	width: 100px;
+	height: 100px;
+}
+.orderDetail .desc {
+	flex: 2;
+	display: flex;
+	align-items: center;
+}
+.orderDetail .desc .info {
+	display: flex;
+	flex-direction: column;
+	margin-left: 30px;
+}
+.orderDetail .desc .info span {
 	padding: 5px 0;
-	margin-left: 20px;
-	
 }
-.goodsname{
-	font-size: 18px;
+.orderDetail .price {
+	flex: 1;
 }
-.newgoodsone_left{
-	width: 40%;
-	height: 100%;
-	float: left;
+.orderDetail .count {
+	flex: 1;
 }
-.newgoodsone_right{
-	width: 50%;
-	height: 100%;
-	float: right;
-	margin-left: 20px;
-}
-.newgoodsone_right span{
-	display: block;
-	margin-top: 15px;
-}
-.goodscolor{
-	color: #9E9C9C;
-	font-size: 14px;
-}
-.goodsprice{
-	color: #c30;
+.orderTotalPrice {
+	background-color: #fff8ed;
+	width: 80%;
+	margin: 20px auto;
+	height: 40px;
+	line-height: 40px;
+	text-align: center;
+	font-size: 20px;
 	font-weight: bold;
-	font-family: "Arial";
-}
-.goodsmain_title {
-    padding: 10px;
-    font-size: 18px;
-    font-weight: bold;
-    background-color: linen;
-    border-radius: 8px 8px 0 0;
-    text-align: center;
-    color: #2B542C;
-}
-
-.newgoodsone_left img{
-	position: relative;
-	max-width: 90%;
-	margin-bottom: 20px;
 }
