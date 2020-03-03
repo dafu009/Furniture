@@ -54,7 +54,12 @@ window.onload = () => {
           })
         })
           .then(({ data }) => {
-            console.log(data)
+            const { code } = data
+            if (code === 200) {
+              sweetAlert("Yes", "添加购物车成功!", "success");
+            } else {
+              sweetAlert("Oops..", "添加购物车失败!", "error");
+            }
           })
       },
       goGoodDetail (id) {

@@ -145,11 +145,26 @@ window.onload = () => {
             console.log(err)
           })
       },
-      addFavorite () {
-        // 收藏 利用goodId
-      },
-      addShoppingCart () {
-        // 加入购物车 利用goodId
+      addCartOrLike (goodsid, sign) {
+        console.log(goodsid)
+        let txt = sign ? '购物车' : '收藏夹'
+        axios({
+          method: 'POST',
+          url: '/Furniture/addLikeCart',
+          data: Qs.stringify({
+            id: this.userId,
+            sign,
+            goodsid
+          })
+        })
+          .then(({ data }) => {
+            const { code } = data
+            if (code === 200) {
+              sweetAlert("Yes", `添加${txt}成功!`, "success");
+            } else {
+              sweetAlert("Oops..", `添加${txt}失败!`, "error");
+            }
+          })
       },
       buyNow () {
         // 立即购买 利用goodId
