@@ -358,7 +358,7 @@ public class ShoppingCartController {
 	@RequestMapping("/addLikeCart")
 	@ResponseBody
 	public Map<String, Object> addLikeCart(Integer id, Integer sign, Integer goodsid) {
-//		System.out.println(id+"/"+mark+"/"+goodsid);
+//		System.out.println(id+"/"+sign+"/"+goodsid);
 		Map<String, Object> goodsQuantity = new HashMap<String, Object>();
 		Map<String, Object> findShoppingCart = new HashMap<String, Object>();
 		Map<String, Object> findCollect = new HashMap<String, Object>();
@@ -366,6 +366,7 @@ public class ShoppingCartController {
 		Map<String, Object> map = new HashMap<String, Object>();
 		int code, flag;
 		String state, message;
+		Boolean isExist = false;
 		try{
 			if(id != 0 & goodsid != 0){
 				Integer userID = id;
@@ -429,7 +430,9 @@ public class ShoppingCartController {
 					}else{
 						flag = 0;
 						message = "失败";
+						isExist = true;
 						result.put("flag", flag);
+						result.put("isExist", isExist);
 						result.put("message", "您已经收藏过此书啦，去收藏夹看看把！");
 						code = 0;
 						state = "fail";
@@ -445,6 +448,7 @@ public class ShoppingCartController {
 				message = "成功";
 				result.put("flag", flag);
 				result.put("message", message);
+				result.put("isExist", isExist);
 				code = 200;
 				state = "success";
 				map.put("code", code);
