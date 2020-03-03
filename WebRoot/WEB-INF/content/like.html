@@ -43,7 +43,7 @@
       <div class="title">
         <img src="img/shoucang.PNG" />
       </div>
-      <div class="likecontentmain">
+      <div class="likecontentmain" v-if="likeList.length > 0">
         <div class="goods_one"
              v-for="(item, index) in likeList" :key="index"
              @click="goGoodDetail(item.goodsid)"
@@ -73,6 +73,10 @@
             </div>
           </div>
         </div>
+      </div>
+      <div class="no-data" v-else>
+        <img src="img/no-data-1.png" alt="">
+        <p class="txt">暂无数据</p>
       </div>
     </div>
   </div>

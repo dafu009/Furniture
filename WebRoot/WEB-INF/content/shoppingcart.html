@@ -55,7 +55,7 @@
       <div class="row " id="myVue" v-cloak>
         <div class="carmain">
           <div class="layui-form">
-            <table class="ShopCartTable layui-table">
+            <table class="ShopCartTable layui-table" v-if="shopCartList.length < 0">
               <thead>
                 <tr>
                   <th class="selectLeft">
@@ -103,6 +103,10 @@
                 </tr>
               </tbody>
             </table>
+            <div class="no-data" v-else>
+              <img src="img/no-data-2.png" alt="">
+              <p class="txt">暂无数据</p>
+            </div>
             <div class="tablefooter">
               <template>
                 <el-checkbox style="padding-left:16px" @change="checkAll(checkedAll)" v-model="checkedAll">全选

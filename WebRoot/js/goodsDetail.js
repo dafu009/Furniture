@@ -158,7 +158,11 @@ window.onload = () => {
           })
         })
           .then(({ data }) => {
-            const { code } = data
+            const { code, result } = data
+            if (result.isExist) {
+              sweetAlert("Oops..", "物品已收藏~", "warning");
+              return
+            }
             if (code === 200) {
               sweetAlert("Yes", `添加${txt}成功!`, "success");
             } else {
