@@ -11,7 +11,7 @@ import org.apache.ibatis.annotations.Insert;
 import FurnitureC.bean.Collect;
 
 public interface CollectMapper {
-	@Insert("insert into collect(userID,bookID,collectDate) values (#{userID},#{bookID},#{collectDate})")
+	@Insert("insert into collect(userID,goodsID,collectDate) values (#{userID},#{goodsID},#{collectDate})")
 	void addLike(Collect collect);//不需要返回值，只用调用数据库
 	
 	//查找收藏列表

@@ -22,6 +22,6 @@ public interface OrderMapper {
 	@SelectKey(before = false, keyProperty = "id", resultType = int.class, statement = {"SELECT LAST_INSERT_ID() as id"})
 	Integer addOrder(order Order);//需要返回值
 
-	@Insert("insert into orderitem(orderFormID,bookID,num,price) values (#{orderFormID},#{bookID},#{num},#{price})")
+	@Insert("insert into orderitem(orderFormID,goodsID,num,price) values (#{orderFormID},#{goodsID},#{num},#{price})")
 	void addOrderItem(orderItem OrderItem);
 }
