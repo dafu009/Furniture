@@ -41,8 +41,8 @@ public class CollectController {
 		Map<String, Object> goods;
 		Map<String, Object> result = new HashMap<String, Object>();
 		Map<String, Object> map = new HashMap<String, Object>();
-		int code;
-		int goodsID = 0;
+		int code,goodsID = 0;
+		
 		String state, message;
 		try{
 			if(id != 0){
@@ -62,7 +62,7 @@ public class CollectController {
 		//					System.out.println(goodsID);
 						}
 					}
-					goods = goodsService.GetGoods(id);
+					goods = goodsService.GetGoods(goodsID);
 //					System.out.println(JSON.toJSONString(goods));
 					//putAll()可以结合两个Map，相同的key，后面的会覆盖前面的
 					CollectList.get(i).putAll(goods);
@@ -173,12 +173,6 @@ public class CollectController {
 			return map;
 		}
 	}
-	
-	
-	
-	
-	
-	
 	
 	
 	}

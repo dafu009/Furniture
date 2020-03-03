@@ -38,7 +38,7 @@ public class GoodsController {
 //		Map<String, Object> category;
 		Map<String, Object> goodsDetailMap = new HashMap<String, Object>();
 		Map<String, Object> map = new HashMap<String, Object>();
-		int code, categoryID = 0;
+		int code;
 		String state, message;
 		try{
 			if( id != 0){
