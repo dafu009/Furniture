@@ -3,6 +3,7 @@ const mixin = {
     return {
       isLogin: window.sessionStorage.getItem('userId') ? true : false,
       userId: window.sessionStorage.getItem('userId'),
+      recommendList: []
     }
   },
   methods: {
@@ -22,16 +23,41 @@ const mixin = {
       }
     },
     quit () {
+      swal({
+        title: "是否确认退出?",
+        icon: "warning",
+        buttons: ["取消", "确认"],
+        dangerMode: true,
+      })
+        .then(willQuit => {
+          if (willQuit) {
+            window.sessionStorage.removeItem("userId")
+            window.sessionStorage.removeItem("username")
+            window.location.href = 'index.html'
+          }
+        })
       // 退出登录
     },
     goLike () {
-      window.location.href = 'like.html'
+      if (this.isLogin) {
+        window.location.href = 'like.html'
+      } else {
+        window.location.href = 'login.html'
+      }
     },
     goShopCart () {
-      window.location.href = 'shoppingcart.html'
+      if (this.isLogin) {
+        window.location.href = 'shoppingcart.html'
+      } else {
+        window.location.href = 'login.html'
+      }
     },
     goMyOrder () {
-      window.location.href = 'myorder.html'
+      if (this.isLogin) {
+        window.location.href = 'myorder.html'
+      } else {
+        window.location.href = 'login.html'
+      }
     }
   }
 } 

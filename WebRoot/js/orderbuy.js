@@ -9,9 +9,6 @@ window.onload = () => {
     },
     methods: {
       submit () {
-        const idlist = this.buyList.map(item => {
-          return { carid: item.id }
-        })
         swal({
           title: "确认提交吗?",
           text: "此操作将进行订单提交",
@@ -24,8 +21,15 @@ window.onload = () => {
               axios({
                 method: 'POST',
                 url: '/Furniture/addOrder',
-                data: Qs.stringify({ id: this.userId, idlist })
+                data: Qs.stringify({ id: this.userId, idlist: this.buyList })
               })
+                .then(({ data }) => {
+                  const { code } = data
+                  if (code === 200) {
+                    sweetAlert("Yes", "提交成功！", "success")
+                    window.location.href = 'orderbuy_yes.html'
+                  }
+                })
             } else {
               swal("Oops", "已取消", "error");
             }

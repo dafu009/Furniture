@@ -13,14 +13,15 @@
   <script type="text/javascript" src="assets/js/vue/vue.min.js"></script>
   <script type="text/javascript" src="js/goodsDetail.js"></script>
   <script src="js/sweetalert.min.js" type="text/javascript" charset="utf-8"></script>
+  <script type="text/javascript" src="mixins/index.js"></script>
+
 </head>
 
 <body>
   <div id="app" class="main">
-
     <div class="top_div" id="top_html">
       <div class="logo_box">
-        <a class="logo" href="index.html"></a>
+        <img src="img/logo.png" class="logoimg" @click="toHomePage" />
         <div class="left">
           <div class="flex">
             <p class="self" title="个人中心" @click="toSelfPage"></p>
@@ -29,13 +30,13 @@
           </div>
         </div>
         <div class="right">
-          <div class="indexlike">
+          <div class="indexlike" @click="goLike">
             <button type="button" title="收藏夹"></button>
           </div>
-          <div class="car">
+          <div class="car" @click="goShopCart">
             <button type="button" title="购物车"></button>
           </div>
-          <div class="order">
+          <div class="order" @click="goMyOrder">
             <button type="button" title="我的订单"></button>
           </div>
         </div>
@@ -54,8 +55,6 @@
         </div>
       </div>
     </div>
-
-
     <div class="goodsdetail_main" v-if="currentIndex === 0">
       <div class="curren_type">
         <span class="current_goods_type">
@@ -107,10 +106,7 @@
               <img src="img/renqi.PNG" /></span>
           </div>
           <div class="goodList">
-            <div class="goods_one"
-              v-for="(item, index) in totalList"
-              :key="index"
-              @click="goGoodDetail(item.id)">
+            <div class="goods_one" v-for="(item, index) in totalList" :key="index" @click="goGoodDetail(item.id)">
               <div class="goodsone_top">
                 <span></span>
                 <img :src="item.picInfo" />
@@ -134,36 +130,30 @@
         </div>
       </div>
     </div>
-  </div>
-
-  <!-- 产品推荐 -->
-  <div class="guessyoulike">
-    <div class="goodsmain_title">
-      <img src="img/tuijian.PNG" />
-    </div>
-
-    <div class="guess_goods" name="entergoodsdetail" goodsid="{{ item.id }}">
-      <div class="guessgoods_top">
-        <span></span>
-        <img goodsid="{{ item.id }}" src="{{ item.picInfo }}" />
+    <div class="guessyoulike">
+      <div class="goodsmain_title">
+        <img src="img/tuijian.PNG" />
       </div>
-
-      <div class="guessgoods_bot">
-        <div class="goodsname" goodsid="{{ item.id }}">
-          <span>{{ item.goodsName }}</span>
+      <div class="guess_goods" v-for="(item, index) in recommendList" :key="index">
+        <div class="guessgoods_top">
+          <span></span>
+          <img :src="item.picInfo" />
         </div>
-        <div class="goodsinfo1">
-          <span class="goodsinfo_color" goodsid=" {{ item.id }} ">
-            {{ item.color }}
-          </span>
-        </div>
-        <div class="goodsinfo_price">
-          <span>{{ item.inPrice }}</span>
+        <div class="guessgoods_bot">
+          <div class="goodsname">
+            <span>{{ item.goodsName }}</span>
+          </div>
+          <div class="goodsinfo1">
+            <span class="goodsinfo_color">
+              {{ item.color }}
+            </span>
+          </div>
+          <div class="goodsinfo_price">
+            <span>{{ item.inPrice }}</span>
+          </div>
         </div>
       </div>
     </div>
-
-
   </div>
 
   <div style="clear: both;"></div>

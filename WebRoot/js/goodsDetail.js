@@ -7,10 +7,10 @@ function getUrlParam (name) {
 /* 顶部及导航条 */
 window.onload = () => {
   const app = new Vue({
-	el: '#app',
+    mixins: [mixin],
+    el: '#app',
     data () {
       return {
-        isLogin: null,
         searchText: '',
         offsetTop: 0,
         isFixed: false,
@@ -62,7 +62,7 @@ window.onload = () => {
             title: '玩耍和玩具',
             categoryId: 8,
           }
-        ], 
+        ],
       }
     },
     methods: {
@@ -106,10 +106,10 @@ window.onload = () => {
             console.log(err)
           })
       },
-      loadMore() {
+      loadMore () {
         let params = {
           id: this.currentCategory.id,
-          page: ++ this.currentCategory.page.num,
+          page: ++this.currentCategory.page.num,
           pageSize: this.currentCategory.page.size
         }
         this.fetchData(params)
@@ -126,49 +126,34 @@ window.onload = () => {
         let scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop
         this.isFixed = scrollTop > this.offsetTop ? true : false;
       },
-      toRegister () {
-        // 去注册
-    	 location.href = "/Furniture/register.html"
-      },
-      toSelfPage () {
-          // 去个人中心
-          if (this.isLogin) {
-            window.location.href = 'setting.html'
-          } else {
-            window.location.href = 'login.html'
-          }
-        },
-      quit () {
-        // 退出登录
-      },
       //产品详情信息
       queryGoodDetail (id) {
-          axios({
-            method: 'GET',
-            url: '/Furniture/getgoodsDetail',
-            params: {
-              id
+        axios({
+          method: 'GET',
+          url: '/Furniture/getgoodsDetail',
+          params: {
+            id
+          }
+        })
+          .then(({ data }) => {
+            const { code, result } = data
+            if (code === 200) {
+              this.goodDetail = result
             }
           })
-            .then(({ data }) => {
-              const { code, result } = data
-              if (code === 200) {
-                this.goodDetail = result
-              }
-            })
-            .catch(err => {
-              console.log(err)
-            })
-        },
-        addFavorite () {
-          // 收藏 利用goodId
-        },
-        addShoppingCart () {
-          // 加入购物车 利用goodId
-        },
-        buyNow () {
-          // 立即购买 利用goodId
-        }
+          .catch(err => {
+            console.log(err)
+          })
+      },
+      addFavorite () {
+        // 收藏 利用goodId
+      },
+      addShoppingCart () {
+        // 加入购物车 利用goodId
+      },
+      buyNow () {
+        // 立即购买 利用goodId
+      }
     },
     created () {
       this.isLogin = window.sessionStorage.getItem('userId') ? true : false
