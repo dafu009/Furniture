@@ -30,7 +30,7 @@ public class UserController {
 	@PostMapping("/userLogin")
 	@ResponseBody  //@responseBody注解的作用是将controller的方法返回的对象通过适当的转换器转换为指定的格式之后，写入到response对象的body区，通常用来返回JSON数据或者是XML
 	public Map<String, Object> userLogin(String username, String pwd, HttpSession session) {
-		System.out.println(username+","+pwd);
+//		System.out.println(username+","+pwd);
 		Map<String, Object> user;
 		Map<String, Object> result = new HashMap<String, Object>();
 		Map<String, Object> map = new HashMap<String, Object>();
@@ -112,7 +112,7 @@ public class UserController {
 	
 	@PostMapping("/userRegister")
 	@ResponseBody 
-	public Map<String, Object> userRegister(String username, String pwd, String telephone, String address, String realname) {
+	public Map<String, Object> userRegister(String username, String pwd, String telephone, String address) {
 		Map<String, Object> searchUserName = new HashMap<String, Object>();
 		Map<String, Object> result = new HashMap<String, Object>();
 		Map<String, Object> map = new HashMap<String, Object>();
@@ -122,10 +122,8 @@ public class UserController {
 			if(username != null & pwd != null){
 				searchUserName = userService.SearchUserName(username); //判断用户名是否已存在
 				if(searchUserName == null){
-					Date date = new Date();
-					SimpleDateFormat formatDate = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-					String creatDate = formatDate.format(date);
-					userService.Register(username, realname, pwd, address, telephone, creatDate);
+				
+					userService.Register(username, pwd, address, telephone);
 					
 					flag=1;
 					message = "成功";
@@ -325,7 +323,81 @@ public class UserController {
 	}
 		
 	}	
-	}
 	
+	/**
+	 * 处理/myself个人资料修改
+	 */
+	@PostMapping("/userSelfReset")
+	@ResponseBody
+	public Map<String, Object> userSelfReset(Integer id, String username, String addr, String phone) {
+//		System.out.println(id+","+username+","+addr+","+phone);
+		Map<String, Object> searchUser = new HashMap<String, Object>();
+		Map<String, Object> result = new HashMap<String, Object>();
+		Map<String, Object> map = new HashMap<String, Object>();
+		int code;
+		String state, message;
+		try {
+			if (id != null) {
+				searchUser = userService.SearchUser(id);
+// 				System.out.println(searchUserId);
+				if(searchUser != null) {
+					String realname = username;
+	        		userService.UserReset(id, addr, phone); 
+					
+					message = "成功";
+					result.put("message", message);
+	            	code=200;
+	    			state="success";
+	    			message="成功";
+	    			map.put("code", code);
+	    			map.put("state", state);	
+	    			map.put("message", message);
+	    			map.put("result", result);
+//	    			System.out.println(JSON.toJSONString(map));
+	        		return map;
+				}else {
+	
+					message = "找不到该用户！";
+					result.put("message", message);
+	            	code=0;
+	    			state="fail";
+	    			message="失败";
+	    			map.put("code", code);
+	    			map.put("state", state);	
+	    			map.put("message", message);
+	    			map.put("result", result);
+//	    			System.out.println(map);
+	        		return map;
+				}	
+			} else {
+
+				message = "失败";
+				result.put("message", message);
+            	code=0;
+    			state="fail";
+    			message="失败";
+    			map.put("code", code);
+    			map.put("state", state);	
+    			map.put("message", message);
+    			map.put("result", result);
+//    			System.out.println(map);
+        		return map;
+			}
+		} catch (Exception e) {
+			System.out.println(e);
+			message = "失败";
+			result.put("message", message);
+        	code=0;
+			state="fail";
+			message="失败";
+			map.put("code", code);
+			map.put("state", state);	
+			map.put("message", message);
+			map.put("result", result);
+//			System.out.println(map);
+    		return map;
+		} 
+	}
+	}
 
 

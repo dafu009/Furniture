@@ -1,87 +1,26 @@
-@CHARSET "UTF-8";
-
-.top{
-	height:70px;
-	width:100%;
-	
-	border-bottom:2px solid #A9A9A9;
+.content {
+	padding: 50px 0 50px;
+	width: 400px;
+	margin: 0 auto;
 }
-.logoimg{
-	width:140px;
-	height:70px;
-	margin-left: 560px;
+.content .item {
+	display: flex;
+	margin: 15px 0;
+	align-items: center;
+	justify-content: center;
 }
-
-.top .right {
-  float: right;
-  margin-top: 20px;
-  display: flex;
+.content .item span {
+	min-width: 100px;
+	text-align: right;
 }
-
-.top .right .indexlike button {
-  background: url('../images/like.png') no-repeat center center;
-  width: 27px;
-  height: 27px;
-  border: none;
-  margin-right: 30px;
-  cursor: pointer;
+.content .item .name {
+	flex: 1;
+	text-align: left;
+	color: #757575;
+	cursor: not-allowed;
 }
-.top .right .order button {
-  background: url('../images/order.png') no-repeat center center;
-  width: 27px;
-  height: 27px;
-  border: none;
-  margin-right: 30px;
-  cursor: pointer;
-}
-.top .right .car button {
-  background: url('../images/car.png') no-repeat center center;
-  width: 27px;
-  height: 27px;
-  border: none;
-  margin-right: 30px;
-  cursor: pointer;
-}
-.settingbig{
-	background-color: ghostwhite;
-}
-.settingmain{
-	width:400px;
-	margin:auto;
-	margin-top:50px;
-	
-}
-.tabletitle{
-	font-size:20px;
-}
-.tablecontent input{
-	margin-bottom: 1em;
-	padding: 1.5em 1.5em 1.5em 1.5em;
-	outline: none;
-	border: none;
-	background:#f0f0f0;
-	color:#999;
-	font-weight: 600;
-	font-size: .6em;
-	border-radius: 4px;
-	-webkit-border-radius: 4px;
-	-moz-border-radius: 4px;
-	-o-border-radius: 4px;
-}
-.setbtn button{
-	padding: 12px 33px;
-    background: #fea15d;
-	margin: 3% 0 0 29%;
-	color:#fff;
-    text-transform: uppercase;
-    outline: none;
-    border: none;
-    cursor: pointer;
-    margin-left: 30px;
-    font-size: 16px;
-}
-.setbtn button:hover{
-	background-color: 	#FF7F50;
+.operating .el-button {
+	margin: 0 20px;
 }
 .footerbg {
     background: #424242;
@@ -90,7 +29,7 @@
     height: 40px;
     line-height: 40px;
     border-top: 1px solid #525252;
-    margin-top:150px;
+    margin-top:260px;
 }
 .footerbg p {
     text-align: center;

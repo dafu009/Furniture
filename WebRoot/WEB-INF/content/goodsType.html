@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>产品分类</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" />
+  <link rel="stylesheet" type="text/css" href="css/swiper.min.css" />
+  <link rel="stylesheet" type="text/css" href="css/common.css" />
+  <link rel="stylesheet" type="text/css" href="css/goodsType.css" />
+  <link rel="stylesheet" href="css/index.css" type="text/css">
+  </link>
+
+  <script src="js/jquery-1.9.1.min.js" type="text/javascript" charset="utf-8"></script>
+  <script src="js/bootstrap.min.js" type="text/javascript" charset="utf-8"></script>
+  <script src="js/bootstrap-paginator.js" type="text/javascript" charset="utf-8"></script>
+  <script src="js/sweetalert.min.js" type="text/javascript" charset="utf-8"></script>
+  <script src="js/goodsType.js" type="text/javascript" charset="utf-8"></script>
+  <script type="text/javascript" src="js/vue/vue.min.js"></script>
+</head>
+
+<body>
+  <!-- 产品分类主要内容 -->
+  <div class="goodsType_main">
+    <div id="goodstypelist" v-if="goodsList.length > 0">
+      <div class="goodsstr" v-for="(item, index) in goodsList" :key="index">
+        <div class="title-line">
+          <span class="tit" style="font-size: 38px;">
+            <img src="img/renqi.PNG" /></span>
+        </div>
+
+        <div class="goods_one" name="entergoodsdetail" goodsid="{{ item.id }}">
+          <div class="goodsone_top">
+            <span></span>
+            <img goodsid="{{ item.id }}" src="{{ item.picInfo }}" />
+          </div>
+
+          <div class="goodsone_bot">
+            <div class="goodsname" goodsid="{{ item.id }}">
+              <span>{{ item.goodsName }}</span>
+            </div>
+            <div class="goodsinfo">
+              <span class="goodsinfo_color" goodsid=" {{ item.id }} ">
+                {{ item.color }}
+              </span>
+            </div>
+            <div class="goodsinfo_price">
+              <span>{{ item.inPrice }}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- 产品分类主要内容 -->
+    <div class="goodsType_main">
+      <div id="goodstypelist" v-if="goodsList.length > 0">
+        <div class="goodsstr" v-for="(item, index) in goodsList" :key="index">
+          <div class="title-line">
+            <span class="tit" style="font-size: 38px;">
+              <img src="img/renqi.PNG" /></span>
+          </div>
+
+          <div class="goods_one" name="entergoodsdetail" goodsid="{{ item.id }}">
+            <div class="goodsone_top">
+              <span></span>
+              <img goodsid="{{ item.id }}" src="{{ item.picInfo }}" />
+            </div>
+
+            <div class="goodsone_bot">
+              <div class="goodsname" goodsid="{{ item.id }}">
+                <span>{{ item.goodsName }}</span>
+              </div>
+              <div class="goodsinfo">
+                <span class="goodsinfo_color" goodsid=" {{ item.id }} ">
+                  {{ item.color }}
+                </span>
+              </div>
+              <div class="goodsinfo_price">
+                <span>{{ item.inPrice }}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div style="clear: both;"></div>
+      <div class="fenye">
+        <ul id='pageInfo' class="pagination pagination-lg"></ul>
+      </div>
+    </div>
+
+    <!-- 重复的页脚
+			 <div style="clear: both;"></div>
+			<div class="footerbg">
+				<P>© DESIGNED BY Yannes & Ann</P>
+			</div>
+			-->
+</body>
+<script>
+  window.onload
+  let vm = new Vue({
+    el: '.goodsType_main',
+    data() {
+      return {
+        goodsList: []
+      }
+    },
+    methods: {
+      onclick() { },
+      check() { },
+      fetchdata() {
+        axios({
+          methods: 'get',
+          url: '',
+        })
+          .then((data) => {
+            this.goodsList = data.result.goodsList.length
+          })
+      }
+    },
+    created() {
+      this.fetchdata()
+    },
+    mouted() { }
+
+  })
+</script>
+
+</html>

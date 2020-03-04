@@ -60,7 +60,7 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
 	}
 
 	@Override
-	public void DeleteShoppingCart(Integer userID, String goodsID) {
+	public void DeleteShoppingCartWithOrder(Integer userID, String goodsID) {
 		// TODO Auto-generated method stub
 		shoppingCartMapper.delShoppingCartWithOrder(userID, goodsID);
 	}

@@ -29,7 +29,7 @@ public interface ShoppingCartService {
 	Map<String,Object> FindShoppingCart(int userID, int goodsID);
 	
 	//删除某条购物车记录
-	void DeleteShoppingCart(Integer userID, String goodsID);
+	void DeleteShoppingCartWithOrder(Integer userID, String goodsID);
 	
 	
 	

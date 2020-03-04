@@ -1,94 +1,153 @@
-//获取url中的参数
-function getUrlParam(name) {
-	var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)"); //构造一个含有目标参数的正则表达式对象
-	var r = window.location.search.substr(1).match(reg); //匹配目标参数
-	if(r != null) return unescape(r[2]);
-	return null; //返回参数值
+function getUrlParam (name) {
+  const reg = new RegExp('(^|&)' + name + '=([^&]*)(&|$)')
+  const rst = window.location.search.substr(1).match(reg)
+  if (rst) return decodeURI(rst[2])
+  return null
 }
-
-
-
-$(function() {
-
-	if(sessionStorage.getItem("userId") != null) {
-		$(".loginregise").empty();
-//未完成！！！(点击self.png跳转到个人中心页面）
-		var str = "<a id='loginout'><img src="images/exit.png"/></a><a id='meself'><img src="images/self.png"/></a>";
-		//		var str = "<a id='loginout'>注销</a><select><option>" + sessionStorage.getItem("username") + "</option><option>修改密码</option><option>修改地址</option></select>";
-		$(".loginregise").append(str);
-	}
-	
-	//点击购物车进入购物车页面
-	$(document).on("click", ".car", function() {
-		if(sessionStorage.getItem("userId") == null) {
-			window.location.href = "login.html";
-		} else {
-			window.location.href = "shoppingCar.html";
-		}
-
-	});
-	//点击收藏进入收藏页面
-	$(document).on("click", ".indexlike", function() {
-		if(sessionStorage.getItem("userId") == null) {
-			window.location.href = "login.html";
-		} else {
-			window.location.href = "mylike.html";
-		}
-
-	});
-	//点击我的订单进入订单页面
-	$(document).on("click", ".order", function() {
-
-		if(sessionStorage.getItem("userId") == null) {
-			window.location.href = "login.html";
-		} else {
-			window.location.href = "myOrder.html";
-		}
-
-	});
-
-	//点击收藏或购物车
-	$(document).on("click", ".addLikeOrCar", function() {
-
-		if(sessionStorage.getItem("userId") == null) {
-			window.location.href = "login.html";
-		} else {
-			var mark = $(this).attr("mark");
-			var goodsid = $(this).attr("goodsid");
-			addLikeOrCartfunc(mark, goodsid);
-		}
-
-	});
-
-	//点击搜索按钮
-	$(document).on("click", "#search_btn", function() {
-		var search_input = $("#txtNavSearch").val();
-		var url_str = window.location.href;
-		var _t = encodeURI(encodeURI(search_input));
-		window.location.href = "searchResult.html?content=" + _t + "";
-	});
-
-	$(document).on("click", "#loginout", function() {
-
-		swal({
-			title: "确认退出？",
-			text: "此操作将退出当前帐号",
-			icon: "warning",
-			buttons: ["取消", "确认"],
-			dangerMode: true,
-		}).then((willDelete) => {
-
-			if(willDelete) {
-				sessionStorage.removeItem("userId");
-				sessionStorage.removeItem("username");
-				$(".loginregise").empty();
-//未完成！！！				
-				var str = "<a href='register.html'><img src="images/zhuce.png"/></a><a href='login.html'><img src="images/self.png"/></a>";
-				$(".loginregise").append(str);
-			} else {}
-
-		});
-
-	});
-	
-})
+/* 顶部及导航条 */
+window.onload = () => {
+  const app = new Vue({
+	el: '#app',
+    data () {
+      return {
+        isLogin: null,
+        searchText: '',
+        offsetTop: 0,
+        isFixed: false,
+        currentCategory: {},　// 当前类别的物品
+        currentIndex: 0,  // 当前nav索引
+        goodId: null,
+        goodDetail: {},
+        nav: [
+          {
+            title: '所有产品',
+            categoryId: 111,
+          },
+          {
+            title: '储物收纳',
+            categoryId: 222,
+          },
+          {
+            title: '厨房用具',
+            categoryId: 333,
+          },
+          {
+            title: '餐具',
+            categoryId: 444,
+          },
+          {
+            title: '装饰品',
+            categoryId: 555,
+          },
+          {
+            title: '萌宠爱物',
+            categoryId: 666,
+          },
+          {
+            title: '灯具',
+            categoryId: 777,
+          },
+          {
+            title: '玩耍和玩具',
+            categoryId: 333,
+          }
+        ], 
+      }
+    },
+    methods: {         
+      current (index) {
+        this.currentIndex = index
+        this.currentCategory.title = this.nav[index].title
+        axios({ // ajax 请求
+          method: 'GET',　// 具体看请求后端的方式
+          url: '', // 后端查询接口
+          data: {
+            firstName: 'Fred',
+            lastName: 'Flintstone'
+          }
+        })
+          .then(({ code, result }) => {
+            if (code === 200) {
+              // data为后端返回的数据 对物品列表进行赋值
+              this.currentCategory.title = this.nav[index].title
+              this.currentCategory.list = result
+            }
+          })
+          .catch((err) => {
+            console.log(err)
+          })
+      },
+      goGoodDetail (id) {
+        // 点击，跳转到相应的产品详情页
+        location.href = `/goodsdetail.html?goodsId=${id}`
+      },
+      goCategoryDetail (id) {
+        // 点击，跳转到相应的产品分类页面
+        location.href = `/goodsType.html?categoryID=${id}`
+      },
+      searchData () {
+        setCookie("SearchTxt", this.searchData)
+        location.href = "/searchList.html?keywords=" + this.searchData
+      },
+      handleScroll () {
+        let scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop
+        this.isFixed = scrollTop > this.offsetTop ? true : false;
+      },
+      toRegister () {
+        // 去注册
+    	 location.href = "../WEB-INF/content/register.html"
+      },
+      toSelfPage () {
+          // 去个人中心
+          if (this.isLogin) {
+            window.location.href = 'setting.html'
+          } else {
+            window.location.href = 'login.html'
+          }
+        },
+      quit () {
+        // 退出登录
+      },
+      //
+      queryGoodDetail (id) {
+          axios({
+            method: 'post',
+            data: {
+              goodId: id
+            },
+            url: ''
+          })
+            .then(({ code, result }) => {
+              if (code === 200) {
+                this.goodDetail = result
+              }
+            })
+            .catch(err => {
+              console.log(err)
+            })
+        },
+        addFavorite () {
+          // 收藏 利用goodId
+        },
+        addShoppingCart () {
+          // 加入购物车 利用goodId
+        },
+        buyNow () {
+          // 立即购买 利用goodId
+        }
+    },
+    created () {
+      this.isLogin = window.sessionStorage.getItem('userId') ? true : false
+      this.goodId = Number(getUrlParam('goodId')) || 0
+    },
+    mounted () {
+      window.addEventListener('scroll', this.handleScroll)
+      this.$nextTick(() => {
+        this.offsetTop = document.querySelector('#nav').offsetTop
+      })
+    },
+    destroyed () {
+      window.removeEventListener('scroll', this.handleScroll);
+    }
+  }).$mount('#app')
+}

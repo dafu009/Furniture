@@ -159,11 +159,9 @@ a {
   cursor: pointer;
   outline: none;
 }
-a {
-  text-decoration: none;
-  cursor: pointer;
-  outline: none;
-}
+
+
+
 .homemain_middle_top bgco {
   width: 1150px;
 }
@@ -327,9 +325,71 @@ a {
   cursor: pointer;
 }
 .subCategory {
+  min-height: 450px;
   width: 80%;
   margin: 20px auto;
   text-align: center;
+}
+.goodsType_main {
+  width: 1060px;
+  margin: auto;
+}
+.goodList {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.goods_one{
+  cursor: pointer;
+  width: 245px;
+  padding: 25px 10px;
+  overflow: hidden;
+  color:#000;
+  position: relative;
+}
+.goods_one:hover {
+  box-shadow: 0 0 12px rgba(0, 0, 0, 0.2);
+}
+.goodsone_top img{
+  position: relative;
+  max-width: 100%;
+  margin-bottom: 20px;
+}
+.goodsname span{
+  font-size: 13px;
+  font-weight: bold;
+}
+.goodsinfo .goodsinfo_color{
+  font-size: 12px;
+}
+.goodsinfo_price span{
+  font-size: 18px;
+  line-height:20px;
+  font-weight: bold;
+}
+.loadMore {
+  width: 100px;
+  height: 30px;
+  margin: 30px auto 0;
+  cursor: pointer;
+  position: relative;
+  font-size: 20px;
+  color: #757575;
+}
+.loadMore::before, .loadMore::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  background: #ccc;
+  width: 80%;
+  height: 1px;
+}
+.loadMore::before {
+  left: -85%
+}
+.loadMore::after {
+  right: -85%;
 }
 .bottom {
   height: 197px;

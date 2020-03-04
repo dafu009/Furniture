@@ -1,4 +1,4 @@
-@CHARSET "UTF-8";
+
 .goodsType_main{
 	width:1060px;
 	margin: auto;
@@ -28,6 +28,11 @@
 	top:29px;
 	margin-left:45px;
 }
+.kk{
+	border:1px solid #C0C0C0 ;
+	border-radius: 8px;
+	
+}
 .goods_top img{
 	width:1060px;
 	height:500px;
@@ -41,6 +46,7 @@
 	overflow: hidden;
 	color:#000;
 	position: relative;
+	cursor: pointer;
 }
 .goodsone_top img{
 	position: relative;
@@ -59,7 +65,88 @@
 	line-height:20px;
 	font-weight: bold;
 }
+.btn{
+	padding:15px;
+	margin-bottom: 5px;
+}
+.btn button {
+  display: inline-block;
+  border-radius: 6px;
+  background-color: #83af9b;
+  border: none;
+  color: #FFFFFF;
+  text-align: center;
+  transition: all 0.5s;
+  cursor: pointer;
+  vertical-align:middle;
+  height: 30px;
+  min-width: 100px;
+}
 
+.btn button span {
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  transition: 0.5s;
+  font-size: 16px;
+}
 
+.cancelLike span:after {
+  content: '✩';
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  right: -20px;
+  transition: 0.5s;
+}
+.addCar span:after {
+  content: '🛒';
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  right: -20px;
+  transition: 0.5s;
+}
+.btn button:hover span {
+  padding-right: 35px;
+}
 
+.btn button:hover span:after {
+  opacity: 1;
+  right: 0;
+}
+.btn{
+    position: relative;
+    margin: auto;
+	width: 90%;
+}
+
+.likecontentmain{
+	margin: 5%;
+	width: 85%;
+}
+.like_big{
+	background:floralwhite;
+	margin:auto;
+	height: 1000px;
+	width: 80%;
+}
+.title-line {
+  width: 980px;
+  height: 28px;
+  margin: 0 auto;
+  margin-bottom: 0px;
+  border-bottom: 1px solid #ddd;
+  margin-bottom: 28px;
+  text-align: center;
+}
+.title-line .tit {
+    height: 56px;
+    line-height: 56px;
+    margin: 0 auto;
+    padding: 0 20px;
+    font-size: 40px;
+    text-align: center;
+	background-color: white;
+}
 

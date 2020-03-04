@@ -45,21 +45,120 @@ public class OrderController {
 	
 	
 	/**
-	 * ÊµÏÖ/addorderµÄ¶©µ¥Ôö¼Ó
+	 * Êµï¿½ï¿½/addorderï¿½Ä¶ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	 */
 	@RequestMapping("/addOrder")
 	@ResponseBody
 	public Map<String,Object> addOrder(GetList paras,HttpServletRequest req){
-		return null;
+//		System.out.println(paras.getId() + "/" + paras.getIdlist());
+		List<Map<String,Object>> idlist = paras.getIdlist();
+		Integer id = paras.getId();
+		Map<String, Object> result = new HashMap<String, Object>();
+		Map<String, Object> map = new HashMap<String, Object>();
+		int code, flag;
+		String state, message;
+		try{
+			if(id != 0 & !idlist.isEmpty()){
+				GetRandomId randomId = new GetRandomId();
+				String orderCode = randomId.getRandomFileName();
+				Integer userID = id;
+				Integer num1,num2 = null;
+				Integer totalNum = null;
+				double inPrice;
+				double totalMoney = 0;
+				double money1,money2 = 0;
+				String strmoney1,strmoney2;
+				//ï¿½Ì¶ï¿½ï¿½ï¿½ï¿½ï¿½×ªï¿½ï¿½ï¿½ï¿½Ê½
+				java.text.DecimalFormat format = new java.text.DecimalFormat("#0.00");
+		
+				if(idlist.size() == 1){
+					num1 = Integer.parseInt(idlist.get(0).get("num").toString());
+					inPrice = Double.parseDouble(idlist.get(0).get("inPrice").toString());
+	//				strmoney1 = idlist.get(0).get("inPrice").toString();
+	//				inPrice = Double.parseDouble(strmoney1);//×ªï¿½ï¿½ï¿½ï¿½doubleï¿½ï¿½ï¿½ï¿½
+					money1 = Double.parseDouble(format.format(inPrice));
+					totalNum = num1;
+					totalMoney = money1*num1;
+				}else{
+					for(int i = 0; i <idlist.size(); i++){
+						num1 = Integer.parseInt(idlist.get(i).get("num").toString());
+						inPrice = Double.parseDouble(idlist.get(i).get("inPrice").toString());
+						money1 = Double.parseDouble(format.format(inPrice));
+						for(int j = 0;j<idlist.size();j++){
+							num2 = Integer.parseInt(idlist.get(j).get("num").toString());
+							inPrice = Double.parseDouble(idlist.get(j).get("inPrice").toString());
+							money2 = Double.parseDouble(format.format(inPrice));
+							totalNum = num1+num2;
+							totalMoney = money1 * num1 + money2 * num2;
+	//						System.out.println(totalMoney);
+							break;
+						}
+					}
+				}
+				Date date = new Date();
+				SimpleDateFormat formatDate = new SimpleDateFormat("yyyy-MM-dd");
+				String orderDate = formatDate.format(date);
+				Integer ID = orderService.AddOrderForm(orderCode, userID, totalNum, totalMoney, orderDate);
+				String orderFormID = ID.toString();
+				
+				
+				for(int k =0; k<idlist.size();k++){
+					String goodsID = idlist.get(k).get("goodsid").toString();
+					String num = idlist.get(k).get("num").toString();
+					String price = idlist.get(k).get("inPrice").toString();
+					orderService.AddOrderItem(orderFormID, goodsID, num, price);
+					//ï¿½Ó¹ï¿½ï¿½ï³µï¿½ï¿½ï¿½Æ³ï¿½
+					shoppingCartService.DeleteShoppingCartWithOrder(userID, goodsID);
+				}
+				flag = 1;
+				message = "ï¿½É¹ï¿½";
+				result.put("flag", flag);
+				result.put("message", message);
+				code = 200;
+				state = "success";
+				map.put("code", code);
+				map.put("state", state);
+				map.put("message", message);
+				map.put("result", result);
+	//			System.out.println(map);
+				return map;	 
+			}else{
+				flag = 0;
+				message = "Ê§ï¿½ï¿½";
+				result.put("flag", flag);
+				result.put("message", message);
+				code = 0;
+				state = "fail";
+				map.put("code", code);
+				map.put("state", state);
+				map.put("message", message);
+				map.put("result", result);
+	//			System.out.println(map);
+				return map;
+			}
+			
+		}catch(Exception e){
+			System.out.println(e);
+			flag = 0;
+			message = "Ê§ï¿½ï¿½";
+			result.put("flag", flag);
+			result.put("message", message);
+			code = 0;
+			state = "fail";
+			map.put("code", code);
+			map.put("state", state);
+			map.put("message", message);
+			map.put("result", result);
+	//		System.out.println(map);
+			return map;
+		}
 		
 	}
-	
-	
-	
+		
 	
 	
 	/**
-	 * ÊµÏÖ/orderÎÒµÄ¶©µ¥ÏÔÊ¾
+	 * Êµï¿½ï¿½/orderï¿½ÒµÄ¶ï¿½ï¿½ï¿½ï¿½ï¿½Ê¾
 	 */
 	@RequestMapping("/viewOrder")
 	@ResponseBody
@@ -81,7 +180,7 @@ public class OrderController {
 					orderFormID = Integer.parseInt(orderlists.get(i).get("id").toString());
 					Itemlist = orderService.ViewOrderItem(orderFormID);
 //					System.out.println(orderFormID);
-//					System.out.println(orderItemlist);
+//					System.out.println(Itemlist);
 					for(int j = 0; j < Itemlist.size(); j++){
 						goodsID = Integer.parseInt(Itemlist.get(j).get("goodsID").toString());
 						goodsInfo = goodsService.GetGoodsInfo(goodsID);
@@ -100,7 +199,7 @@ public class OrderController {
 				result.put("orderlist", ALLorder);
 				code = 200;
 				state = "success";
-				message = "³É¹¦";
+				message = "ï¿½É¹ï¿½";
 				map.put("code", code);
 				map.put("state", state);
 				map.put("message", message);
@@ -112,7 +211,7 @@ public class OrderController {
 				result.put("orderlist", ALLorder);
 				code = 0;
 				state = "fail";
-				message = "Ê§°Ü";
+				message = "Ê§ï¿½ï¿½";
 				map.put("code", code);
 				map.put("state", state);
 				map.put("message", message);
@@ -126,7 +225,7 @@ public class OrderController {
 			result.put("orderlist", ALLorder);
 			code = 0;
 			state = "fail";
-			message = "Ê§°Ü";
+			message = "Ê§ï¿½ï¿½";
 			map.put("code", code);
 			map.put("state", state);
 			map.put("message", message);
