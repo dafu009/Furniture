@@ -9,6 +9,7 @@ window.onload = () => {
     },
     methods: {
       submit () {
+        console.log(this.buyList)
         swal({
           title: "确认提交吗?",
           text: "此操作将进行订单提交",
@@ -27,7 +28,7 @@ window.onload = () => {
                   const { code } = data
                   if (code === 200) {
                     sweetAlert("Yes", "提交成功！", "success")
-                    window.location.href = 'orderbuy_yes.html'
+                    // window.location.href = 'orderbuy_yes.html'
                   }
                 })
             } else {

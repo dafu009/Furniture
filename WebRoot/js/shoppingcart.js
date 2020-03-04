@@ -148,7 +148,8 @@ window.onload = () => {
           if (item.checked) {
             return item
           }
-        })
+        }).filter(res => res)
+        window.localStorage.removeItem('buy-list')
         window.localStorage.setItem('buy-list', JSON.stringify(buyList))
         window.location.href = "orderbuy.html"
       }

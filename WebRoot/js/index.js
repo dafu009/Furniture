@@ -192,8 +192,8 @@ window.onload = () => {
         window.location.href = `goodsType.html?categoryID=${id}`
       },
       searchData () {
-        setCookie("SearchTxt", this.searchData)
-        window.location.href = "searchList.html?keywords=" + this.searchData
+        // setCookie("SearchTxt", this.searchData)
+        window.location.href = "search.html?keywords=" + this.searchText
       },
       handleScroll () {
         let scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop

@@ -119,8 +119,8 @@ window.onload = () => {
         window.location.href = `goodsdetail.html?goodsId=${id}`
       },
       searchData () {
-        setCookie("SearchTxt", this.searchData)
-        location.href = "/searchList.html?keywords=" + this.searchData
+        // setCookie("SearchTxt", this.searchData)
+        window.location.href = "search.html?keywords=" + this.searchText
       },
       handleScroll () {
         let scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop
@@ -146,7 +146,6 @@ window.onload = () => {
           })
       },
       addCartOrLike (goodsid, sign) {
-        console.log(goodsid)
         let txt = sign ? '购物车' : '收藏夹'
         axios({
           method: 'POST',
@@ -170,8 +169,11 @@ window.onload = () => {
             }
           })
       },
-      buyNow () {
-        // 立即购买 利用goodId
+      buyNow (good) {
+        good.num = 1
+        window.localStorage.removeItem('buy-list')
+        window.localStorage.setItem('buy-list', JSON.stringify([good]))
+        window.location.href = "orderbuy.html"
       }
     },
     created () {
