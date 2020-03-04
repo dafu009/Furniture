@@ -48,7 +48,8 @@ window.onload = () => {
           }),
           url: '/Furniture/userRegister' // 注册api
         })
-          .then(({ code, result }) => {
+          .then(({data}) => {
+            const { code } = data
             // 注册成功的返回　=> 可跳转登录页或者直接登录
             if (code === 200) {
               window.location.href = 'login.html'
