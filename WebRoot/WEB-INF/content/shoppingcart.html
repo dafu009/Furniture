@@ -72,15 +72,14 @@
               </thead>
               <tbody>
                 <tr v-for="(item,index) in shopCartList">
-                  <td class="selectLeft" @click="goGoodDetail(item.goodsid)">
+                  <td class="selectLeft">
                     <template>
                       <el-checkbox @change="check(item)" v-model="item.checked"></el-checkbox>
                     </template>
-                    <span class="goodName goodpic">
+                    <span class="goodName goodpic" @click="goGoodDetail(item.goodsid)">
                       <img class="goodImg" :src="item.picInfo" />
                     </span>
-                    <span name="lookgooddetail" style="display: none;" v-text="item.goodsid"></span>
-                    <span class="goodName goodsName">
+                    <span class="goodName goodsName" @click="goGoodDetail(item.goodsid)">
                       <h2 class="goodname" v-text="item.goodsName"></h2>
                       <p class="goodGary">
                         <span v-text="item.color"></span>

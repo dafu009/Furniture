@@ -150,7 +150,9 @@
   width: 100%;
   vertical-align: middle;
 }
-
+.goodsone_right {
+  flex: 1;
+}
 .goodsone_right div {
   margin: 8px 0px;
 }

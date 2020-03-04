@@ -40,14 +40,19 @@ window.onload = () => {
         // 注册的请求
         axios({
           method: 'post',
-          data: {
+          data: Qs.stringify({
             username: this.username,
-            password: this.password
-          },
-          url: '' // 注册api
+            pwd: this.password,
+            telephone: this.telephone,
+            address: this.address
+          }),
+          url: '/Furniture/userRegister' // 注册api
         })
           .then(({ code, result }) => {
             // 注册成功的返回　=> 可跳转登录页或者直接登录
+            if (code === 200) {
+              window.location.href = 'login.html'
+            }
           })
           .catch((err) => {
             console.log(err)

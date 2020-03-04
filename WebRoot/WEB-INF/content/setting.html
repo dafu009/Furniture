@@ -63,13 +63,13 @@
       <el-dialog title="修改密码" :visible.sync="dialogShow" width="30%">
         <el-form :model="password">
           <el-form-item label="原密码" :label-width="labelWidth">
-            <el-input v-model="password.oldPass" autocomplete="off" show-password></el-input>
+            <el-input v-model="password.oldPass" :value="password.oldPass" show-password></el-input>
           </el-form-item>
           <el-form-item label="新密码" :label-width="labelWidth">
-            <el-input v-model="password.newPass" autocomplete="off" show-password></el-input>
+            <el-input v-model="password.newPass" :value="password.newPass" show-password></el-input>
           </el-form-item>
           <el-form-item label="重复密码" :label-width="labelWidth">
-            <el-input v-model="password.repeatPass" autocomplete="off" show-password></el-input>
+            <el-input v-model="password.repeatPass":value="password.repeatPass" show-password></el-input>
           </el-form-item>
         </el-form>
         <span slot="footer" class="dialog-footer">
