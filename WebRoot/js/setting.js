@@ -15,7 +15,26 @@ window.onload = () => {
       }
     },
     methods: {
-      update () {},
+      update () {
+        axios({
+          method: 'POST',
+          url: '/Furniture/userSelfReset',
+          data: Qs.stringify({
+            id: this.userId,
+            username: this.username,
+            addr: this.userInfo.addr,
+            phone: this.userInfo.phone
+          })
+        })
+          .then(({data}) => {
+            const { code } = data
+            if (code === 200) {
+              this.message('修改成功', 'success')
+            } else {
+              this.message('修改失败请重试', 'error')
+            }
+          })
+      },
       message (message, type) {
         this.$message({
           message,
@@ -52,6 +71,9 @@ window.onload = () => {
             const { code } = data
             if (code === 200) {
               this.dialogShow = false
+              this.message('修改成功', 'success')
+            } else {
+              this.message('修改失败', 'error')
             }
           })
       },
