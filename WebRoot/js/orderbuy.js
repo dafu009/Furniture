@@ -28,7 +28,9 @@ window.onload = () => {
                   const { code } = data
                   if (code === 200) {
                     sweetAlert("Yes", "提交成功！", "success")
-                    // window.location.href = 'orderbuy_yes.html'
+                    setTimeout(() => {
+                      window.location.href = 'orderbuy_yes.html'
+                    }, 1500)
                   }
                 })
             } else {

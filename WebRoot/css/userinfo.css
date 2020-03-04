@@ -1,44 +1,26 @@
-
-.settingbig{
-	background-color: ghostwhite;
+.content {
+	padding: 50px 0 50px;
+	width: 400px;
+	margin: 0 auto;
 }
-.settingmain{
-	width:400px;
-	margin:auto;
-	padding-top: 50px;
-	
+.content .item {
+	display: flex;
+	margin: 15px 0;
+	align-items: center;
+	justify-content: center;
 }
-.tabletitle{
-	font-size:20px;
+.content .item span {
+	min-width: 100px;
+	text-align: right;
 }
-.tablecontent input{
-	margin-bottom: 1em;
-	padding: 1.5em 1.5em 1.5em 1.5em;
-	outline: none;
-	border: none;
-	background:#f0f0f0;
-	color:#999;
-	font-weight: 600;
-	font-size: .6em;
-	border-radius: 4px;
-	-webkit-border-radius: 4px;
-	-moz-border-radius: 4px;
-	-o-border-radius: 4px;
+.content .item .name {
+	flex: 1;
+	text-align: left;
+	color: #757575;
+	cursor: not-allowed;
 }
-.setbtn button{
-	padding: 12px 33px;
-    background: #fea15d;
-	margin: 3% 0 0 29%;
-	color:#fff;
-    text-transform: uppercase;
-    outline: none;
-    border: none;
-    cursor: pointer;
-    margin-left: 30px;
-    font-size: 16px;
-}
-.setbtn button:hover{
-	background-color: 	#FF7F50;
+.operating .el-button {
+	margin: 0 20px;
 }
 .footerbg {
     background: #424242;
@@ -48,7 +30,6 @@
     line-height: 40px;
     border-top: 1px solid #525252;
     margin-top:260px;
-
 }
 .footerbg p {
     text-align: center;

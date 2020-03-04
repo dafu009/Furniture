@@ -72,7 +72,7 @@
               </thead>
               <tbody>
                 <tr v-for="(item,index) in shopCartList">
-                  <td class="selectLeft">
+                  <td class="selectLeft" @click="goGoodDetail(item.goodsid)">
                     <template>
                       <el-checkbox @change="check(item)" v-model="item.checked"></el-checkbox>
                     </template>

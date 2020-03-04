@@ -152,7 +152,11 @@ window.onload = () => {
         window.localStorage.removeItem('buy-list')
         window.localStorage.setItem('buy-list', JSON.stringify(buyList))
         window.location.href = "orderbuy.html"
-      }
+      },
+      goGoodDetail (id) {
+        // 点击，跳转到相应的产品详情页
+        window.location.href = `goodsdetail.html?goodsId=${id}`
+      },
     },
     created() {
       this.fetchData(this.userId)

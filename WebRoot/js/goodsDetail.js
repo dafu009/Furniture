@@ -171,6 +171,8 @@ window.onload = () => {
       },
       buyNow (good) {
         good.num = 1
+        good.goodsid = good.id
+        delete good.id
         window.localStorage.removeItem('buy-list')
         window.localStorage.setItem('buy-list', JSON.stringify([good]))
         window.location.href = "orderbuy.html"
