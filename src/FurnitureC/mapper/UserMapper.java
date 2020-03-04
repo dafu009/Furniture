@@ -19,7 +19,7 @@ public interface UserMapper {
 	@Select("select * from users where userName=#{username}")
 	Map<String,Object> usersearchName(@Param("username")String username);
 	
-	@Insert("insert into(userName,pwd,addr,phone) valus (#{username},#{pwd},#{address},#{telephone})")
+	@Insert("insert into users(userName,pwd,addr,phone) values (#{username},#{pwd},#{address},#{telephone})")
 	void userRegister (@Param("username")String username, @Param("pwd")String pwd, @Param("address")String address, @Param("telephone")String telephone);
 	
 	//用户个人资料
