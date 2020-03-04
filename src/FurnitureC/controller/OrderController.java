@@ -180,7 +180,7 @@ public class OrderController {
 					orderFormID = Integer.parseInt(orderlists.get(i).get("id").toString());
 					Itemlist = orderService.ViewOrderItem(orderFormID);
 //					System.out.println(orderFormID);
-//					System.out.println(orderItemlist);
+//					System.out.println(Itemlist);
 					for(int j = 0; j < Itemlist.size(); j++){
 						goodsID = Integer.parseInt(Itemlist.get(j).get("goodsID").toString());
 						goodsInfo = goodsService.GetGoodsInfo(goodsID);

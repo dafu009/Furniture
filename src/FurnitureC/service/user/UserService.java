@@ -17,7 +17,7 @@ public interface UserService {
 	Map<String, Object> SearchUser(Integer id);
 
 	//用户个人资料修改
-	void UserReset(Integer id,  String addr, String telephone);
+	void UserReset(Integer id,  String addr, String phone);
 
 	//用户个人密码修改
 	Map<String, Object> searchUserPwd(Integer id);

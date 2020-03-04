@@ -323,7 +323,81 @@ public class UserController {
 	}
 		
 	}	
-	}
 	
+	/**
+	 * 处理/myself个人资料修改
+	 */
+	@PostMapping("/userSelfReset")
+	@ResponseBody
+	public Map<String, Object> userSelfReset(Integer id, String username, String addr, String phone) {
+//		System.out.println(id+","+username+","+addr+","+phone);
+		Map<String, Object> searchUser = new HashMap<String, Object>();
+		Map<String, Object> result = new HashMap<String, Object>();
+		Map<String, Object> map = new HashMap<String, Object>();
+		int code;
+		String state, message;
+		try {
+			if (id != null) {
+				searchUser = userService.SearchUser(id);
+// 				System.out.println(searchUserId);
+				if(searchUser != null) {
+					String realname = username;
+	        		userService.UserReset(id, addr, phone); 
+					
+					message = "成功";
+					result.put("message", message);
+	            	code=200;
+	    			state="success";
+	    			message="成功";
+	    			map.put("code", code);
+	    			map.put("state", state);	
+	    			map.put("message", message);
+	    			map.put("result", result);
+//	    			System.out.println(JSON.toJSONString(map));
+	        		return map;
+				}else {
+	
+					message = "找不到该用户！";
+					result.put("message", message);
+	            	code=0;
+	    			state="fail";
+	    			message="失败";
+	    			map.put("code", code);
+	    			map.put("state", state);	
+	    			map.put("message", message);
+	    			map.put("result", result);
+//	    			System.out.println(map);
+	        		return map;
+				}	
+			} else {
+
+				message = "失败";
+				result.put("message", message);
+            	code=0;
+    			state="fail";
+    			message="失败";
+    			map.put("code", code);
+    			map.put("state", state);	
+    			map.put("message", message);
+    			map.put("result", result);
+//    			System.out.println(map);
+        		return map;
+			}
+		} catch (Exception e) {
+			System.out.println(e);
+			message = "失败";
+			result.put("message", message);
+        	code=0;
+			state="fail";
+			message="失败";
+			map.put("code", code);
+			map.put("state", state);	
+			map.put("message", message);
+			map.put("result", result);
+//			System.out.println(map);
+    		return map;
+		} 
+	}
+	}
 
 

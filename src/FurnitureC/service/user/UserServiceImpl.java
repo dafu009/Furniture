@@ -41,9 +41,9 @@ public class UserServiceImpl implements UserService{
 	//用户个人资料修改
 	@Override
 	public void UserReset(Integer id, String addr,
-			String telephone) {
+			String phone) {
 		// TODO Auto-generated method stub
-		userMapper.userReset(id, addr, telephone);
+		userMapper.userReset(id, addr, phone);
 	}
 	
 	//用户个人密码修改
