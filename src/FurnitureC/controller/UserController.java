@@ -341,7 +341,6 @@ public class UserController {
 				searchUser = userService.SearchUser(id);
 // 				System.out.println(searchUserId);
 				if(searchUser != null) {
-					String realname = username;
 	        		userService.UserReset(id, addr, phone); 
 					
 					message = "³É¹¦";
