@@ -35,7 +35,7 @@ public interface CollectMapper {
 	List<Map<String, Object>> findCollectWithgoodsID(@Param("goodsID")Integer goodsID);
 	
 	//拿到某个人除这件物品外其余的物品
-	@Select("select goodsID as goodsid from collect where userID = #{userID} and goodsID <> #{goodsID} ")
+	@Select("select goodsID from collect where userID = #{userID} and goodsID <> #{goodsID} ")
 	List<Map<String, Object>> getgoodsNot(@Param("userID")Integer userID, @Param("goodsID")Integer goodsID);
 	
 	

@@ -99,6 +99,46 @@ public class GoodsServiceImpl implements GoodsService {
 		goodsMapper.changeQuantity(goodsID, quantity);
 		
 	}
+
+	@Override
+	public List<goods> LikeRecGoods(goods Goods, long goodsID, Integer page,
+			Integer pageSize) {
+		// TODO Auto-generated method stub
+		return goodsMapper.getLikeRecGoods(Goods, goodsID, page, pageSize);
+	}
+
+	@Override
+	public List<goods> LikeRecGoodsAll(goods Goods, long goodsID) {
+		// TODO Auto-generated method stub
+		return goodsMapper.getLikeRecGoodsAll(Goods, goodsID);
+	}
+
+	@Override
+	public List<Map<String, Object>> RandomGoods(goods Goods, Integer goodsID,
+			Integer page, Integer pageSize) {
+		// TODO Auto-generated method stub
+		return goodsMapper.randomGoods(Goods, goodsID, page, pageSize);
+	}
+
+	@Override
+	public List<Map<String, Object>> RandomAllGoods(goods Goods, Integer goodsID) {
+		// TODO Auto-generated method stub
+		return goodsMapper.randomAllGoods(Goods, goodsID);
+	}
+
+	@Override
+	public List<Map<String, Object>> RecGoods(goods Goods, Integer recgoodsId,
+			Integer page, Integer pageSize) {
+		// TODO Auto-generated method stub
+		page=(page-1)*pageSize;
+		return goodsMapper.getRecGoods(Goods, recgoodsId, page, pageSize);
+	}
+
+	@Override
+	public List<Map<String, Object>> RecGoodsAll(goods Goods, Integer recgoodsId) {
+		// TODO Auto-generated method stub
+		return goodsMapper.getRecGoodsAll(Goods, recgoodsId);
+	}
 	
 
 

@@ -6,6 +6,8 @@ import java.util.Map;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
+
+
 import FurnitureC.bean.goods;
 
 public interface GoodsMapper {
@@ -42,6 +44,27 @@ public interface GoodsMapper {
 			
 	@Update("update goods set quantity = #{quantity} where id = #{goodsID}")
 	void changeQuantity (@Param("goodsID")Integer goodsID,@Param("quantity")Integer quantity);
+	
+	//我的订单、完成订单猜你喜欢推荐书本详情
+	@Select("select * from goods where id = #{goodsID} limit #{page},#{pageSize}")
+	List<goods> getLikeRecGoods(goods Goods, @Param("goodsID")long goodsID, @Param("page")Integer page, @Param("pageSize")Integer pageSize);
+
+	@Select("select * from goods where id = #{goodsID}")
+	List<goods> getLikeRecGoodsAll(goods Goods, @Param("goodsID")long goodsID);
+	
+	//详情页推荐随机抽取除了那本书
+	@Select("select * from goods where id <> #{goodsID} order by rand() limit #{page},#{pageSize}")
+	List<Map<String, Object>> randomGoods(goods Goods, @Param("goodsID")Integer goodsID, @Param("page")Integer page, @Param("pageSize")Integer pageSize);
+
+	@Select("select * from goods where id <> #{goodsID}")
+	List<Map<String, Object>> randomAllGoods(goods Goods, @Param("goodsID")Integer goodsID);
+	
+	//获取用户收藏其他的书详情
+	@Select("select * from goods where id = #{recgoodsId} limit #{page},#{pageSize}")
+	List<Map<String, Object>> getRecGoods(goods Goods, @Param("recgoodsId")Integer recgoodsId, @Param("page")Integer page, @Param("pageSize")Integer pageSize);
+
+	@Select("select * from goods where id = #{recgoodsId}")
+	List<Map<String, Object>> getRecGoodsAll(goods Goods, @Param("recgoodsId")Integer recgoodsId);
 	
 	
 }
