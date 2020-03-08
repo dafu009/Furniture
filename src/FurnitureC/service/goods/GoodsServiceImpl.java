@@ -139,8 +139,14 @@ public class GoodsServiceImpl implements GoodsService {
 		// TODO Auto-generated method stub
 		return goodsMapper.getRecGoodsAll(Goods, recgoodsId);
 	}
-	
 
+	@Override
+	public List<goods> RandomGoodsexc(goods Goods, 
+			Integer page, Integer pageSize) {
+		// TODO Auto-generated method stub
+		return goodsMapper.randomGoodsexc(Goods,page, pageSize);
+	}
+	
 
 
 }

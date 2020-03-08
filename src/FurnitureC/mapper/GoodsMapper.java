@@ -66,5 +66,7 @@ public interface GoodsMapper {
 	@Select("select * from goods where id = #{recgoodsId}")
 	List<Map<String, Object>> getRecGoodsAll(goods Goods, @Param("recgoodsId")Integer recgoodsId);
 	
-	
+	@Select("select * from goods order by rand() limit #{page},#{pageSize}")
+	List<goods> randomGoodsexc(goods Goods, @Param("page")Integer page, @Param("pageSize")Integer pageSize);
+
 }

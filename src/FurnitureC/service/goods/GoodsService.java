@@ -59,4 +59,6 @@ public interface GoodsService {
 
 	List<Map<String, Object>> RecGoodsAll(goods Goods, Integer recgoodsId);
 	
+	//推荐随机抽取数据
+	List<goods> RandomGoodsexc(goods Goods,Integer page, Integer pageSize);
 }
