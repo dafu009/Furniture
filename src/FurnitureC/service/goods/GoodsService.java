@@ -2,9 +2,9 @@ package FurnitureC.service.goods;
 
 import java.util.List;
 import java.util.Map;
-import FurnitureC.bean.goods;
 
 import FurnitureC.bean.goods;
+
 
 public interface GoodsService {
 
@@ -43,4 +43,22 @@ public interface GoodsService {
 	//库存增加
 	void AddChangeQuantity(Integer goodsID, Integer quantity);
 	
+	//我的订单、完成订单猜你喜欢推荐书本详情
+	List<goods> LikeRecGoods(goods Goods, long goodsID, Integer page, Integer pageSize);
+	
+	List<goods> LikeRecGoodsAll(goods Goods, long goodsID);
+	
+	//详情页推荐随机抽取除了那本书
+	List<Map<String, Object>> RandomGoods(goods Goods, Integer goodsID, Integer page, Integer pageSize);
+
+	List<Map<String, Object>> RandomAllGoods(goods Goods, Integer goodsID);
+	
+
+	//获取用户收藏其他的书详情
+	List<Map<String, Object>> RecGoods(goods Goods, Integer recgoodsId, Integer page, Integer pageSize);
+
+	List<Map<String, Object>> RecGoodsAll(goods Goods, Integer recgoodsId);
+	
+	//推荐随机抽取数据
+	List<goods> RandomGoodsexc(goods Goods,Integer page, Integer pageSize);
 }
