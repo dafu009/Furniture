@@ -18,7 +18,7 @@
   <div id="app" class="main">
     <div class="top_div" id="top_html">
       <div class="logo_box">
-        <a class="logo" href="/"></a>
+        <a class="logo" href="index.html"></a>
         <div class="left">
           <div class="flex">
             <p class="self" title="个人中心" @click="toSelfPage"></p>
@@ -89,7 +89,7 @@
           <p v-for="(item, index) in workGoods" @click="goGoodDetail(item.id)" :class="`gz_a${index+1}`"></p>
         </div>
 
-        <div class="qj_hot">
+        <div class="qj_hot" v-if="false">
           <span class="title"></span>
           <p class="category" v-for="(item, index) in hotCategorys" @click="goCategoryDetail(item.id)"></p>
         </div>

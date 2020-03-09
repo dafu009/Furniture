@@ -1,21 +1,23 @@
-function getUrlParam (name) {
+function getUrlParam(name) {
   const reg = new RegExp('(^|&)' + name + '=([^&]*)(&|$)')
   const rst = window.location.search.substr(1).match(reg)
   if (rst) return decodeURI(rst[2])
   return null
 }
+
 /* 顶部及导航条 */
 window.onload = () => {
   const app = new Vue({
     mixins: [mixin],
     el: '#app',
-    data () {
+    data() {
       return {
         searchText: '',
         offsetTop: 0,
         isFixed: false,
         totalList: [],
         loadMoreShow: true,
+        recommendList: [],
         currentCategory: {
           id: null,
           list: [],
@@ -66,7 +68,7 @@ window.onload = () => {
       }
     },
     methods: {
-      current (index, id) {
+      current(index, id) {
         this.currentIndex = index
         this.currentCategory.title = this.nav[index].title
         this.currentCategory.page.num = 1
@@ -81,17 +83,17 @@ window.onload = () => {
         if (index === 0) return
         this.fetchData(params)
       },
-      concatList () {
+      concatList() {
         this.totalList = this.totalList.concat(this.currentCategory.list)
       },
-      fetchData (params) {
+      fetchData(params) {
         axios({ // ajax 请求
           method: 'GET',　// 具体看请求后端的方式
           url: '/Furniture/goodsTypeDetail', // 后端查询接口
           params
         })
-          .then(({ data }) => {
-            const { code, result, state } = data
+          .then(({data}) => {
+            const {code, result, state} = data
             if (code === 200) {
               if (result.bookList.length === 0) {
                 this.loadMoreShow = false
@@ -106,7 +108,7 @@ window.onload = () => {
             console.log(err)
           })
       },
-      loadMore () {
+      loadMore() {
         let params = {
           id: this.currentCategory.id,
           page: ++this.currentCategory.page.num,
@@ -114,20 +116,20 @@ window.onload = () => {
         }
         this.fetchData(params)
       },
-      goGoodDetail (id) {
+      goGoodDetail(id) {
         // 点击，跳转到相应的产品详情页
         window.location.href = `goodsdetail.html?goodsId=${id}`
       },
-      searchData () {
+      searchData() {
         // setCookie("SearchTxt", this.searchData)
         window.location.href = "search.html?keywords=" + this.searchText
       },
-      handleScroll () {
+      handleScroll() {
         let scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop
         this.isFixed = scrollTop > this.offsetTop ? true : false;
       },
       //产品详情信息
-      queryGoodDetail (id) {
+      queryGoodDetail(id) {
         axios({
           method: 'GET',
           url: '/Furniture/getgoodsDetail',
@@ -135,8 +137,8 @@ window.onload = () => {
             id
           }
         })
-          .then(({ data }) => {
-            const { code, result } = data
+          .then(({data}) => {
+            const {code, result} = data
             if (code === 200) {
               this.goodDetail = result
             }
@@ -145,7 +147,11 @@ window.onload = () => {
             console.log(err)
           })
       },
-      addCartOrLike (goodsid, sign) {
+      addCartOrLike(goodsid, sign) {
+        if (!this.userId) {
+          sweetAlert("Oops..", "请先前往登录", "warning");
+          return
+        }
         let txt = sign ? '购物车' : '收藏夹'
         axios({
           method: 'POST',
@@ -156,8 +162,8 @@ window.onload = () => {
             goodsid
           })
         })
-          .then(({ data }) => {
-            const { code, result } = data
+          .then(({data}) => {
+            const {code, result} = data
             if (result.isExist) {
               sweetAlert("Oops..", "物品已收藏~", "warning");
               return
@@ -169,27 +175,50 @@ window.onload = () => {
             }
           })
       },
-      buyNow (good) {
+      buyNow(good) {
+        if (!this.userId) {
+          sweetAlert("Oops..", "请先前往登录", "warning");
+          return
+        }
         good.num = 1
         good.goodsid = good.id
         delete good.id
         window.localStorage.removeItem('buy-list')
         window.localStorage.setItem('buy-list', JSON.stringify([good]))
         window.location.href = "orderbuy.html"
+      },
+      getRecommendList() {
+        axios({
+          method: 'POST',
+          url: '/Furniture/recommendGoodsDetail',
+          data: Qs.stringify({
+            userid: this.userId,
+            goodsid: this.goodId,
+            page: 1,
+            pageSize: 10
+          })
+        })
+          .then(({data}) => {
+            const {code, result} = data
+            if (code === 200) {
+              this.recommendList = result.GoodsList
+            }
+          })
       }
     },
-    created () {
+    created() {
       this.isLogin = window.sessionStorage.getItem('userId') ? true : false
       this.goodId = Number(getUrlParam('goodsId')) || 0
       this.queryGoodDetail(this.goodId)
+      this.getRecommendList()
     },
-    mounted () {
+    mounted() {
       window.addEventListener('scroll', this.handleScroll)
       this.$nextTick(() => {
         this.offsetTop = document.querySelector('#nav').offsetTop
       })
     },
-    destroyed () {
+    destroyed() {
       window.removeEventListener('scroll', this.handleScroll);
     }
   }).$mount('#app')

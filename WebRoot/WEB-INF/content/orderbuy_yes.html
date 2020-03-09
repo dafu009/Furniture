@@ -15,6 +15,8 @@
   </link>
   <link rel="stylesheet" href="css/common.css" type="text/css">
   </link>
+  <script src="js/QS/qs.js"></script>
+  <script type="text/javascript" src="assets/js/axios/axios.min.js"></script>
   <script type="text/javascript" src="assets/js/vue/vue.min.js"></script>
   <script type="text/javascript" src="mixins/index.js"></script>
   <script type="text/javascript" src="js/sweetalert.min.js"></script>
@@ -55,24 +57,29 @@
         <div class="goodsmain_title">
           <img src="img/tuijian.PNG" />
         </div>
-        <div class="guess_goods" v-for="(item, index) in recommendList" :key="index">
-          <div class="guessgoods_top">
-            <span></span>
-            <img :src="item.picInfo" />
-          </div>
-          <div class="guessgoods_bot">
-            <div class="goodsname">
-              <span>{{ item.goodsName }}</span>
+        <div class="goods_wrap" v-if="recommendList.length > 0">
+          <div class="guess_goods" @click="goGoodDetail(item.id)" v-for="(item, index) in recommendList" :key="index">
+            <div class="guessgoods_top">
+              <img :src="item.picInfo" />
             </div>
-            <div class="goodsinfo1">
+            <div class="guessgoods_bot">
+              <div class="goodsname">
+                <span>{{ item.goodsName }}</span>
+              </div>
+              <div class="goodsinfo1">
               <span class="goodsinfo_color">
                 {{ item.color }}
               </span>
-            </div>
-            <div class="goodsinfo_price">
-              <span>{{ item.inPrice }}</span>
+              </div>
+              <div class="goodsinfo_price">
+                <span>{{ item.inPrice }}</span>
+              </div>
             </div>
           </div>
+        </div>
+        <div class="no-data" v-else>
+          <img src="img/no-data-1.png" alt="">
+          <p class="txt">暂无数据</p>
         </div>
       </div>
     </div>

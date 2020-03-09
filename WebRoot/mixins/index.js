@@ -2,8 +2,7 @@ const mixin = {
   data () {
     return {
       isLogin: window.sessionStorage.getItem('userId') ? true : false,
-      userId: window.sessionStorage.getItem('userId'),
-      recommendList: []
+      userId: window.sessionStorage.getItem('userId')
     }
   },
   methods: {

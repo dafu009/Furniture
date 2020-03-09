@@ -249,20 +249,33 @@ a {
 	padding: 10px;
 	margin-top: 50px;
 }
+.goods_wrap {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
 .guess_goods{
 	width: 230px;
-	padding-top: 25px;
-	padding-left: 20px;
-	float: left;
+    margin: 15px 20px;
+    padding: 10px;
 	overflow: hidden;
 	position: relative;
-	line-height: 1.42857143;
 	color:#333;
+    cursor: pointer;
+}
+.guess_goods:hover {
+    box-shadow: 0 0 5px rgba(0,0,0,0.1);
+}
+.guessgoods_top {
+    text-align: center;
 }
 .guessgoods_top img{
 	position: relative;
 	max-width: 80%;
 	margin-bottom: 20px;
+}
+.guessgoods_bot div{
+    text-align: center;
 }
 .goodsname span{
 	font-size: 18px;
