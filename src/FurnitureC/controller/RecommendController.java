@@ -41,11 +41,11 @@ public class RecommendController {
 	public Map<String, Object> recommendGoodsDetail(goods Goods , Integer userid, Integer goodsid,Integer page, Integer pageSize) {
 //		System.out.println(userid+","+goodsid+","+page+","+pageSize);	
 		List<Map<String,Object>> GoodsList = new ArrayList<Map<String,Object>>();
-		List<Map<String,Object>> GoodsListRandom = new ArrayList<Map<String,Object>>();
+		List<Map<String,Object>> GoodsListRandom = new ArrayList<Map<String,Object>>(); 
 		List<Map<String,Object>> AllGoodsList = new ArrayList<Map<String,Object>>();
 		List<Map<String,Object>> GoodsListCount = null;
-		List<Map<String, Object>> userList = new ArrayList<Map<String, Object>>();	
-		List<Map<String, Object>> recgoodsList = new ArrayList<Map<String, Object>>();	
+		List<Map<String, Object>> userList = new ArrayList<Map<String, Object>>();	//用户ID
+		List<Map<String, Object>> recgoodsList = new ArrayList<Map<String, Object>>();	//推荐商品
 
 		Map<String, Object> result = new HashMap<String, Object>();
 		Map<String, Object> map = new HashMap<String, Object>();
@@ -58,10 +58,11 @@ public class RecommendController {
 					GoodsListCount = goodsService.RandomAllGoods(Goods, goodsid);
 				}else{
 					userList = collectService.FindCollectWithgoodsId(goodsid); //获取收藏这件商品的所有userID
-					if(userList == null){
+					if(userList.size() == 0){
 						GoodsList = goodsService.RandomGoods(Goods, goodsid, page, pageSize);
 						GoodsListCount = goodsService.RandomAllGoods(Goods, goodsid);
-					}else{
+					}
+					else{
 						Integer userID = null;
 						Integer recommendgoodsID = null;
 						for (int i =0 ; i <userList.size(); i++){
@@ -145,7 +146,7 @@ public class RecommendController {
 					map.put("state", state);
 					map.put("message", message);
 					map.put("result", result);
-//				    			System.out.println(map);
+//				    System.out.println(map);
 					return map;
 				}
 				total = GoodsListCount.size();
@@ -231,7 +232,7 @@ public class RecommendController {
 							GoodsListRandom = goodsService.RandomGoodsexc(Goods, page, Randompage);
 							AllGoodsList.addAll(GoodsListRandom);
 							GoodsList = AllGoodsList; 
-							
+							GoodsListcount = AllGoodsList;
 						}else{ //当数据量大于10条时,直接基于物品推荐
 							for (RecommendedItem recommendation : recommendations) {
 								goodsID = recommendation.getItemID();
@@ -243,7 +244,7 @@ public class RecommendController {
 					}
 				}
 				total=GoodsListcount.size();
-//        		System.out.println(nCount);
+//        		System.out.println(total);
             	result.put("total", total);
             	result.put("GoodsList", GoodsList);
             	code=200;
