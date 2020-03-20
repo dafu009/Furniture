@@ -97,9 +97,11 @@ public class RecommendController {
 									return map;
 								}else{
 									for(int k = 0; k<recgoodsList.size(); k++){
-										recommendgoodsID = Integer.parseInt(recgoodsList.get(k).get("goodsID").toString()); //获取可推荐商品的goodsID
+										//获取可推荐商品的goodsID
+										recommendgoodsID = Integer.parseInt(recgoodsList.get(k).get("goodsID").toString()); 
 										
-										GoodsList = goodsService.RecGoods(Goods, recommendgoodsID, page, pageSize);
+										//获取用户收藏其他的书详情
+										GoodsList = goodsService.RecGoods(Goods, recommendgoodsID, page, pageSize);	
 										GoodsListCount = goodsService.RecGoodsAll(Goods, recommendgoodsID);
 									}
 									total = GoodsListCount.size();
@@ -117,7 +119,7 @@ public class RecommendController {
 									}
 		
 							}else{
-								GoodsList = goodsService.RandomGoods(Goods, goodsid, page, pageSize);
+								GoodsList = goodsService.RandomGoods(Goods, goodsid, page, pageSize); 	//详情页推荐随机抽取除了那本书
 								GoodsListCount = goodsService.RandomAllGoods(Goods, goodsid);
 								
 								total = GoodsListCount.size();
