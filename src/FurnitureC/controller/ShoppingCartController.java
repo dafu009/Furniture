@@ -377,11 +377,15 @@ public class ShoppingCartController {
 				String shoppingDate = formatDate.format(date);
 				//加入购物车
 				if(sign == 1){
-					
+					String strid = "id";
+					String strnum = "num";
+					String strquantity = "quantity";
+					Integer carid = 0;
+					Integer quantity = 0;
 					findShoppingCart = shoppingCartService.FindShoppingCart(userID, goodsID);
 					//没有goodsID的家具时
 					if(findShoppingCart == null){
-						Integer quantity;
+
 						shoppingCartService.AddCart(userID, goodsID, num, shoppingDate);
 						goodsQuantity = goodsService.GetQuantity(goodsID);
 						quantity = Integer.parseInt(goodsQuantity.get("quantity").toString());
@@ -389,11 +393,7 @@ public class ShoppingCartController {
 						goodsService.ChangeQuantity(goodsID, quantity);
 					}else{
 						//有goodsID的家具时，直接改变num值以及加入时间
-						String strid = "id";
-						String strnum = "num";
-						String strquantity = "quantity";
-						Integer carid = 0;
-						Integer quantity = 0;
+
 						for(Entry<String,Object> key :findShoppingCart.entrySet() ){
 							if(strid.equals(key.getKey())){
 								carid = Integer.parseInt(key.getValue().toString()) ;	

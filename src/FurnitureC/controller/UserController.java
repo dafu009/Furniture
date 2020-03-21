@@ -145,7 +145,7 @@ public class UserController {
 					message = "用户名已存在！";
 					result.put("flag", flag);
 					result.put("message", message);
-					code=0;
+					code=100;
 					state="fail";
 					message="失败！";
 					map.put("code", code);

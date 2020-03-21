@@ -54,6 +54,9 @@ window.onload = () => {
             if (code === 200) {
               window.location.href = 'login.html'
             }
+            if (code === 100) {
+                sweetAlert('Oops..', '用户名已存在', 'error')
+              }
           })
           .catch((err) => {
             console.log(err)
