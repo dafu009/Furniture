@@ -34,18 +34,18 @@ public class RecommendController {
 	private RecommendService recommendService;
 	
 	/**
-	 * ï¿½ï¿½ï¿½ï¿½/goodsdetailï¿½ï¿½ï¿½ï¿½ï¿½Æ¼ï¿½
+	 * ·µ»Ø/goodsdetailÏêÇéÍÆ¼ö
     */	
 	@PostMapping("/recommendGoodsDetail")
 	@ResponseBody
 	public Map<String, Object> recommendGoodsDetail(goods Goods , Integer userid, Integer goodsid,Integer page, Integer pageSize) {
 //		System.out.println(userid+","+goodsid+","+page+","+pageSize);	
 		List<Map<String,Object>> GoodsList = new ArrayList<Map<String,Object>>();
-		List<Map<String,Object>> GoodsListRandom = new ArrayList<Map<String,Object>>();
+		List<Map<String,Object>> GoodsListRandom = new ArrayList<Map<String,Object>>(); 
 		List<Map<String,Object>> AllGoodsList = new ArrayList<Map<String,Object>>();
 		List<Map<String,Object>> GoodsListCount = null;
-		List<Map<String, Object>> userList = new ArrayList<Map<String, Object>>();	
-		List<Map<String, Object>> recgoodsList = new ArrayList<Map<String, Object>>();	
+		List<Map<String, Object>> userList = new ArrayList<Map<String, Object>>();	//ÓÃ»§ID
+		List<Map<String, Object>> recgoodsList = new ArrayList<Map<String, Object>>();	//ÍÆ¼öÉÌÆ·
 
 		Map<String, Object> result = new HashMap<String, Object>();
 		Map<String, Object> map = new HashMap<String, Object>();
@@ -57,29 +57,30 @@ public class RecommendController {
 					GoodsList = goodsService.RandomGoods(Goods, goodsid, page, pageSize);
 					GoodsListCount = goodsService.RandomAllGoods(Goods, goodsid);
 				}else{
-					userList = collectService.FindCollectWithgoodsId(goodsid); //ï¿½ï¿½È¡ï¿½Õ²ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½userID
+					userList = collectService.FindCollectWithgoodsId(goodsid); //»ñÈ¡ÊÕ²ØÕâ¼þÉÌÆ·µÄËùÓÐuserID
 					if(userList.size() == 0){
 						GoodsList = goodsService.RandomGoods(Goods, goodsid, page, pageSize);
 						GoodsListCount = goodsService.RandomAllGoods(Goods, goodsid);
-					}else{
+					}
+					else{
 						Integer userID = null;
 						Integer recommendgoodsID = null;
 						for (int i =0 ; i <userList.size(); i++){
-							userID = Integer.parseInt(userList.get(i).get("userID").toString()); //ï¿½ï¿½È¡userID
+							userID = Integer.parseInt(userList.get(i).get("userID").toString()); //»ñÈ¡userID
 						
 							if(userID != userid){
-								recgoodsList = collectService.GetUser(userID, goodsid); //ï¿½ï¿½È¡Ä³ï¿½ï¿½ï¿½Õ²Ø³ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ·
+								recgoodsList = collectService.GetUser(userID, goodsid); //»ñÈ¡Ä³ÈËÊÕ²Ø³ýÁËÕâ¼þÉÌÆ·ÍâµÄÆäËûÉÌÆ·
 //								int num =10;
-								if(recgoodsList.size() <= 10){ //ï¿½ï¿½ï¿½Æ¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½10ï¿½ï¿½Ê±ï¿½ï¿½
+								if(recgoodsList.size() <= 10){ //µ±ÍÆ¼öÊýÁ¿²»¹»10ÌõÊ±ºò
 									Integer Randompage = 10 - recgoodsList.size();
 									for(int j = 0; j <recgoodsList.size(); j++){
-										recommendgoodsID = Integer.parseInt(recgoodsList.get(j).get("goodsID").toString()); //ï¿½ï¿½È¡ï¿½ï¿½ï¿½Æ¼ï¿½ï¿½ï¿½Æ·ï¿½ï¿½goodsID
+										recommendgoodsID = Integer.parseInt(recgoodsList.get(j).get("goodsID").toString()); //»ñÈ¡¿ÉÍÆ¼öÉÌÆ·µÄgoodsID
 										
-										GoodsList = goodsService.RecGoods(Goods, recommendgoodsID, page, recgoodsList.size()); //ï¿½ï¿½ï¿½ï¿½IDï¿½ï¿½È¡ï¿½ï¿½ï¿½ï¿½
+										GoodsList = goodsService.RecGoods(Goods, recommendgoodsID, page, recgoodsList.size()); //¸ù¾ÝID»ñÈ¡ÏêÇé
 	//									System.out.println(GoodsList);	
 										AllGoodsList.addAll(j, GoodsList);
 									}
-									GoodsListRandom = goodsService.RandomGoods(Goods, goodsid, page, Randompage); //ï¿½ï¿½ï¿½ï¿½ï¿½È¡ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ·
+									GoodsListRandom = goodsService.RandomGoods(Goods, goodsid, page, Randompage); //Ëæ»ú»ñÈ¡³ý´ËÉÌÆ·ÍâµÄÆäËûÉÌÆ·
 									AllGoodsList.addAll(GoodsListRandom);
 									GoodsList = AllGoodsList;
 									total = GoodsList.size();
@@ -87,7 +88,7 @@ public class RecommendController {
 									result.put("GoodsList", GoodsList);
 									code = 200;
 									state = "success";
-									message = "ï¿½É¹ï¿½";
+									message = "³É¹¦";
 									map.put("code", code);
 									map.put("state", state);
 									map.put("message", message);
@@ -96,9 +97,11 @@ public class RecommendController {
 									return map;
 								}else{
 									for(int k = 0; k<recgoodsList.size(); k++){
-										recommendgoodsID = Integer.parseInt(recgoodsList.get(k).get("goodsID").toString()); //ï¿½ï¿½È¡ï¿½ï¿½ï¿½Æ¼ï¿½ï¿½ï¿½Æ·ï¿½ï¿½goodsID
+										//»ñÈ¡¿ÉÍÆ¼öÉÌÆ·µÄgoodsID
+										recommendgoodsID = Integer.parseInt(recgoodsList.get(k).get("goodsID").toString()); 
 										
-										GoodsList = goodsService.RecGoods(Goods, recommendgoodsID, page, pageSize);
+										//»ñÈ¡ÓÃ»§ÊÕ²ØÆäËûµÄÊéÏêÇé
+										GoodsList = goodsService.RecGoods(Goods, recommendgoodsID, page, pageSize);	
 										GoodsListCount = goodsService.RecGoodsAll(Goods, recommendgoodsID);
 									}
 									total = GoodsListCount.size();
@@ -106,7 +109,7 @@ public class RecommendController {
 									result.put("GoodsList", GoodsList);
 									code = 200;
 									state = "success";
-									message = "ï¿½É¹ï¿½";
+									message = "³É¹¦";
 									map.put("code", code);
 									map.put("state", state);
 									map.put("message", message);
@@ -116,7 +119,7 @@ public class RecommendController {
 									}
 		
 							}else{
-								GoodsList = goodsService.RandomGoods(Goods, goodsid, page, pageSize);
+								GoodsList = goodsService.RandomGoods(Goods, goodsid, page, pageSize); 	//ÏêÇéÒ³ÍÆ¼öËæ»ú³éÈ¡³ýÁËÄÇ±¾Êé
 								GoodsListCount = goodsService.RandomAllGoods(Goods, goodsid);
 								
 								total = GoodsListCount.size();
@@ -124,7 +127,7 @@ public class RecommendController {
 								result.put("GoodsList", GoodsList);
 								code = 200;
 								state = "success";
-								message = "ï¿½É¹ï¿½";
+								message = "³É¹¦";
 								map.put("code", code);
 								map.put("state", state);
 								map.put("message", message);
@@ -140,12 +143,12 @@ public class RecommendController {
 					result.put("GoodsList", GoodsList);
 					code = 200;
 					state = "success";
-					message = "ï¿½É¹ï¿½";
+					message = "³É¹¦";
 					map.put("code", code);
 					map.put("state", state);
 					map.put("message", message);
 					map.put("result", result);
-//				    			System.out.println(map);
+//				    System.out.println(map);
 					return map;
 				}
 				total = GoodsListCount.size();
@@ -153,7 +156,7 @@ public class RecommendController {
 				result.put("GoodsList", GoodsList);
 				code = 200;
 				state = "success";
-				message = "ï¿½É¹ï¿½";
+				message = "³É¹¦";
 				map.put("code", code);
 				map.put("state", state);
 				map.put("message", message);
@@ -166,7 +169,7 @@ public class RecommendController {
 				result.put("GoodsList", GoodsList);
 				code = 0;
 				state = "fail";
-				message = "Ê§ï¿½ï¿½";
+				message = "Ê§°Ü";
 				map.put("code", code);
 				map.put("state", state);
 				map.put("message", message);
@@ -181,7 +184,7 @@ public class RecommendController {
 			result.put("GoodsList", GoodsList);
 			code = 0;
 			state = "fail";
-			message = "Ê§ï¿½ï¿½";
+			message = "Ê§°Ü";
 			map.put("code", code);
 			map.put("state", state);
 			map.put("message", message);
@@ -192,7 +195,7 @@ public class RecommendController {
 	}
 	
 	/**
-	 * ï¿½ï¿½ï¿½ï¿½/okbuy_yesï¿½ï¿½/myorderï¿½Ä²ï¿½ï¿½ï¿½Ï²ï¿½ï¿½ï¿½Æ¼ï¿½
+	 * ·µ»Ø/okbuy_yes¡¢/myorderµÄ²ÂÄãÏ²»¶ÍÆ¼ö
     */	
 	@PostMapping("/getRecommendGoodsLike")
 	@ResponseBody
@@ -210,29 +213,29 @@ public class RecommendController {
 		String state,message;
 		try{
 			if(userid != null & page != 0 & pageSize != 0){
-				if(userid == 0){ //Î´ï¿½ï¿½Â¼Ê±,ï¿½ï¿½ï¿½ï¿½ï¿½È¡ï¿½ï¿½ï¿½ï¿½ï¿½Æ¼ï¿½
+				if(userid == 0){ //Î´µÇÂ¼Ê±,Ëæ»ú»ñÈ¡Êý¾ÝÍÆ¼ö
 					GoodsList = goodsService.RandomGoodsexc(Goods, page, pageSize);
 				}else{
 					SizeOfRecommend = recommendService.SizeOfRecommend(userid);
-					if(SizeOfRecommend.size()==0){ //ï¿½ï¿½ï¿½ï¿½userIDÎ´ï¿½ï¿½ï¿½ï¿½Æ·ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ¼ï¿½
+					if(SizeOfRecommend.size()==0){ //µ±´ËuserIDÎ´ÓÐÉÌÆ·Êý¾ÝÊ±½øÐÐËæ»úÍÆ¼ö
 						GoodsList = goodsService.RandomGoodsexc(Goods, page, pageSize);
-						GoodsListcount = goodsService.GoodsAll(Goods); // ï¿½ï¿½È¡È«ï¿½ï¿½ï¿½ï¿½Æ·ï¿½ï¿½ï¿½ï¿½
-					}else{ //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ð»ï¿½ï¿½ï¿½ï¿½ï¿½Æ·ï¿½ï¿½ï¿½Æ¼ï¿½
+						GoodsListcount = goodsService.GoodsAll(Goods); // »ñÈ¡È«²¿²úÆ·ÊýÁ¿
+					}else{ //·ñÔò½øÐÐ»ùÓÚÎïÆ·µÄÍÆ¼ö
 						recommendations = recommendService.LikeRecommend(userid);
 						long goodsID = 0;
-						if(recommendations.size()<= 10){ //Ò»ï¿½ï¿½ï¿½Æ¼ï¿½10ï¿½ï¿½ï¿½ï¿½ï¿½Ý£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ·ï¿½Æ¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ð¡ï¿½ï¿½10Ê±
+						if(recommendations.size()<= 10){ //Ò»¹²ÍÆ¼ö10ÌõÊý¾Ý£¬µ±»ùÓÚÎïÆ·ÍÆ¼öµÄÊý¾ÝÁ¿Ð¡ÓÚ10Ê±
 							Integer Randompage = 10 - recommendations.size();
 							for(RecommendedItem recommendation : recommendations){
-								goodsID = recommendation.getItemID(); //ï¿½ï¿½È¡ï¿½ï¿½ï¿½Ý¿ï¿½ï¿½Ðµï¿½goodsIDï¿½ï¿½ï¿½Ð»ï¿½ï¿½ï¿½ï¿½ï¿½Æ·ï¿½Æ¼ï¿½
+								goodsID = recommendation.getItemID(); //»ñÈ¡Êý¾Ý¿âÖÐµÄgoodsID½øÐÐ»ùÓÚÎïÆ·ÍÆ¼ö
 								GoodsList = goodsService.LikeRecGoods(Goods, goodsID, page, Randompage); 
 								AllGoodsList.addAll(GoodsList);
 							}
-							//ï¿½ï¿½Ê£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ¼ï¿½
+							//½«Ê£ÓàµÄÊý¾ÝÁ¿½øÐÐËæ»úÍÆ¼ö
 							GoodsListRandom = goodsService.RandomGoodsexc(Goods, page, Randompage);
 							AllGoodsList.addAll(GoodsListRandom);
 							GoodsList = AllGoodsList; 
-							
-						}else{ //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½10ï¿½ï¿½Ê±,Ö±ï¿½Ó»ï¿½ï¿½ï¿½ï¿½ï¿½Æ·ï¿½Æ¼ï¿½
+							GoodsListcount = AllGoodsList;
+						}else{ //µ±Êý¾ÝÁ¿´óÓÚ10ÌõÊ±,Ö±½Ó»ùÓÚÎïÆ·ÍÆ¼ö
 							for (RecommendedItem recommendation : recommendations) {
 								goodsID = recommendation.getItemID();
 								
@@ -243,12 +246,12 @@ public class RecommendController {
 					}
 				}
 				total=GoodsListcount.size();
-//        		System.out.println(nCount);
+//        		System.out.println(total);
             	result.put("total", total);
             	result.put("GoodsList", GoodsList);
             	code=200;
     			state="success";
-    			message="ï¿½É¹ï¿½";
+    			message="³É¹¦";
     			map.put("code", code);
     			map.put("state", state);	
     			map.put("message", message);
@@ -261,7 +264,7 @@ public class RecommendController {
             	result.put("GoodsList", GoodsList);
             	code=0;
     			state="fail";
-    			message="Ê§ï¿½ï¿½";
+    			message="Ê§°Ü";
     			map.put("code", code);
     			map.put("state", state);	
     			map.put("message", message);
@@ -276,7 +279,7 @@ public class RecommendController {
         	result.put("GoodsList", GoodsList);
         	code=0;
 			state="fail";
-			message="Ê§ï¿½ï¿½";
+			message="Ê§°Ü";
 			map.put("code", code);
 			map.put("state", state);	
 			map.put("message", message);
