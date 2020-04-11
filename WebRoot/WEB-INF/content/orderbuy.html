@@ -54,7 +54,7 @@
       <div class="mingxidetail">
         <div class="onemingxi" v-for="(item, index) in buyList" :key="index">
           <div class="goodsnum">
-            <span>{{ item.num }}</span>
+            <span>{{ index+1 }}</span>
           </div>
           <div class="newgoods_one" name="entergoodsdetail">
             <div class="newgoodsone_left"><img :src="item.picInfo"></div>
@@ -65,17 +65,17 @@
         </div>
       </div>
       </div>
-      <div class="mingxibottom">
-        <div class="mingxibottom_price">
-        </div>
+
+      <div style="clear: both;"></div>
         <div class="mingxibottom_btn" @click="submit">
           提交
         </div>
-      </div>
     </div>
   </div>
+
+  <div style="clear: both;"></div>
   <!--页脚-->
-  <div class="footerbg">
+  <div class="footerbg" >
     <P>© DESIGNED BY Yannes & Ann</P>
   </div>
 

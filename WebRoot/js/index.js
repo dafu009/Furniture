@@ -56,65 +56,65 @@ window.onload = () => {
         clearGoods: [
           {
             name: '拖把',
-            id: 1
+            id: 100
           },
           {
             name: '刷子',
-            id: 2
+            id: 101
           },
           {
             name: '皂液器',
-            id: 3
+            id: 102
           },
           {
             name: '洗衣篮',
-            id: 4
+            id: 103
           }
         ],
         admissionGoods: [
           {
-            name: 'kitchen',
-            id: 5
+            name: '小钉板',
+            id: 8
           },
           {
-            name: 'shouna',
-            id: 6
+            name: '地毯',
+            id: 28
           },
           {
-            name: 'cloth',
-            id: 7
+            name: '餐盒',
+            id: 49
           }
         ],
         leisureGoods: [
           {
             name: 'toe',
-            id: 8
+            id: 71
           },
           {
             name: 'bed',
-            id: 9
+            id: 71
           },
           {
             name: 'green',
-            id: 10
+            id: 27
           },
           {
             name: 'gym',
-            id: 11
+            id: 69
           },
           {
             name: 'sofa',
-            id: 12
+            id: 18
           }
         ],
         workGoods: [
           {
             name: 'big',
-            id: 13
+            id: 55
           },
           {
             name: 'small',
-            id: 14
+            id: 75
           }
         ],
         hotCategorys: [
