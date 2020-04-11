@@ -88,7 +88,7 @@ window.onload = () => {
       },
       fetchData(params) {
         axios({ // ajax 请求
-          method: 'GET',　// 具体看请求后端的方式
+          method: 'GET',　// 看请求后端的方式
           url: '/Furniture/goodsTypeDetail', // 后端查询接口
           params
         })
@@ -148,14 +148,15 @@ window.onload = () => {
           })
       },
       addCartOrLike(goodsid, sign) {
-        if (!this.userId) {
-          sweetAlert("Oops..", "请先前往登录", "warning");
-          return
+        if (!this.userId) {  //判断是否登录状态
+          //sweetAlert("Oops..", "请先前往登录", "warning");
+          //return
+        	window.location.href = 'login.html'
         }
-        let txt = sign ? '购物车' : '收藏夹'
+        let txt = sign ? '购物车' : '收藏夹' //判断商品是加入购物车还是收藏夹
         axios({
           method: 'POST',
-          url: '/Furniture/addLikeCart',
+          url: '/Furniture/addLikeCart', //后台接口
           data: Qs.stringify({
             id: this.userId,
             sign,
@@ -178,7 +179,7 @@ window.onload = () => {
       buyNow(good) {
         if (!this.userId) {
           sweetAlert("Oops..", "请先前往登录", "warning");
-          return
+          return window.location.href = 'login.html'
         }
         good.num = 1
         good.goodsid = good.id
