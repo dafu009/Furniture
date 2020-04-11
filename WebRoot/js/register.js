@@ -54,8 +54,13 @@ window.onload = () => {
             if (code === 200) {
               window.location.href = 'login.html'
             }
+<<<<<<< HEAD
             else if (code === 100) {
             	sweetAlert('Oops..', '用户名已存在，请重新输入', 'error')
+=======
+            if (code === 100) {
+                sweetAlert('Oops..', '用户名已存在', 'error')
+>>>>>>> master
               }
           })
           .catch((err) => {
