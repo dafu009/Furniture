@@ -45,7 +45,7 @@ public class OrderController {
 	
 	
 	/**
-	 * ÊµÏÖ/addorderµÄ¶©µ¥Ôö¼Ó
+	 * Êµï¿½ï¿½/addorderï¿½Ä¶ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	 */
 	@RequestMapping("/addOrder")
 	@ResponseBody
@@ -68,14 +68,14 @@ public class OrderController {
 				double totalMoney = 0;
 				double money1,money2 = 0;
 				String strmoney1,strmoney2;
-				//¹Ì¶¨Êı×Ö×ª»¯¸ñÊ½
+				//ï¿½Ì¶ï¿½ï¿½ï¿½ï¿½ï¿½×ªï¿½ï¿½ï¿½ï¿½Ê½
 				java.text.DecimalFormat format = new java.text.DecimalFormat("#0.00");
 		
 				if(idlist.size() == 1){
 					num1 = Integer.parseInt(idlist.get(0).get("num").toString());
 					inPrice = Double.parseDouble(idlist.get(0).get("inPrice").toString());
 	//				strmoney1 = idlist.get(0).get("inPrice").toString();
-	//				inPrice = Double.parseDouble(strmoney1);//×ª»»³ÉdoubleÀàĞÍ
+	//				inPrice = Double.parseDouble(strmoney1);//×ªï¿½ï¿½ï¿½ï¿½doubleï¿½ï¿½ï¿½ï¿½
 					money1 = Double.parseDouble(format.format(inPrice));
 					totalNum = num1;
 					totalMoney = money1*num1;
@@ -107,11 +107,11 @@ public class OrderController {
 					String num = idlist.get(k).get("num").toString();
 					String price = idlist.get(k).get("inPrice").toString();
 					orderService.AddOrderItem(orderFormID, goodsID, num, price);
-					//´Ó¹ºÎï³µÖĞÒÆ³ı
+					//ï¿½Ó¹ï¿½ï¿½ï³µï¿½ï¿½ï¿½Æ³ï¿½
 					shoppingCartService.DeleteShoppingCartWithOrder(userID, goodsID);
 				}
 				flag = 1;
-				message = "³É¹¦";
+				message = "ï¿½É¹ï¿½";
 				result.put("flag", flag);
 				result.put("message", message);
 				code = 200;
@@ -124,7 +124,7 @@ public class OrderController {
 				return map;	 
 			}else{
 				flag = 0;
-				message = "Ê§°Ü";
+				message = "Ê§ï¿½ï¿½";
 				result.put("flag", flag);
 				result.put("message", message);
 				code = 0;
@@ -140,7 +140,7 @@ public class OrderController {
 		}catch(Exception e){
 			System.out.println(e);
 			flag = 0;
-			message = "Ê§°Ü";
+			message = "Ê§ï¿½ï¿½";
 			result.put("flag", flag);
 			result.put("message", message);
 			code = 0;
@@ -158,7 +158,7 @@ public class OrderController {
 	
 	
 	/**
-	 * ÊµÏÖ/orderÎÒµÄ¶©µ¥ÏÔÊ¾
+	 * Êµï¿½ï¿½/orderï¿½ÒµÄ¶ï¿½ï¿½ï¿½ï¿½ï¿½Ê¾
 	 */
 	@RequestMapping("/viewOrder")
 	@ResponseBody
@@ -199,7 +199,7 @@ public class OrderController {
 				result.put("orderlist", ALLorder);
 				code = 200;
 				state = "success";
-				message = "³É¹¦";
+				message = "æˆåŠŸ";
 				map.put("code", code);
 				map.put("state", state);
 				map.put("message", message);
@@ -211,7 +211,7 @@ public class OrderController {
 				result.put("orderlist", ALLorder);
 				code = 0;
 				state = "fail";
-				message = "Ê§°Ü";
+				message = "Ê§ï¿½ï¿½";
 				map.put("code", code);
 				map.put("state", state);
 				map.put("message", message);
@@ -225,7 +225,7 @@ public class OrderController {
 			result.put("orderlist", ALLorder);
 			code = 0;
 			state = "fail";
-			message = "Ê§°Ü";
+			message = "Ê§ï¿½ï¿½";
 			map.put("code", code);
 			map.put("state", state);
 			map.put("message", message);
