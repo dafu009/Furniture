@@ -393,16 +393,17 @@ public class ShoppingCartController {
 						goodsService.ChangeQuantity(goodsID, quantity);
 					}else{
 						//有goodsID的家具时，直接改变num值以及加入时间
-
+//						System.out.println(JSON.toJSONString(findShoppingCart));
 						for(Entry<String,Object> key :findShoppingCart.entrySet() ){
 							if(strid.equals(key.getKey())){
 								carid = Integer.parseInt(key.getValue().toString()) ;	
+							}
 							if(strnum.equals(key.getKey())){
 								num = Integer.parseInt(key.getValue().toString());
 							}
-							}
-//							System.out.println(key);
+							
 						}
+//						System.out.println(num);
 //						carid = Integer.parseInt(findShoppingCart.get("carid").toString());
 //						num = Integer.parseInt(findShoppingCart.get("num").toString());
 //						System.out.println(carid+"/"+num+"/"+shoppingDate);	
@@ -415,10 +416,11 @@ public class ShoppingCartController {
 							}
 							
 						}
+//						System.out.println(quantity);
 //						quantity = Integer.parseInt(bookQuantity.get("quantity").toString());
 						goodsService.ChangeQuantity(goodsID, quantity);
 //						System.out.println("next");
-//						System.out.println(quantity)
+//						System.out.println(quantity);
 					}
 					
 				}else if(sign == 0){

@@ -43,6 +43,7 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
 	@Override
 	public void ChangeCarNum(Integer carid, Integer num, String shoppingDate) {
 		// TODO Auto-generated method stub
+		num = num + 1;
 		shoppingCartMapper.changeCarNum(num, carid, shoppingDate);
 	}
 
