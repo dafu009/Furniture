@@ -52,9 +52,10 @@ public class RecommendController {
 		int code,total;
 		String state,message;
 		try{
-			if(userid != null &page != 0 & pageSize != 0){
-				if(userid == 0){
+			if(page != 0 & pageSize != 0){
+				if(userid == null){
 					GoodsList = goodsService.RandomGoods(Goods, goodsid, page, pageSize);
+//					System.out.println(GoodsList);
 					GoodsListCount = goodsService.RandomAllGoods(Goods, goodsid);
 				}else{
 					userList = collectService.FindCollectWithgoodsId(goodsid); //获取收藏这件商品的所有userID
@@ -178,7 +179,7 @@ public class RecommendController {
 				return map;
 			}
 		}catch(Exception e){
-			System.out.println(e);
+//			System.out.println(e);
 			total = 0;
 			result.put("total", total);
 			result.put("GoodsList", GoodsList);
@@ -213,7 +214,7 @@ public class RecommendController {
 		String state,message;
 		try{
 			if(userid != null & page != 0 & pageSize != 0){
-				if(userid == 0){ //未登录时,随机获取数据推荐
+				if(userid == null){ //未登录时,随机获取数据推荐
 					GoodsList = goodsService.RandomGoodsexc(Goods, page, pageSize);
 				}else{
 					SizeOfRecommend = recommendService.SizeOfRecommend(userid);
